@@ -1,0 +1,22 @@
+% pocket-dimensions.sty
+% Page geometry shared by every project in the press.
+% Matched to the physical Bne Issakhar pocket siddur (3.5in x 4.75in).
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pocket-dimensions}[2026/09/22 Pocket page geometry]
+
+\RequirePackage[
+    paperwidth=3.5in,
+    paperheight=4.75in,
+    top=0.4in,
+    bottom=0.45in,
+    inner=0.5in,
+    outer=0.35in,
+    twoside
+]{geometry}
+
+% Hebrew books bind on the right. No mirroring is needed here: with babel's
+% bidi=basic under LuaTeX the page body runs right-to-left, so the side
+% margins are measured from the right edge and the 0.5in inner margin
+% already lands at the spine (right side of odd pages).
+
+\endinput

@@ -1,0 +1,22 @@
+% birkon/main.tex
+% Sephardic birkon (Edot HaMizrach). Compile with LuaLaTeX.
+\documentclass[10pt,twoside,openany]{book}
+
+% Locate the repository root so the shared files resolve whether this file
+% is compiled from birkon/ (locally) or from the project root (Overleaf).
+\IfFileExists{../shared/macros/hebrew-layout.sty}
+  {\def\pressroot{../}}
+  {\def\pressroot{}}
+\makeatletter
+\def\input@path{{\pressroot shared/macros/}{\pressroot shared/geometry/}}
+\makeatother
+
+\usepackage{pocket-dimensions}
+\usepackage{hebrew-layout}
+
+\begin{document}
+\pagestyle{empty}
+
+\input{\pressroot birkon/sections/birkat-hamazon}
+
+\end{document}

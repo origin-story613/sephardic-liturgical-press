@@ -1,0 +1,129 @@
+% hebrew-layout.sty
+% House style shared by every project in the press: languages, fonts, and
+% the liturgical markup macros. Requires LuaLaTeX.
+%
+% The loading document must define \pressroot (path from the main .tex file
+% to the repository root, e.g. "../") before \usepackage{hebrew-layout}.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hebrew-layout}[2026/09/22 Sephardic liturgical house style]
+
+\RequirePackage{iftex}
+\RequireLuaTeX
+
+\providecommand{\pressroot}{}
+\newcommand{\pressfonts}{\pressroot shared/fonts/}
+
+% ---------------------------------------------------------------------------
+% Languages
+% ---------------------------------------------------------------------------
+\RequirePackage[bidi=basic, layout=counters]{babel}
+\babelprovide[main, import]{hebrew}
+\babelprovide[import]{english}
+
+% ---------------------------------------------------------------------------
+% Fonts
+%
+% Latin: Gentium Plus, bundled in shared/fonts/.
+% Hebrew: TaameyDavidCLM, uploaded to shared/fonts/. Until it is there, falls
+% back to David CLM as shipped with TeX Live (same Culmus design). David CLM is
+% deliberately not bundled: a second copy under TeX Live's file name confuses
+% the LuaTeX font cache and scrambles the glyphs.
+% ---------------------------------------------------------------------------
+\RequirePackage{fontspec}
+
+\babelfont{rm}[
+    Path           = \pressfonts,
+    Extension      = .ttf,
+    UprightFont    = *-Regular,
+    ItalicFont     = *-Italic,
+    BoldFont       = *-Bold,
+    BoldItalicFont = *-BoldItalic
+]{GentiumPlus}
+
+\newcommand{\press@taamey}[1]{%
+  \babelfont[hebrew]{rm}[
+      Path        = \pressfonts,
+      Extension   = #1,
+      UprightFont = *-Medium,
+      BoldFont    = *-Bold
+  ]{TaameyDavidCLM}}
+
+\IfFileExists{\pressfonts TaameyDavidCLM-Medium.otf}{\press@taamey{.otf}}{%
+\IfFileExists{\pressfonts TaameyDavidCLM-Medium.ttf}{\press@taamey{.ttf}}{%
+  \PackageWarningNoLine{hebrew-layout}{%
+    TaameyDavidCLM not found in shared/fonts/.\MessageBreak
+    Falling back to TeX Live's David CLM}%
+  \babelfont[hebrew]{rm}[
+      Extension   = .otf,
+      UprightFont = *-Medium,
+      BoldFont    = *-Bold
+  ]{DavidCLM}%
+}}
+
+% ---------------------------------------------------------------------------
+% Liturgical markup
+% ---------------------------------------------------------------------------
+
+% Paragraphs: no first-line indent; a small gap marks paragraph breaks instead.
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.3\baselineskip plus 1pt}
+
+% The pocket column is narrow (about 2.65in): allow looser word spacing
+% rather than letting a line overrun the margin.
+\tolerance=1000
+\emergencystretch=1em
+
+% Let pages end where the text ends rather than stretching the space between
+% paragraphs and rubrics to fill every page to the same height.
+\raggedbottom
+% Rubric / instruction line (English). Sits tight against the paragraph it
+% introduces: no space below, and never stranded at the foot of a page.
+\newcommand{\rubric}[1]{%
+  \par
+  \begin{otherlanguage}{english}\noindent\small\itshape #1\par\end{otherlanguage}%
+  \nobreak
+  \vskip-\parskip}% cancel the paragraph gap that follows
+
+% Section title.
+\newcommand{\sectiontitle}[1]{%
+  \begin{center}\large\bfseries #1\end{center}}
+
+% Seasonal insertion: single rubric line above, body indented from the
+% start (right-hand) side. Under LuaTeX \rightskip is physical, so it is the
+% start side of a Hebrew paragraph. No list environment, so no added space
+% between the rubric and the insertion.
+\newlength{\seasonalindent}
+\setlength{\seasonalindent}{0.2in}
+\newenvironment{seasonal}[1]{%
+  \rubric{#1}%
+  \begingroup\advance\rightskip\seasonalindent\relax}{%
+  \par\endgroup}
+
+% Divine name. Assembled from Unicode code points at compile time so the Name
+% is never written out in any source file. The argument is an optional prefix
+% with its vowels: \Shem{}, \Shem{לַ}, \Shem{בַּ}, \Shem{מֵ}. The yod keeps its
+% sheva when there is no prefix or the prefix ends in tsere (מֵ); otherwise the
+% sheva drops, as in the source text. The braces also keep the following space.
+\directlua{
+  press = press or {}
+  function press.shem(prefix)
+    local u = utf8.char
+    local yod = u(0x05D9)
+    if prefix == "" or prefix:sub(-2) == u(0x05B5) then
+      yod = yod .. u(0x05B0)
+    end
+    tex.sprint(prefix .. yod .. u(0x05D4, 0x05B9, 0x05D5, 0x05B8, 0x05D4))
+  end
+}
+\newcommand{\Shem}[1]{\directlua{press.shem("\luaescapestring{#1}")}}
+
+% Whispered passage: wrapped in parentheses.
+\newcommand{\whispered}[1]{(#1)}
+
+% Centered divider between liturgical sections.
+\newcommand{\divider}{%
+  \par\medskip
+  {\centering\rule{0.35\textwidth}{0.4pt}\par}%
+  \medskip}
+
+\endinput

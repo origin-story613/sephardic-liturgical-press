@@ -60,21 +60,30 @@ Taken from Yosef's Turkish siddur (Birkat HaMazon, pp. 345–348).
 **Licensing:** the Ladino transliteration and any wording copied from this
 siddur may be under the publisher's copyright. Confirm before selling copies.
 
+## Decided: kept as in the base text
+
+Differences from the Turkish siddur that Yosef chose **not** to adopt:
+
+- **The Name:** printed יְהֹוָה (the siddur prints יְיָ).
+- **Optional words:** marked with square brackets, not the siddur's parentheses.
+- **Whispered Amen** after Boneh Yerushalayim stays in parentheses (the siddur
+  prints it plain).
+- **Hatov VeHametiv:** וְרֵיוַח (the siddur has וְרֶוַח).
+- **Ya'aleh VeYavo festival lines:** base-text wording (the siddur has
+  בְּיוֹם … וּבְיוֹם [טוֹב] מִקְרָא קֹדֶשׁ הַזֶּה).
+- **Magdil rubric:** "On Shabbat, Yom Tov, and days with Musaf" (the siddur has
+  "On Shabbat, Rosh Hodesh and Festivals").
+
+When the siddur and the base text differ, Yosef decides each case.
+
 ## To do
 
-Seen in the siddur photos but **not yet applied** (Yosef to decide):
-
-- [ ] **First blessing:** opens with the heading (הַזָּנֵנוּ וְלֹא מִמַּעֲשֵׂנוּ …
-      הַמַּעֲדִיף טוּבוֹ עָלֵינוּ), and the wording differs (בְּחֵן בְּחֶסֶד וּבְרַחֲמִים
-      הוּא נוֹתֵן לֶחֶם …; concludes הַזָּן בְּרַחֲמָיו אֶת הַכֹּל). Needs a straight-on
-      photo of the whole blessing.
-- [ ] **Ya'aleh VeYavo festival lines:** the siddur reads
-      בְּיוֹם חַג הַמַּצּוֹת הַזֶּה וּבְיוֹם (טוֹב) מִקְרָא קֹדֶשׁ הַזֶּה, with the optional
-      טוֹב in parentheses; Shemini Atzeret is labeled Shemini Atzeret / Simhat Torah.
-- [ ] **Hatov VeHametiv:** וְרֶוַח (the source has וְרֵיוַח).
-- [ ] **Harachaman:** one line each, and includes בְּרֶוַח וְלֹא בְצִמְצוּם. Needs
-      the full list (pp. 346–347).
-- [ ] **The Name** is printed יְיָ in the siddur.
+- [ ] **First blessing:** the siddur opens with a heading (הַזָּנֵנוּ וְלֹא
+      מִמַּעֲשֵׂנוּ … הַמַּעֲדִיף טוּבוֹ עָלֵינוּ) and has different wording
+      (concludes הַזָּן בְּרַחֲמָיו אֶת הַכֹּל). Needs a straight-on photo of the whole
+      blessing, then Yosef's decision.
+- [ ] **Harachaman:** the siddur sets one line each and includes בְּרֶוַח וְלֹא
+      בְצִמְצוּם. Needs photos of pp. 346–347, then Yosef's decision.
 
 Still to compare: the zimun, Lamnatzeach and Avarcha, Al HaNissim, Rachem,
 Retzeh, and the English rubric wording.

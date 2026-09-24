@@ -51,6 +51,8 @@ Taken from Yosef's Turkish siddur (Birkat HaMazon, pp. 345–348).
 
 - **Nodeh** opens with the heading (עַל אַרְצֵנוּ וְעַל נַחֲלַת אֲבוֹתֵינוּ).
 - **Boneh Yerushalayim** concludes בּוֹנֵה בְּרַחֲמָיו בִּנְיַן יְרוּשָׁלַיִם עִיר הַקֹּדֶשׁ.
+- **Closing verses** added after Magdil: כִּי הִשְׂבִּיעַ נֶפֶשׁ שֹׁקֵקָה … הוֹדוּ … (twice)
+  … הַשָּׁמַיִם שָׁמַיִם … וְהָאָרֶץ נָתַן לִבְנֵי אָדָם (Psalms 107:9, 136:1, 115:16).
 - **Oseh Shalom** stands as its own closing paragraph.
 - **Ya Komimos** (Ladino) follows Birkat HaMazon, in a box, transcribed from
   the siddur (p. 348).
@@ -59,10 +61,6 @@ Taken from Yosef's Turkish siddur (Birkat HaMazon, pp. 345–348).
 siddur may be under the publisher's copyright. Confirm before selling copies.
 
 ## To do
-
-- [ ] **Closing paragraph before Oseh Shalom** (p. 347–348): only its end is
-      in the photo (… כִּי הִשְׂבִּיעַ נֶפֶשׁ שֹׁקֵקָה … וְהָאָרֶץ נָתַן לִבְנֵי אָדָם).
-      Needs a photo of its beginning.
 
 Seen in the siddur photos but **not yet applied** (Yosef to decide):
 

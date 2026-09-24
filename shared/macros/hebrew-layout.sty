@@ -5,7 +5,7 @@
 % The loading document must define \pressroot (path from the main .tex file
 % to the repository root, e.g. "../") before \usepackage{hebrew-layout}.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{hebrew-layout}[2026/09/22 Sephardic liturgical house style]
+\ProvidesFile{hebrew-layout.sty}[2026/09/22 Sephardic liturgical house style]
 
 \RequirePackage{iftex}
 \RequireLuaTeX
@@ -42,10 +42,13 @@
 
 \newcommand{\press@taamey}[1]{%
   \babelfont[hebrew]{rm}[
-      Path        = \pressfonts,
-      Extension   = #1,
-      UprightFont = *-Medium,
-      BoldFont    = *-Bold
+      Path           = \pressfonts,
+      Extension      = #1,
+      UprightFont    = *-Medium,
+      BoldFont       = *-Bold,
+      % Hebrew is never set in italics, even inside an italic rubric.
+      ItalicFont     = *-Medium,
+      BoldItalicFont = *-Bold
   ]{TaameyDavidCLM}}
 
 \IfFileExists{\pressfonts TaameyDavidCLM-Medium.otf}{\press@taamey{.otf}}{%
@@ -54,9 +57,12 @@
     TaameyDavidCLM not found in shared/fonts/.\MessageBreak
     Falling back to TeX Live's David CLM}%
   \babelfont[hebrew]{rm}[
-      Extension   = .otf,
-      UprightFont = *-Medium,
-      BoldFont    = *-Bold
+      Extension      = .otf,
+      UprightFont    = *-Medium,
+      BoldFont       = *-Bold,
+      % Hebrew is never set in italics, even inside an italic rubric.
+      ItalicFont     = *-Medium,
+      BoldItalicFont = *-Bold
   ]{DavidCLM}%
 }}
 

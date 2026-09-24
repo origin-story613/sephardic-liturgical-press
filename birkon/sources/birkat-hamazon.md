@@ -54,11 +54,22 @@ Taken from Yosef's Turkish siddur (Birkat HaMazon, pp. 345–348).
 - **Closing verses** added after Magdil: כִּי הִשְׂבִּיעַ נֶפֶשׁ שֹׁקֵקָה … הוֹדוּ … (twice)
   … הַשָּׁמַיִם שָׁמַיִם … וְהָאָרֶץ נָתַן לִבְנֵי אָדָם (Psalms 107:9, 136:1, 115:16).
 - **Oseh Shalom** stands as its own closing paragraph.
-- **Ya Komimos** (Ladino) follows Birkat HaMazon, in a box, transcribed from
-  the siddur (p. 348).
+- **Ya Komimos** (Ladino) follows Birkat HaMazon, in a box.
 
-**Licensing:** the Ladino transliteration and any wording copied from this
-siddur may be under the publisher's copyright. Confirm before selling copies.
+**Licensing:** the Hebrew changes above are traditional liturgical wording.
+
+### Ya Komimos
+
+A traditional Judeo-Spanish blessing after meals; the words are public domain.
+The birkon prints **our own rendering** of the traditional words in the
+standard Aki Yerushalayim Ladino spelling (Yosef's decision). Two versions were
+consulted as references for the wording:
+
+- Yosef's Turkish siddur, p. 348 (same spelling system).
+- Wikipedia, "Ya Comimos": the same words in a different spelling
+  (Dio, oiga, vestir, Siempre mijor, le-olam). It omits "en" in "nunka mos manke
+  en la meza" and spells the second "Odu" as "Hodu". Not used as the source, so
+  no Wikipedia credit is required.
 
 ## Decided: kept as in the base text
 

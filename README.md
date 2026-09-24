@@ -52,6 +52,7 @@ lualatex main.tex
 | `\begin{seasonal}{rubric} ... \end{seasonal}` | Seasonal insertion: rubric above, body indented 0.2in from the right |
 | `\whispered{...}` | Whispered passage, wrapped in parentheses |
 | `\divider` | Centered rule between liturgical sections |
+| `\begin{textbox}{title} ... \end{textbox}` | Boxed Latin-script passage (e.g. Ladino), double rule |
 | `\Shem{prefix}` | The divine name, with an optional prefix |
 
 Conventions: repeated lines are printed in full. The divine name is never

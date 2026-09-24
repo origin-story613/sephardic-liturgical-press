@@ -13,7 +13,7 @@ Section file: `birkon/sections/birkat-hamazon.tex`
   listed as "unknown").
 
 This is a **general Edot HaMizrach base text**. The goal is the Seattle Turkish
-nusach; every place that may differ is listed under "To check" below.
+nusach; open items are listed under "To do" below.
 
 ## Editorial decisions
 
@@ -45,24 +45,38 @@ Words the source left **unvoweled**, vowelized here:
 בִּרְשׁוּתְכֶם · שָׁמַיִם · וּבִרְשׁוּתְכֶם · חַג הַשָּׁבוּעוֹת הַזֶּה · הַזִּכָּרוֹן הַזֶּה ·
 שְׁמִינִי חַג עֲצֶרֶת הַזֶּה · טוֹב · מִגְדּוֹל
 
-## To check against the Turkish siddur
+## Seattle Turkish nusach changes
 
-Mark each one ✅ (matches), or write down the siddur's wording.
+Taken from Yosef's Turkish siddur (Birkat HaMazon, pp. 345–348).
 
-1. [ ] **Opening:** Are Lamnatzeach and Avarcha said, and in this order? Anything
-   else before the zimun?
-2. [ ] **Zimun:** the wording of בִּרְשׁוּתְכֶם / הַב לָן וְנִבְרִיךְ / the response
-   שָׁמַיִם / בִּרְשׁוּת מַלְכָּא עִלָּאָה קַדִּישָׁא וּבִרְשׁוּתְכֶם. Does the leader
-   repeat the response?
-3. [ ] **First blessing:** בְּרֵיוַח (source) or בְּרֶוַח; וּבְרוֹב חֲסָדָיו.
-4. [ ] **Nodeh:** full wording.
-5. [ ] **Al HaNissim** (Hanukkah and Purim): full wording.
-6. [ ] **Rachem:** wording and order of the phrases.
-7. [ ] **Retzeh** and **Ya'aleh VeYavo**, including the festival lines.
-8. [ ] **Hatov VeHametiv:** full wording.
-9. [ ] **Harachaman:** which lines the siddur has. Turkish siddurim often add
-   lines (for example for the host, the household, or the State of Israel) that
-   this source does not have.
-10. [ ] **Magdil / Migdol:** when each is said.
-11. [ ] **Closing verses** after Magdil.
-12. [ ] **Rubrics:** is the English wording right?
+- **Nodeh** opens with the heading (עַל אַרְצֵנוּ וְעַל נַחֲלַת אֲבוֹתֵינוּ).
+- **Boneh Yerushalayim** concludes בּוֹנֵה בְּרַחֲמָיו בִּנְיַן יְרוּשָׁלַיִם עִיר הַקֹּדֶשׁ.
+- **Oseh Shalom** stands as its own closing paragraph.
+- **Ya Komimos** (Ladino) follows Birkat HaMazon, in a box, transcribed from
+  the siddur (p. 348).
+
+**Licensing:** the Ladino transliteration and any wording copied from this
+siddur may be under the publisher's copyright. Confirm before selling copies.
+
+## To do
+
+- [ ] **Closing paragraph before Oseh Shalom** (p. 347–348): only its end is
+      in the photo (… כִּי הִשְׂבִּיעַ נֶפֶשׁ שֹׁקֵקָה … וְהָאָרֶץ נָתַן לִבְנֵי אָדָם).
+      Needs a photo of its beginning.
+
+Seen in the siddur photos but **not yet applied** (Yosef to decide):
+
+- [ ] **First blessing:** opens with the heading (הַזָּנֵנוּ וְלֹא מִמַּעֲשֵׂנוּ …
+      הַמַּעֲדִיף טוּבוֹ עָלֵינוּ), and the wording differs (בְּחֵן בְּחֶסֶד וּבְרַחֲמִים
+      הוּא נוֹתֵן לֶחֶם …; concludes הַזָּן בְּרַחֲמָיו אֶת הַכֹּל). Needs a straight-on
+      photo of the whole blessing.
+- [ ] **Ya'aleh VeYavo festival lines:** the siddur reads
+      בְּיוֹם חַג הַמַּצּוֹת הַזֶּה וּבְיוֹם (טוֹב) מִקְרָא קֹדֶשׁ הַזֶּה, with the optional
+      טוֹב in parentheses; Shemini Atzeret is labeled Shemini Atzeret / Simhat Torah.
+- [ ] **Hatov VeHametiv:** וְרֶוַח (the source has וְרֵיוַח).
+- [ ] **Harachaman:** one line each, and includes בְּרֶוַח וְלֹא בְצִמְצוּם. Needs
+      the full list (pp. 346–347).
+- [ ] **The Name** is printed יְיָ in the siddur.
+
+Still to compare: the zimun, Lamnatzeach and Avarcha, Al HaNissim, Rachem,
+Retzeh, and the English rubric wording.

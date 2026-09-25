@@ -49,8 +49,25 @@ Words the source left **unvoweled**, vowelized here:
 
 Taken from Yosef's Turkish siddur (Birkat HaMazon, pp. 345–348).
 
+- **Avarcha** ends with (רַגְלִי עָמְדָה בְמִישׁוֹר, בְּמַקְהֵלִים אֲבָרֵךְ …). Lamnatzeach
+  is kept, though the siddur does not have it (Yosef).
+- **Zimun** follows the siddur (p. 343): the leader opens with הַב לָן וְנִבְרִיךְ;
+  the permission line adds, on Shabbat, וּבִרְשׁוּת שַׁבָּת מַלְכְּתָא, on Yom Tov,
+  וּבִרְשׁוּת יוֹמָא טָבָא אֻשְׁפִּיזָא קַדִּישָׁא, and optionally וּבִרְשׁוּת מוֹרַי
+  וְרַבּוֹתַי; וַיְדַבֵּר אֵלַי follows it; the response is וּבְטוּבוֹ הַגָּדוֹל [וְהַקָּדוֹשׁ]
+  חָיִינוּ. The siddur's wedding zimun is not included (Yosef).
+- **First blessing** follows the siddur (p. 344): opens with the heading
+  (הַזָּנֵנוּ וְלֹא מִמַּעֲשֵׂנוּ …), and concludes הַזָּן בְּרַחֲמָיו אֶת הַכֹּל. The
+  siddur's footnote on פּוֹתֵחַ אֶת יָדֶךָ (spreading the hands) is not included (Yosef).
 - **Nodeh** opens with the heading (עַל אַרְצֵנוּ וְעַל נַחֲלַת אֲבוֹתֵינוּ).
 - **Boneh Yerushalayim** concludes בּוֹנֵה בְּרַחֲמָיו בִּנְיַן יְרוּשָׁלַיִם עִיר הַקֹּדֶשׁ.
+- **Al HaNissim, Hanukkah** follows the siddur (p. 344).
+- **Harachaman:** adds בְּרֶוַח וְלֹא בְצִמְצוּם; the Sukkot line drops יָקִים לָנוּ אֶת
+  סֻכַּת דָּוִד הַנּוֹפֶלֶת. The Rosh HaShanah line was checked against the siddur's
+  Rosh HaShanah prayer book and matches. יְחַיֵּינוּ וִיזַכֵּנוּ and the "personal
+  requests" note are kept (Yosef).
+- **Guest's blessing for the host** (p. 347) added after יִטַּע תּוֹרָתוֹ. The
+  siddur's Harachaman for a wedding meal is not included (Yosef).
 - **Closing verses** added after Magdil: כִּי הִשְׂבִּיעַ נֶפֶשׁ שֹׁקֵקָה … הוֹדוּ … (twice)
   … הַשָּׁמַיִם שָׁמַיִם … וְהָאָרֶץ נָתַן לִבְנֵי אָדָם (Psalms 107:9, 136:1, 115:16).
 - **Oseh Shalom** stands as its own closing paragraph.
@@ -89,12 +106,10 @@ When the siddur and the base text differ, Yosef decides each case.
 
 ## To do
 
-- [ ] **First blessing:** the siddur opens with a heading (הַזָּנֵנוּ וְלֹא
-      מִמַּעֲשֵׂנוּ … הַמַּעֲדִיף טוּבוֹ עָלֵינוּ) and has different wording
-      (concludes הַזָּן בְּרַחֲמָיו אֶת הַכֹּל). Needs a straight-on photo of the whole
-      blessing, then Yosef's decision.
-- [ ] **Harachaman:** the siddur sets one line each and includes בְּרֶוַח וְלֹא
-      בְצִמְצוּם. Needs photos of pp. 346–347, then Yosef's decision.
+- [ ] **Rachem:** p. 345 is cut off at the right edge in the photo; needs a
+      straight-on photo.
 
-Still to compare: the zimun, Lamnatzeach and Avarcha, Al HaNissim, Rachem,
-Retzeh, and the English rubric wording.
+Still to decide from the photos: Retzeh (the siddur reads וְאַף עַל פִּי, with
+וַהֲגַם as an alternative), the Hol HaMoed Harachaman (the siddur has
+לְמוֹעֲדִים וּרְגָלִים אֲחֵרִים), and whether Harachaman is set one line each.
+Still to compare: Al HaNissim for Purim, and the English rubric wording.

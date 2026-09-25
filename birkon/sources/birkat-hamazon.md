@@ -63,6 +63,12 @@ Taken from Yosef's Turkish siddur (Birkat HaMazon, pp. 345–348).
   סֻכַּת דָּוִד הַנּוֹפֶלֶת. The Rosh HaShanah line was checked against the siddur's
   Rosh HaShanah prayer book and matches. יְחַיֵּינוּ וִיזַכֵּנוּ and the "personal
   requests" note are kept (Yosef).
+- **Al HaKol** reads וְעַל הַכֹּל … אָנוּ מוֹדִים לָךְ (p. 345).
+- **Rachem** reads וְאַל תַּצְרִיכֵנוּ and adds (שֶׁמַּתְּנָתָם מְעוּטָה וְחֶרְפָּתָם מְרֻבָּה)
+  before אֶלָּא לְיָדְךָ (p. 345). The endings stay עַמָּךְ, עִירָךְ, כְּבוֹדָךְ … (Yosef;
+  the siddur has עַמֶּךָ, עִירֶךָ, כְּבוֹדֶךָ …).
+- **Al HaNissim, Purim** was compared with p. 345 and matches (spelling and
+  punctuation aside); unchanged.
 - **Retzeh** reads וְאַף עַל פִּי שֶׁאָכַלְנוּ וְשָׁתִינוּ (the siddur's main reading).
 - **Hol HaMoed Harachaman** reads לְמוֹעֲדִים וּרְגָלִים אֲחֵרִים, labeled "On Hol HaMoed".
 - **Harachaman layout:** kept as one paragraph (the siddur sets one line each).
@@ -108,7 +114,4 @@ When the siddur and the base text differ, Yosef decides each case.
 
 ## To do
 
-- [ ] **Rachem:** p. 345 is cut off at the right edge in the photo; needs a
-      straight-on photo.
-
-Still to compare: Al HaNissim for Purim, and the English rubric wording.
+Still to compare: the English rubric wording.

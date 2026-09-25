@@ -66,6 +66,9 @@ Taken from Yosef's Turkish siddur (Birkat HaMazon, pp. 345–348).
   סֻכַּת דָּוִד הַנּוֹפֶלֶת. The Rosh HaShanah line was checked against the siddur's
   Rosh HaShanah prayer book and matches. יְחַיֵּינוּ וִיזַכֵּנוּ and the "personal
   requests" note are kept (Yosef).
+- **Retzeh** reads וְאַף עַל פִּי שֶׁאָכַלְנוּ וְשָׁתִינוּ (the siddur's main reading).
+- **Hol HaMoed Harachaman** reads לְמוֹעֲדִים וּרְגָלִים אֲחֵרִים, labeled "On Hol HaMoed".
+- **Harachaman layout:** kept as one paragraph (the siddur sets one line each).
 - **Guest's blessing for the host** (p. 347) added after יִטַּע תּוֹרָתוֹ. The
   siddur's Harachaman for a wedding meal is not included (Yosef).
 - **Closing verses** added after Magdil: כִּי הִשְׂבִּיעַ נֶפֶשׁ שֹׁקֵקָה … הוֹדוּ … (twice)
@@ -110,7 +113,4 @@ When the siddur and the base text differ, Yosef decides each case.
 - [ ] **Rachem:** p. 345 is cut off at the right edge in the photo; needs a
       straight-on photo.
 
-Still to decide from the photos: Retzeh (the siddur reads וְאַף עַל פִּי, with
-וַהֲגַם as an alternative), the Hol HaMoed Harachaman (the siddur has
-לְמוֹעֲדִים וּרְגָלִים אֲחֵרִים), and whether Harachaman is set one line each.
 Still to compare: Al HaNissim for Purim, and the English rubric wording.

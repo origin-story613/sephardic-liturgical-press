@@ -1,6 +1,6 @@
 # Birkat HaMazon: sources and edits
 
-Section file: `birkon/sections/birkat-hamazon.tex`
+Section file: `shared/texts/birkat-hamazon.tex`, used by both the birkon and Seder HaShulchan.
 
 ## Source
 

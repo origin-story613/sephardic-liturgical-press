@@ -1,0 +1,41 @@
+% seder-hashulchan/main.tex
+% Seder HaShulchan: the order of the table (Edot HaMizrach base text, Seattle
+% Turkish Sephardic custom). Compile with LuaLaTeX.
+\documentclass[10pt,twoside,openany]{book}
+
+% Locate the repository root so the shared files resolve whether this file
+% is compiled from seder-hashulchan/ (locally) or from the project root
+% (Overleaf).
+\IfFileExists{../shared/macros/hebrew-layout.sty}
+  {\def\pressroot{../}}
+  {\def\pressroot{}}
+\makeatletter
+\def\input@path{{\pressroot shared/macros/}{\pressroot shared/geometry/}}
+\makeatother
+
+\usepackage{pocket-dimensions}
+\usepackage{hebrew-layout}
+
+\begin{document}
+\pagestyle{empty}
+
+\input{\pressroot seder-hashulchan/sections/front-matter}
+
+\input{\pressroot seder-hashulchan/sections/shabbat-evening}
+
+\clearpage
+\input{\pressroot seder-hashulchan/sections/netilat-hamotzi}
+
+\clearpage
+\input{\pressroot seder-hashulchan/sections/shabbat-day-kiddush}
+
+\clearpage
+\input{\pressroot shared/texts/birkat-hamazon}
+
+\clearpage
+\input{\pressroot shared/texts/after-blessings}
+
+\clearpage
+\input{\pressroot seder-hashulchan/sections/havdalah}
+
+\end{document}

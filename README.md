@@ -6,8 +6,8 @@ the Bne Issakhar pocket siddur).
 
 | Project | Status |
 |---|---|
-| `birkon/` | Birkat HaMazon, Me'ein Shalosh, Borei Nefashot done; Shabbat table content planned |
-| `seder-hashulchan/` | Planned: netilat yadayim, Hamotzi, Kiddush (all occasions), Birkat HaMazon. See `seder-hashulchan/HANDOFF.md` |
+| `birkon/` | Birkat HaMazon, Me'ein Shalosh, Borei Nefashot done |
+| `seder-hashulchan/` | In progress: Friday night, netilat yadayim, Hamotzi, Shabbat day Kiddush, Havdalah drafted; festival and Rosh HaShanah Kiddush to come. See `seder-hashulchan/HANDOFF.md` |
 | `shabbat-siddur/` | Planned |
 | `menorah-shiviti/` | Planned |
 
@@ -18,18 +18,23 @@ shared/
   fonts/                    Gentium Plus (bundled); put TaameyDavidCLM here
   macros/hebrew-layout.sty  languages, fonts, liturgical macros
   geometry/pocket-dimensions.sty
+  texts/                    texts printed in more than one book (Birkat HaMazon,
+                            Me'ein Shalosh, Borei Nefashot); sources/ beside them
 birkon/
   main.tex                  entry point
-  sections/                 one file per section (front-matter.tex: title,
-                            copyright and genizah notice)
-  sources/                  where each section's text came from, edits, checklist
+  sections/                 front-matter.tex: title, copyright, genizah notice
   cover/
+seder-hashulchan/
+  main.tex                  entry point
+  sections/                 one file per section (front-matter.tex as above)
+  sources/                  where each section's text came from, edits, checklist
 ```
 
 ## Compiling in Overleaf
 
 1. Upload the whole repository (keep the folder structure) as one project.
-2. Menu -> Settings: **Compiler: LuaLaTeX**, **Main document: `birkon/main.tex`**.
+2. Menu -> Settings: **Compiler: LuaLaTeX**, **Main document: `birkon/main.tex`**
+   (or `seder-hashulchan/main.tex`).
 3. Upload the Taamey David CLM font files (`TaameyDavidCLM-Medium` and
    `TaameyDavidCLM-Bold`, `.otf` or `.ttf`) into `shared/fonts/`. Until they are
    there, the build falls back to TeX Live's David CLM and logs a warning.

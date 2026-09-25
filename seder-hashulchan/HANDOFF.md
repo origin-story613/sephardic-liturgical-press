@@ -224,3 +224,19 @@ Typographic decisions already made (don't change without asking):
    Emet source; then ask for siddur photos and resolve differences one question
    at a time. Then the festival and Rosh HaShanah Kiddush once a usable source
    is settled.
+
+## 9. Progress
+
+- **Scope (Yosef):** Rosh HaShanah simanim included; Shalom Aleichem and Eshet
+  Hayil in this book only (not the birkon); Havdalah is its own section.
+- **Shared texts (Yosef):** Birkat HaMazon, Me'ein Shalosh and Borei Nefashot
+  moved to `shared/texts/` (records in `shared/texts/sources/`); both books
+  `\input` them.
+- **Scaffolded:** `main.tex`, `sections/front-matter.tex` (birkon defaults,
+  title סֵדֶר הַשֻּׁלְחָן, awaiting Yosef's confirmation).
+- **Drafted from Torat Emet, not yet checked against the siddur:** Friday night
+  (Shalom Aleichem, Eshet Hayil, Kiddush), netilat yadayim and Hamotzi,
+  Shabbat day Kiddush, Havdalah. Optional preludes left out pending Yosef's
+  answers; each `sources/*.md` lists them.
+- **To do:** festival and Rosh HaShanah Kiddush (needs a usable source),
+  simanim, siddur comparison of every drafted section.

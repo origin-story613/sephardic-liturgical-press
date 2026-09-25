@@ -1,6 +1,6 @@
 # Me'ein Shalosh and Borei Nefashot: sources
 
-Section file: `birkon/sections/after-blessings.tex`
+Section file: `shared/texts/after-blessings.tex`, used by both the birkon and Seder HaShulchan.
 
 ## Source
 

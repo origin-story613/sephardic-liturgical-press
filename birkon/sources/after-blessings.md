@@ -23,6 +23,6 @@ traditional liturgical wording.
   וְזָכְרֵנוּ לְטוֹבָה בְּיוֹם הַזִּכָּרוֹן הַזֶּה, בְּיוֹם טוֹב מִקְרָא קֹדֶשׁ הַזֶּה (Yosef).
   The source's missing vowels (וְזכְרֵנוּ לטוֹבָה בּיוֹם) are supplied.
 
-## To do
+## Proofreading
 
-- [ ] Yosef to proofread the transcription against the siddur.
+Proofread by Yosef against the siddur (pp. 349–350): no corrections.

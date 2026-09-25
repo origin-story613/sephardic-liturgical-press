@@ -172,8 +172,8 @@ Typographic decisions already made (don't change without asking):
   "According to the custom of the Turkish Sephardic community of Seattle",
   imprint and copyright holder "Sephardic Liturgical Press", first edition
   5787 / 2026.
-- Open birkon item: Yosef still has to proofread Me'ein Shalosh and Borei
-  Nefashot against his siddur (pp. 349–350).
+- Me'ein Shalosh and Borei Nefashot were proofread by Yosef against his
+  siddur (pp. 349–350); no open birkon items.
 
 ## 7. Sources
 

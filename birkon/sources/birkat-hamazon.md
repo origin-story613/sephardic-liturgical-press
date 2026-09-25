@@ -35,9 +35,6 @@ nusach; open items are listed under "To do" below.
 |---|---|---|
 | וּפָּקְדֵנוּ | וּפָקְדֵנוּ | Ya'aleh VeYavo |
 | יְרוּשָׁליִם | יְרוּשָׁלַיִם | Boneh Yerushalayim |
-| בּאַהֲבָה | בְּאַהֲבָה | forgot Retzeh |
-| ולִבְרִית | וְלִבְרִית | forgot Retzeh |
-| לְזִּכָּרוֹן | לְזִכָּרוֹן | forgot Ya'aleh VeYavo |
 | יחַדֵּשׁ | יְחַדֵּשׁ | Harachaman, Rosh HaShanah |
 | למוֹעֲדִים ... לשָׁלוֹם | לְמוֹעֲדִים ... לְשָׁלוֹם | Harachaman, festivals |
 
@@ -69,6 +66,7 @@ Taken from Yosef's Turkish siddur (Birkat HaMazon, pp. 345–348).
 - **Retzeh** reads וְאַף עַל פִּי שֶׁאָכַלְנוּ וְשָׁתִינוּ (the siddur's main reading).
 - **Hol HaMoed Harachaman** reads לְמוֹעֲדִים וּרְגָלִים אֲחֵרִים, labeled "On Hol HaMoed".
 - **Harachaman layout:** kept as one paragraph (the siddur sets one line each).
+- **"If one forgot" blessings** (Retzeh / Ya'aleh VeYavo) removed (Yosef).
 - **Guest's blessing for the host** (p. 347) added after יִטַּע תּוֹרָתוֹ. The
   siddur's Harachaman for a wedding meal is not included (Yosef).
 - **Closing verses** added after Magdil: כִּי הִשְׂבִּיעַ נֶפֶשׁ שֹׁקֵקָה … הוֹדוּ … (twice)

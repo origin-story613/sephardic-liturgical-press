@@ -29,6 +29,12 @@ nusach; open items are listed under "To do" below.
 - The source's `*` separators between the Harachaman lines were removed; the
   lines run on as one paragraph.
 
+## Rubrics (Yosef's review)
+
+- The rubric before the Ya'aleh VeYavo continuation reads only "Continue:".
+- No "personal requests" rubric.
+- Magdil: "On Shabbat, Yom Tov, and days with Musaf, say מִגְדּוֹל."
+
 ## Corrections to the source text
 
 | Source | Printed | Where |
@@ -46,6 +52,7 @@ Words the source left **unvoweled**, vowelized here:
 
 Taken from Yosef's Turkish siddur (Birkat HaMazon, pp. 345–348).
 
+- **מַיִם אַחֲרוֹנִים חוֹבָה** is printed after the mayim aharonim rubric (siddur, p. 343).
 - **Avarcha** ends with (רַגְלִי עָמְדָה בְמִישׁוֹר, בְּמַקְהֵלִים אֲבָרֵךְ …). Lamnatzeach
   is kept, though the siddur does not have it (Yosef).
 - **Zimun** follows the siddur (p. 343): the leader opens with הַב לָן וְנִבְרִיךְ;
@@ -62,7 +69,7 @@ Taken from Yosef's Turkish siddur (Birkat HaMazon, pp. 345–348).
 - **Harachaman:** adds בְּרֶוַח וְלֹא בְצִמְצוּם; the Sukkot line drops יָקִים לָנוּ אֶת
   סֻכַּת דָּוִד הַנּוֹפֶלֶת. The Rosh HaShanah line was checked against the siddur's
   Rosh HaShanah prayer book and matches. יְחַיֵּינוּ וִיזַכֵּנוּ and the "personal
-  requests" note are kept (Yosef).
+  requests" note was later removed (Yosef).
 - **Al HaKol** reads וְעַל הַכֹּל … אָנוּ מוֹדִים לָךְ (p. 345).
 - **Rachem** reads וְאַל תַּצְרִיכֵנוּ and adds (שֶׁמַּתְּנָתָם מְעוּטָה וְחֶרְפָּתָם מְרֻבָּה)
   before אֶלָּא לְיָדְךָ (p. 345). The endings stay עַמָּךְ, עִירָךְ, כְּבוֹדָךְ … (Yosef;
@@ -114,4 +121,4 @@ When the siddur and the base text differ, Yosef decides each case.
 
 ## To do
 
-Still to compare: the English rubric wording.
+

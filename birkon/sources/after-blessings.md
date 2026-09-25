@@ -16,6 +16,8 @@ traditional liturgical wording.
 - On Shabbat the siddur reads וְנַחֲמֵנוּ, noting וּרְצֵה וְהַחֲלִיצֵנוּ as an
   alternative; the alternative is given in the rubric.
 - The English rubrics are our own wording, not the siddur's.
+- Endings follow the base text's "-ach" forms (עַמָּךְ, עִירָךְ, כְּבוֹדָךְ,
+  מִזְבָּחָךְ, הֵיכָלָךְ), matching Birkat HaMazon; the siddur has עַמֶּךָ … (Yosef).
 - **Rosh HaShanah insertion:** the siddur has none, so it comes from the
   Sefaria base text (Siddur Edot HaMizrach, Torat Emet 357, public domain):
   וְזָכְרֵנוּ לְטוֹבָה בְּיוֹם הַזִּכָּרוֹן הַזֶּה, בְּיוֹם טוֹב מִקְרָא קֹדֶשׁ הַזֶּה (Yosef).

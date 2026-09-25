@@ -19,7 +19,8 @@ shared/
   geometry/pocket-dimensions.sty
 birkon/
   main.tex                  entry point
-  sections/                 one file per section
+  sections/                 one file per section (front-matter.tex: title,
+                            copyright and genizah notice)
   sources/                  where each section's text came from, edits, checklist
   cover/
 ```

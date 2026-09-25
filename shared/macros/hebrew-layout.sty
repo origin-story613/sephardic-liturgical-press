@@ -40,6 +40,9 @@
     BoldItalicFont = *-BoldItalic
 ]{GentiumPlus}
 
+% Name of the Hebrew face actually loaded, for the copyright page credit.
+\newcommand{\pressHebrewFontName}{Taamey David CLM}
+
 \newcommand{\press@taamey}[1]{%
   \babelfont[hebrew]{rm}[
       Path           = \pressfonts,
@@ -56,6 +59,7 @@
   \PackageWarningNoLine{hebrew-layout}{%
     TaameyDavidCLM not found in shared/fonts/.\MessageBreak
     Falling back to TeX Live's David CLM}%
+  \renewcommand{\pressHebrewFontName}{David CLM}%
   \babelfont[hebrew]{rm}[
       Extension      = .otf,
       UprightFont    = *-Medium,

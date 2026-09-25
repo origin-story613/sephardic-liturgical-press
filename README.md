@@ -6,7 +6,8 @@ the Bne Issakhar pocket siddur).
 
 | Project | Status |
 |---|---|
-| `birkon/` | In progress: Sephardic bencher (Birkat HaMazon + Shabbat table) |
+| `birkon/` | Birkat HaMazon, Me'ein Shalosh, Borei Nefashot done; Shabbat table content planned |
+| `seder-hashulchan/` | Planned: netilat yadayim, Hamotzi, Kiddush (all occasions), Birkat HaMazon. See `seder-hashulchan/HANDOFF.md` |
 | `shabbat-siddur/` | Planned |
 | `menorah-shiviti/` | Planned |
 

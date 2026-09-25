@@ -92,7 +92,8 @@ consulted as references for the wording:
 
 Differences from the Turkish siddur that Yosef chose **not** to adopt:
 
-- **The Name:** printed יְהֹוָה (the siddur prints יְיָ).
+- **The Name:** printed in full, as the `\Shem{}` macro produces it (the siddur
+  prints the double-yod abbreviation).
 - **Optional words:** marked with square brackets, not the siddur's parentheses.
 - **Whispered Amen** after Boneh Yerushalayim stays in parentheses (the siddur
   prints it plain).

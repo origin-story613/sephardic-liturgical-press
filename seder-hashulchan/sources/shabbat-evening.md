@@ -19,10 +19,15 @@ First draft from the base text. **Not yet compared with Yosef's siddur.**
   "three times"; house style prints repeated lines in full).
 - Source rubrics (Hebrew, with kabbalistic customs) replaced by our own short
   English rubrics.
-- Not included pending Yosef's decision (see open questions): the introduction
-  before Shalom Aleichem (דָּא הִיא סְעֻדָּתָא, myrtle blessing); the לְשֵׁם יִחוּד
-  and three וִיהִי רָצוֹן prayers before Kiddush; Mizmor LeDavid, which "some
-  say" before Friday-night Kiddush.
+- **Mizmor LeDavid** (Psalm 23), which the source marks "some say", is printed
+  before Kiddush (Yosef).
+- **(וַיְהִי עֶרֶב וַיְהִי בֹקֶר)** added before יוֹם הַשִּׁשִּׁי, whispered, in
+  parentheses (Yosef). Not in the source; traditional wording (end of
+  Genesis 1:31).
+- **Not included** (Yosef): the לְשֵׁם יִחוּד and the three וִיהִי רָצוֹן prayers
+  before Kiddush.
+- Not included pending Yosef's decision: the source's introduction before
+  Shalom Aleichem (דָּא הִיא סְעֻדָּתָא, the myrtle blessing).
 - Savri Maranan and the response לְחַיִּים set as separate lines with rubrics.
 
 ## Corrections to the source text
@@ -37,4 +42,5 @@ First draft from the base text. **Not yet compared with Yosef's siddur.**
 
 ## Open questions
 
+- The introduction before Shalom Aleichem (above).
 - Siddur comparison (photos needed).

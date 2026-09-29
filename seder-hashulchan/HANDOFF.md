@@ -232,11 +232,10 @@ Typographic decisions already made (don't change without asking):
 - **Shared texts (Yosef):** Birkat HaMazon, Me'ein Shalosh and Borei Nefashot
   moved to `shared/texts/` (records in `shared/texts/sources/`); both books
   `\input` them.
-- **Scaffolded:** `main.tex`, `sections/front-matter.tex` (birkon defaults,
-  title סֵדֶר הַשֻּׁלְחָן, awaiting Yosef's confirmation).
+- **Title page (Yosef):** birkon pattern, title סֵדֶר הַשֻּׁלְחָן / Seder HaShulchan.
 - **Drafted from Torat Emet, not yet checked against the siddur:** Friday night
   (Shalom Aleichem, Eshet Hayil, Kiddush), netilat yadayim and Hamotzi,
-  Shabbat day Kiddush, Havdalah. Optional preludes left out pending Yosef's
-  answers; each `sources/*.md` lists them.
+  Shabbat day Kiddush, Havdalah. Which optional pieces are in or out (Yosef)
+  is recorded in each `sources/*.md`.
 - **To do:** festival and Rosh HaShanah Kiddush (needs a usable source),
   simanim, siddur comparison of every drafted section.

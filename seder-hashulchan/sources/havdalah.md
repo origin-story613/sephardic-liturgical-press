@@ -23,8 +23,7 @@ Havdalah as its own section is Yosef's decision.
   instruction (curl the fingers, look at the nails).
 - The blessing after wine is not repeated here; the rubric points to Me'ein
   Shalosh (shared text).
-- Not included pending Yosef's decision: the source's "Before Havdalah"
-  material (Eliyahu HaNavi, the בְּסִימָן טוֹב prayer, שַׁעֲרֵי אוֹרָה, and the
+- **Not included** (Yosef): the source's "Before Havdalah" material (Eliyahu HaNavi, the בְּסִימָן טוֹב prayer, שַׁעֲרֵי אוֹרָה, and the
   prayers of R. Levi Yitzchak of Berditchev).
 
 ## Corrections to the source text

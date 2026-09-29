@@ -15,9 +15,10 @@ First draft from the base text. **Not yet compared with Yosef's siddur.**
 
 - One section for every meal; the Kiddush sections point to it.
 - Rubrics are our own English wording, shortened from the source's Hebrew.
-- Not included pending Yosef's decision: the לְשֵׁם יִחוּד and וִיהִי רָצוֹן before
-  washing; the verses עֵינֵי כֹל … which "some say" before Hamotzi; the
-  לְשֵׁם יִחוּד before the meal.
+- **עֵינֵי כֹל … רָצוֹן** (Psalm 145:15–16), which the source marks "some say",
+  is printed before Hamotzi (Yosef).
+- **Not included** (Yosef): the לְשֵׁם יִחוּד and וִיהִי רָצוֹן before washing;
+  the לְשֵׁם יִחוּד before the meal.
 - The source's pasek mark (|) in Hamotzi is removed.
 
 ## Corrections to the source text
@@ -27,3 +28,9 @@ First draft from the base text. **Not yet compared with Yosef's siddur.**
 | בּמִצְוֹתָיו | בְּמִצְוֹתָיו | Al netilat yadayim |
 | וצִוָּנוּ | וְצִוָּנוּ | Al netilat yadayim |
 | יָדָיִם | יָדַיִם | Al netilat yadayim |
+| ישַׂבֵּרוּ | יְשַׂבֵּרוּ | עֵינֵי כֹל |
+| ואַתָּה | וְאַתָּה | עֵינֵי כֹל |
+| לָהֵם | לָהֶם | עֵינֵי כֹל |
+| אכְלָם | אָכְלָם | עֵינֵי כֹל |
+| בּעִתוֹ | בְּעִתּוֹ | עֵינֵי כֹל |
+| לכל | לְכָל | עֵינֵי כֹל |

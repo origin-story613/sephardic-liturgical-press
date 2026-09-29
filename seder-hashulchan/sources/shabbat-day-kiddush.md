@@ -16,7 +16,7 @@ First draft from the base text. **Not yet compared with Yosef's siddur.**
 - Rubrics are our own English wording. The rubric after Kiddush points to
   netilat yadayim and Hamotzi instead of repeating them.
 - The source's pasek marks (|) in Mizmor LeDavid are removed.
-- Not included pending Yosef's decision: the לְשֵׁם יִחוּד before the meal.
+- **Not included** (Yosef): the לְשֵׁם יִחוּד before the meal.
 
 ## Corrections to the source text
 

@@ -119,6 +119,13 @@ Differences from the Turkish siddur that Yosef chose **not** to adopt:
 
 When the siddur and the base text differ, Yosef decides each case.
 
+## Deferred
+
+- **Short Birkat HaMazon:** not included for now (Yosef). If revisited, use a
+  short form from the Turkish siddur, if it has one, and include it only with
+  the community rabbi's guidance on whether and when it may be used. The S&P
+  (Western Sephardic) app version was considered and set aside.
+
 ## To do
 
 

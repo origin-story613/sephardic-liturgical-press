@@ -237,7 +237,7 @@ Typographic decisions already made (don't change without asking):
   moved to `shared/texts/` (records in `shared/texts/sources/`); both books
   `\input` them.
 - **Title page (Yosef):** title סֵדֶר הַשֻּׁלְחָן / Seder HaShulchan; custom line
-  כְּמִנְהַג מִשְׁפַּחַת מַעְיָן (pointed like the word for a wellspring) /
+  כְּמִנְהַג מִשְׁפַּחַת מַעְיָין (pointed, keeping the family's two-yod spelling) /
   "According to the custom of the Maayan family". Imprint, copyright and
   edition line as in the birkon.
 - **Shared texts stay shared (Yosef):** the family's Birkat HaMazon, Me'ein

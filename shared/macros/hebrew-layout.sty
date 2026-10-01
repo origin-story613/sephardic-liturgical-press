@@ -130,20 +130,21 @@
 % Whispered passage: wrapped in parentheses.
 \newcommand{\whispered}[1]{(#1)}
 
-% Boxed passage in a Latin-script language (e.g. a Ladino reading): centered
-% bold title, double rule, never split across pages. No hyphenation, since the
-% English patterns would break Ladino words in the wrong places.
-\newsavebox{\press@textbox}
-\newenvironment{textbox}[1]{%
+% Set-apart passage in a Latin-script language (e.g. a Ladino reading):
+% the title centered between two short rules, then the text, slightly smaller.
+% Kept on one page. No hyphenation, since the English patterns would break
+% Ladino words in the wrong places.
+\newsavebox{\press@reading}
+\newenvironment{reading}[1]{%
   \par\medskip\noindent
-  \begin{lrbox}{\press@textbox}%
-  \begin{minipage}{\dimexpr\linewidth-12pt\relax}%
+  \begin{lrbox}{\press@reading}%
+  \begin{minipage}{\linewidth}%
   \begin{otherlanguage}{english}%
-  \small\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000
-  {\centering\bfseries #1\par}\smallskip}{%
+  {\centering\rule[0.6ex]{3em}{0.4pt}\quad\bfseries #1\quad
+   \rule[0.6ex]{3em}{0.4pt}\par}\smallskip
+  \small\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000}{%
   \par\end{otherlanguage}\end{minipage}\end{lrbox}%
-  \fboxrule=0.4pt\fboxsep=1.2pt
-  \fbox{\fboxsep=4pt\fbox{\usebox{\press@textbox}}}%
+  \usebox{\press@reading}%
   \par\medskip}
 
 % Centered divider between liturgical sections.

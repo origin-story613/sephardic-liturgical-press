@@ -85,7 +85,8 @@ Taken from Yosef's Turkish siddur (Birkat HaMazon, pp. 345–348).
 - **Closing verses** added after Magdil: כִּי הִשְׂבִּיעַ נֶפֶשׁ שֹׁקֵקָה … הוֹדוּ … (twice)
   … הַשָּׁמַיִם שָׁמַיִם … וְהָאָרֶץ נָתַן לִבְנֵי אָדָם (Psalms 107:9, 136:1, 115:16).
 - **Oseh Shalom** stands as its own closing paragraph.
-- **Ya Komimos** (Ladino) follows Birkat HaMazon, in a box.
+- **Ya Komimos** (Ladino) follows Birkat HaMazon, set apart with its title
+  between short rules (our own design, deliberately unlike the siddur's boxes).
 
 **Licensing:** the Hebrew changes above are traditional liturgical wording.
 

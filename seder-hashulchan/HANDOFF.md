@@ -131,7 +131,7 @@ Scope questions to ask Yosef early (one clear question each, see §3):
 | `\begin{seasonal}{rubric} ... \end{seasonal}` | Conditional/seasonal insertion: rubric above, body indented 0.2in from the right |
 | `\whispered{...}` | Whispered words, in parentheses |
 | `\divider` | Centered rule between sections |
-| `\begin{textbox}{title} ... \end{textbox}` | Boxed Latin-script passage (Ladino), never split across pages |
+| `\begin{reading}{title} ... \end{reading}` | Latin-script passage (Ladino): title between short rules, never split across pages |
 | `\Shem{prefix}` | The Name, assembled from code points: `\Shem{}`, `\Shem{לַ}`, `\Shem{בַּ}`, `\Shem{מֵ}` (sheva kept after מֵ) |
 
 Typographic decisions already made (don't change without asking):

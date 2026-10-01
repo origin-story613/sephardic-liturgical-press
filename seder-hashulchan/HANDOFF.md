@@ -5,8 +5,12 @@ established for the birkon. Read this whole file before doing anything.
 
 ## 1. The goal
 
-**Seder HaShulchan** (סֵדֶר הַשֻּׁלְחָן): the order of the table, in the Seattle
-Turkish Sephardic nusach.
+**Seder HaShulchan** (סֵדֶר הַשֻּׁלְחָן): the order of the table, for the
+**Maayan family's own use**. It follows the Seattle Turkish Sephardic nusach as
+a base, but the family's custom differs in places, and **Yosef's family custom
+always wins** over the siddur and the base text. Record each such point in the
+section's `sources/*.md` as "family custom (Yosef)", and never "correct" it
+back toward the general Seattle custom.
 
 1. **Netilat yadayim** (washing before bread)
 2. **Hamotzi**
@@ -232,7 +236,12 @@ Typographic decisions already made (don't change without asking):
 - **Shared texts (Yosef):** Birkat HaMazon, Me'ein Shalosh and Borei Nefashot
   moved to `shared/texts/` (records in `shared/texts/sources/`); both books
   `\input` them.
-- **Title page (Yosef):** birkon pattern, title סֵדֶר הַשֻּׁלְחָן / Seder HaShulchan.
+- **Title page (Yosef):** title סֵדֶר הַשֻּׁלְחָן / Seder HaShulchan; custom line
+  כְּמִנְהַג מִשְׁפַּחַת מַעְיָן (pointed like the word for a wellspring) /
+  "According to the custom of the Maayan family". Imprint, copyright and
+  edition line as in the birkon.
+- **Shared texts stay shared (Yosef):** the family's Birkat HaMazon, Me'ein
+  Shalosh and Borei Nefashot are the same as the birkon's.
 - **Drafted from Torat Emet, not yet checked against the siddur:** Friday night
   (Shalom Aleichem, Eshet Hayil, Kiddush), netilat yadayim and Hamotzi,
   Shabbat day Kiddush, Havdalah. Which optional pieces are in or out (Yosef)

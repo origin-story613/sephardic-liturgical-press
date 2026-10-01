@@ -17,6 +17,11 @@ First draft from the base text. **Not yet compared with Yosef's siddur.**
 - Shalom Aleichem and Eshet Hayil are in this book only, not the birkon (Yosef).
 - Shalom Aleichem: each verse is printed three times in full (the source marks
   "three times"; house style prints repeated lines in full).
+- **Shalom Aleichem verses (Yosef):** four verses; the source's בְּשִׁבְתְּכֶם
+  לְשָׁלוֹם is dropped, as in Yosef's first siddur (p. 188). Kept as in the
+  source: בָּרְכוּנוּ (plural; the first siddur has בָּרְכוּנִי, the second siddur
+  has בָּרְכוּנוּ with a note that the plural is said when there are small
+  children) and בְּצֵאתְכֶם (the first siddur has (בְּ)צֵאתְכֶם).
 - Source rubrics (Hebrew, with kabbalistic customs) replaced by our own short
   English rubrics.
 - **Mizmor LeDavid** (Psalm 23), which the source marks "some say", is printed
@@ -34,13 +39,19 @@ First draft from the base text. **Not yet compared with Yosef's siddur.**
 
 | Source | Printed | Where |
 |---|---|---|
-| לְשָלוֹם (×4, no shin dot) | לְשָׁלוֹם | Shalom Aleichem |
+| לְשָלוֹם (×3, no shin dot) | לְשָׁלוֹם | Shalom Aleichem |
 | יצַוֶּה | יְצַוֶּה | כִּי מַלְאָכָיו |
 | ועַד | וְעַד | כִּי מַלְאָכָיו |
+| יִשְׁמֹר צֵאתְךָ | יִשְׁמָר־צֵאתְךָ | Psalm 121:8, as in both of Yosef's siddurim and the Bible |
 | חַיֶּיה | חַיֶּיהָ | Eshet Hayil |
 | לחַיִּים | לְחַיִּים | Kiddush response |
+
+## Siddur comparison
+
+- Shalom Aleichem: compared with Yosef's siddur (p. 188) and a second siddur
+  (p. 142); decided as above.
+- Eshet Hayil and Kiddush: photos received (pp. 188-192), questions pending.
 
 ## Open questions
 
 - The introduction before Shalom Aleichem (above).
-- Siddur comparison (photos needed).

@@ -21,9 +21,12 @@ full via `\Shem{}` per house style (the siddur abbreviates it). English
 rubrics follow the siddur's ("For boys", "For girls", "For boys and girls").
 Opened, once, with יְבָרֶכְךָ הַשֵּׁם שֶׁל הַקָּדוֹשׁ בָּרוּךְ הוּא, before the
 lines for boys and girls: family custom (Yosef); not in the siddur.
-After the priestly blessing, the family's own blessing בִּזְכוּת הַשַּׁבָּת … בִּבְנִיַּת
+After the priestly blessing, the family's own blessing בִּזְכוּת הַשַּׁבָּת … בְּבִנְיַן
 בֵּית הַמִּקְדָּשׁ, in a boy's and a girl's version: family custom, Yosef's own
-wording (pointed from his transliteration and approved by him).
+wording, pointed from his transliteration. Hebrew corrected at his request:
+בְּ repeated on each noun (בְּאַהֲבָה וּבְשִׂמְחָה); the שֶׁ… clauses joined as
+וְיִהְיֶה … וְלֹא יֶחְסַר … וְתִזְכֶּה; בַּעֲבוֹדַת for מֵעֲבוֹדַת and דָּבָר for
+שׁוּם דָּבָר; בְּבִנְיַן for בִּבְנִיַּת. Kept as he wrote it: יְבָרֵךְ אוֹתְךָ / אוֹתָךְ.
 
 ## Editorial decisions
 

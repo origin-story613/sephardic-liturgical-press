@@ -21,6 +21,9 @@ full via `\Shem{}` per house style (the siddur abbreviates it). English
 rubrics follow the siddur's ("For boys", "For girls", "For boys and girls").
 Opened, once, with יְבָרֶכְךָ הַשֵּׁם שֶׁל הַקָּדוֹשׁ בָּרוּךְ הוּא, before the
 lines for boys and girls: family custom (Yosef); not in the siddur.
+After the priestly blessing, the family's own blessing בִּזְכוּת הַשַּׁבָּת … בִּבְנִיַּת
+בֵּית הַמִּקְדָּשׁ, in a boy's and a girl's version: family custom, Yosef's own
+wording (pointed from his transliteration and approved by him).
 
 ## Editorial decisions
 

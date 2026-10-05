@@ -1,4 +1,4 @@
-# Friday night: Shalom Aleichem, Eshet Hayil, Kiddush
+# Friday night: Shalom Aleichem, Eshet Hayil, blessing of the children, Kiddush
 
 Section file: `seder-hashulchan/sections/shabbat-evening.tex`
 
@@ -11,6 +11,14 @@ Section file: `seder-hashulchan/sections/shabbat-evening.tex`
 - **License:** **Public Domain** (per Sefaria's version metadata).
 
 First draft from the base text. **Not yet compared with Yosef's siddur.**
+
+**Blessing of the children** (בִּרְכַּת הַבָּנִים): not in Torat Emet. Transcribed
+from Yosef's siddur (p. 191), where it follows Kiddush; placed **after Eshet
+Hayil, before Kiddush** (Yosef). Biblical verses (Genesis 48:20 for boys,
+Numbers 6:24-26 for all) and the traditional blessing for girls: public
+domain. Spelling as in the siddur (יְשִׂימְךָ with yod); the Name printed in
+full via `\Shem{}` per house style (the siddur abbreviates it). English
+rubrics follow the siddur's ("For boys", "For girls", "For boys and girls").
 
 ## Editorial decisions
 

@@ -1,0 +1,21 @@
+% quarter-letter-dimensions.sty
+% Page geometry for a 4.25in x 5.5in book (a letter sheet folded twice).
+% Used by Seder HaShulchan; the other books use pocket-dimensions.sty.
+% Margins are the same as the pocket size, so only the text block grows.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{quarter-letter-dimensions.sty}[2026/10/05 Quarter-letter page geometry]
+
+\RequirePackage[
+    paperwidth=4.25in,
+    paperheight=5.5in,
+    top=0.4in,
+    bottom=0.45in,
+    inner=0.5in,
+    outer=0.35in,
+    twoside
+]{geometry}
+
+% Hebrew books bind on the right; see pocket-dimensions.sty. The 0.5in
+% inner margin already lands at the spine under babel's bidi=basic.
+
+\endinput

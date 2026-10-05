@@ -93,7 +93,8 @@ Scope questions to ask Yosef early (one clear question each, see §3):
   ```
   shared/fonts/                     Gentium Plus (bundled, OFL)
   shared/macros/hebrew-layout.sty   house style (languages, fonts, macros)
-  shared/geometry/pocket-dimensions.sty   3.5in x 4.75in page
+  shared/geometry/pocket-dimensions.sty   3.5in x 4.75in page (other books)
+  shared/geometry/quarter-letter-dimensions.sty  4.25in x 5.5in (this book)
   birkon/main.tex                   the finished birkon
   birkon/sections/                  front-matter, birkat-hamazon, after-blessings
   birkon/sources/                   source + license + edits + decisions per section
@@ -236,6 +237,9 @@ Typographic decisions already made (don't change without asking):
 - **Shared texts (Yosef):** Birkat HaMazon, Me'ein Shalosh and Borei Nefashot
   moved to `shared/texts/` (records in `shared/texts/sources/`); both books
   `\input` them.
+- **Page size (Yosef):** 4.25in x 5.5in for this book only, via
+  `shared/geometry/quarter-letter-dimensions.sty`; same margins as the pocket
+  size. The other books stay 3.5in x 4.75in.
 - **Title page (Yosef):** title סֵדֶר הַשֻּׁלְחָן / Seder HaShulchan; custom line
   כְּמִנְהַג מִשְׁפַּחַת מַעְיָין (pointed, keeping the family's two-yod spelling) /
   "According to the custom of the Maayan family". Imprint, copyright and

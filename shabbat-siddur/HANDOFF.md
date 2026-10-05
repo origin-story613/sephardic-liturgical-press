@@ -112,6 +112,15 @@ his siddur, not the base text:
    in `seder-hashulchan/HANDOFF.md` §3 as `.git/hooks/pre-commit` (it is
    deliberately *not* part of the repo). `chmod +x` it and test it with a
    staged file containing the Name.
+   **Extend its pattern** for this book: Torat Emet's Amidah also spells the
+   Name as a letter string with extra vavs (shuruk) between the letters, which
+   the original pattern misses. Use:
+   ```python
+   pat = re.compile(rf'\u05D9[{M}]*\u05D4[{M}]*\u05D5[{M}]*\u05D4'
+                    rf'|\u05D9[\u05D5{M}]*\u05D4[\u05D5{M}]+\u05D5[\u05D5{M}]*\u05D4')
+   ```
+   Test it by running `.git/hooks/pre-commit` directly on a staged test file,
+   not with a real commit.
 3. **No leftover artifacts.** When Yosef reverses a decision, remove the code,
    notes and docs that supported it, not just the output.
 4. **Never rewrite git history without asking.** He has said to leave the
@@ -278,3 +287,18 @@ Points that apply here:
    `sources/*.md` record each. Then ask for siddur photos and resolve
    differences one question at a time. Start with the flagged places (§1):
    Kedushah, Atah Echad, Atah Honantanu, the Havdalah verses.
+
+## 9. Status (October 2026)
+
+- Yosef's scope answers are recorded in `sources/README.md`.
+- **First full draft done** from Torat Emet: Mincha (korbanot, Ashrei, Uva
+  LeTziyon, Torah service, Amidah with Kedushah and Modim deRabbanan,
+  Tzidkatcha, Aleinu), Motzei Shabbat Arvit (Psalms 144 and 67 through the
+  final Kaddish), shared Havdalah, VeYiten Lecha, shared Me'ein Shalosh.
+  Kaddish forms are separate files in `sections/kaddish-*.tex`.
+- Havdalah moved to `shared/texts/havdalah.tex` (used by both books).
+- **Next:** Yosef's siddur photos. Resolve each "Open" item in the
+  `sources/*.md` records, one question at a time, starting with the flagged
+  places: Kedushah, Atah Echad, Atah Honantanu, the Havdalah verses. Also ask
+  how to point the Name in the Amidah closings (the source's kabbalistic
+  vowels, or the standard pointing as drafted).

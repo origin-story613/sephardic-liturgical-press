@@ -1,0 +1,77 @@
+% shabbat-siddur/main.tex
+% Shabbat Siddur: Shabbat Mincha, Motzei Shabbat Arvit and Havdalah
+% (Edot HaMizrach base text, Seattle Turkish Sephardic custom).
+% Compile with LuaLaTeX.
+\documentclass[10pt,twoside,openany]{book}
+
+% Locate the repository root so the shared files resolve whether this file
+% is compiled from shabbat-siddur/ (locally) or from the project root
+% (Overleaf).
+\IfFileExists{../shared/macros/hebrew-layout.sty}
+  {\def\pressroot{../}}
+  {\def\pressroot{}}
+\makeatletter
+\def\input@path{{\pressroot shared/macros/}{\pressroot shared/geometry/}}
+\makeatother
+
+\usepackage{pocket-dimensions}
+\usepackage{hebrew-layout}
+
+% Congregational response (Amen etc.) inside Kaddish and the repetition:
+% slightly smaller bold, no brackets (Yosef). Square brackets mean optional
+% words and parentheses whispered words, so responses use neither.
+\newcommand{\response}[1]{{\small\bfseries #1}}
+
+% Page numbers, small and centered at the foot: the siddur cross-references
+% pages (e.g. Havdalah to Me'ein Shalosh).
+\makeatletter
+\renewcommand{\ps@plain}{%
+  \renewcommand{\@oddhead}{}\renewcommand{\@evenhead}{}%
+  \renewcommand{\@oddfoot}{\hfil{\footnotesize\thepage}\hfil}%
+  \renewcommand{\@evenfoot}{\@oddfoot}}
+\makeatother
+
+\begin{document}
+\pagestyle{empty}
+
+\input{\pressroot shabbat-siddur/sections/front-matter}
+
+\pagestyle{plain}
+
+% ---- Shabbat Mincha ----------------------------------------------------------
+\input{\pressroot shabbat-siddur/sections/mincha-korbanot}
+
+\divider
+\input{\pressroot shabbat-siddur/sections/mincha-ashrei}
+
+\divider
+\input{\pressroot shabbat-siddur/sections/mincha-torah}
+
+\divider
+\input{\pressroot shabbat-siddur/sections/mincha-amidah}
+
+\input{\pressroot shabbat-siddur/sections/mincha-conclusion}
+
+% ---- Motzei Shabbat Arvit ------------------------------------------------------
+\clearpage
+\input{\pressroot shabbat-siddur/sections/arvit-opening}
+
+\divider
+\input{\pressroot shabbat-siddur/sections/arvit-shema}
+
+\divider
+\input{\pressroot shabbat-siddur/sections/arvit-amidah}
+
+\input{\pressroot shabbat-siddur/sections/arvit-conclusion}
+
+% ---- Havdalah ------------------------------------------------------------------
+\clearpage
+\input{\pressroot shared/texts/havdalah}
+
+\clearpage
+\input{\pressroot shabbat-siddur/sections/veyiten-lecha}
+
+\clearpage
+\input{\pressroot shared/texts/after-blessings}
+
+\end{document}

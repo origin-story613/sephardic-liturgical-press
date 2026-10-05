@@ -8,7 +8,7 @@ the Bne Issakhar pocket siddur).
 |---|---|
 | `birkon/` | Birkat HaMazon, Me'ein Shalosh, Borei Nefashot done |
 | `seder-hashulchan/` | In progress: Friday night, netilat yadayim, Hamotzi, Shabbat day Kiddush, Havdalah drafted; festival and Rosh HaShanah Kiddush to come. See `seder-hashulchan/HANDOFF.md` |
-| `shabbat-siddur/` | Planned |
+| `shabbat-siddur/` | Planned: Shabbat Mincha, Motzei Shabbat Arvit, Havdalah. See `shabbat-siddur/HANDOFF.md` |
 | `menorah-shiviti/` | Planned |
 
 ## Layout

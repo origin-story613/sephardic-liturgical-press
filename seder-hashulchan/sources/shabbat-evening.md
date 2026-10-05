@@ -19,6 +19,8 @@ Numbers 6:24-26 for all) and the traditional blessing for girls: public
 domain. Spelling as in the siddur (יְשִׂימְךָ with yod); the Name printed in
 full via `\Shem{}` per house style (the siddur abbreviates it). English
 rubrics follow the siddur's ("For boys", "For girls", "For boys and girls").
+Opened, once, with יְבָרֶכְךָ הַשֵּׁם שֶׁל הַקָּדוֹשׁ בָּרוּךְ הוּא, before the
+lines for boys and girls: family custom (Yosef); not in the siddur.
 
 ## Editorial decisions
 

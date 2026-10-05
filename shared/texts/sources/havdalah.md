@@ -1,6 +1,8 @@
 # Havdalah
 
-Section file: `seder-hashulchan/sections/havdalah.tex`
+Section file: `shared/texts/havdalah.tex`, used by both Seder HaShulchan and the
+Shabbat Siddur (moved from `seder-hashulchan/sections/` by Yosef's decision, so
+both books share one text).
 
 ## Source
 

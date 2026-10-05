@@ -207,13 +207,11 @@ Points that apply here:
 - **"-ach" endings** (עַמָּךְ, עִירָךְ, כְּבוֹדָךְ), not the siddur's -ֶךָ
   forms. Expect this question again in the Amidah and ask, since it may differ
   by passage.
-- **Havdalah already exists** as a draft in
-  `seder-hashulchan/sections/havdalah.tex` (from Torat Emet; not yet checked
-  against the siddur; the "Before Havdalah" material was excluded by Yosef).
-  This siddur needs Havdalah too. **Recommend moving it to `shared/texts/`**
-  so both books use one text, as was done for Birkat HaMazon. Ask Yosef first,
-  and coordinate with the Seder HaShulchan session (rule 6), since that moves
-  a file it uses.
+- **Havdalah is shared:** `shared/texts/havdalah.tex` (moved from
+  `seder-hashulchan/sections/` by Yosef's decision; record in
+  `shared/texts/sources/havdalah.md`). From Torat Emet; not yet checked
+  against the siddur; the "Before Havdalah" material was excluded by Yosef.
+  Both books input it, so a change there changes both (rule 6).
 - **Front matter pattern:** `birkon/sections/front-matter.tex`. Title page,
   then a copyright page with source credit, font credit
   (`\pressHebrewFontName`), edition line and a boxed Hebrew/English genizah

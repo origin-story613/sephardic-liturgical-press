@@ -15,7 +15,8 @@ First draft from the base text. **Not yet compared with Yosef's siddur.**
 **Blessing of the children** (בִּרְכַּת הַבָּנִים): not in Torat Emet. Transcribed
 from Yosef's siddur (p. 191), where it follows Kiddush; placed **after Eshet
 Hayil, before Kiddush** (Yosef). Biblical verses (Genesis 48:20 for boys,
-Numbers 6:24-26 for all) and the traditional blessing for girls: public
+Numbers 6:24-27 for all; verse 27, וְשָׂמוּ אֶת שְׁמִי … וַאֲנִי אֲבָרְכֵם, added at
+Yosef's request, though the siddur stops at verse 26) and the traditional blessing for girls: public
 domain. Spelling as in the siddur (יְשִׂימְךָ with yod); the Name printed in
 full via `\Shem{}` per house style (the siddur abbreviates it). English
 rubrics follow the siddur's ("For boys", "For girls", "For boys and girls").

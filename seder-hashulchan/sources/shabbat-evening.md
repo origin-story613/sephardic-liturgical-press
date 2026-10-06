@@ -32,8 +32,9 @@ wording, pointed from his transliteration. Hebrew corrected at his request:
 ## Editorial decisions
 
 - Shalom Aleichem and Eshet Hayil are in this book only, not the birkon (Yosef).
-- Shalom Aleichem: each verse is printed three times in full (the source marks
-  "three times"; house style prints repeated lines in full).
+- Shalom Aleichem: each verse is printed once, under the rubric "Each verse is
+  said three times." (Yosef; an exception to the house rule of printing
+  repeated lines in full).
 - **Shalom Aleichem verses (Yosef):** four verses; the source's בְּשִׁבְתְּכֶם
   לְשָׁלוֹם is dropped, as in Yosef's first siddur (p. 188). Kept as in the
   source: בָּרְכוּנוּ (plural; the first siddur has בָּרְכוּנִי, the second siddur

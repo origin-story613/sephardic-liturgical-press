@@ -6,9 +6,12 @@ Read this whole file before doing anything.
 
 ## 1. The goal
 
-- An **original, commercial-grade poster** of Psalm 67 laid out as a menorah,
-  intended **for sale**. It is a single large page, not a pocket book: it
-  does **not** use `shared/geometry/pocket-dimensions.sty`.
+- An **original, commercial-grade** design of Psalm 67 laid out as a menorah,
+  intended **for sale**, produced in several formats from one parametric
+  master (see `sources.md`, decisions): ACEO cards, a page for the birkon and
+  siddur, a poster, and possibly a stencil for hand printing on fine paper.
+  Each format is its own single-page output with its own page size; the book
+  page matches the books' trim but is not set like a book page.
 - Typeset in **LuaLaTeX + TikZ**: text placed at computed coordinates, not
   traced from an image. Vector PDF output for printing.
 - The design must be **Yosef's own**. Shiviti menorahs are a centuries-old
@@ -191,4 +194,5 @@ Read this whole file before doing anything.
 - Psalm 67 fetched from three Sefaria editions; counts, differences and
   licenses in `sources.md` (script: `tools/count_psalm67.py`).
 - Text-on-curve method tested and settled (`sources.md`, technical decisions).
-- **Next:** Yosef's answers to the §1 questions, starting with size and format.
+- **Formats (Yosef):** ACEO, book page, poster, possibly a hand-printed stencil.
+- **Next:** how the stencil would be printed (it constrains the whole design).

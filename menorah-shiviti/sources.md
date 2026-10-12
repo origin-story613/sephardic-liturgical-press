@@ -86,3 +86,8 @@ draft strips te'amim, meteg and paseq (nikud only), which reproduces the
   - a poster (size not chosen);
   - possibly a stencil, hand printed on fine paper for posters and cards
     (printing method not chosen).
+- **Reading order (from a traditional example he shared):** verse 1 across
+  the top of the menorah; then verse 2 down the left-most branch, verse 3 down
+  the next, and so on, left to right, with verse 5 vertical down the centre
+  shaft (not stacked horizontal lines). Every branch reads from its lamp
+  downward.

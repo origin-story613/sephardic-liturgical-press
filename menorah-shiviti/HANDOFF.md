@@ -195,4 +195,10 @@ Read this whole file before doing anything.
   licenses in `sources.md` (script: `tools/count_psalm67.py`).
 - Text-on-curve method tested and settled (`sources.md`, technical decisions).
 - **Formats (Yosef):** ACEO, book page, poster, possibly a hand-printed stencil.
+- **Draft sketch** (not a design decision): `main.tex` + `menorah.lua` +
+  `psalm67.lua`. Three nested branches per side (upright stem over a quarter
+  arc), verse 5 in the shaft, verse 1 on the base, faint guide lines. Format
+  chosen by `\menorahformat` (aceo, book, poster) at the top of `main.tex`;
+  locally: `lualatex -jobname=aceo "\def\menorahformat{aceo}\input{main}"`.
+  Compile twice (the picture is placed relative to the page).
 - **Next:** how the stencil would be printed (it constrains the whole design).

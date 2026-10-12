@@ -183,3 +183,12 @@ Read this whole file before doing anything.
    with nikud, and show Yosef a rendered preview.
 5. Then the full menorah, parametric. Iterate on the design with rendered
    previews, one decision at a time.
+
+## 8. Progress
+
+- Pre-commit hook installed and tested; LuaLaTeX + TikZ compile with Taamey
+  David CLM (already in `shared/fonts/`).
+- Psalm 67 fetched from three Sefaria editions; counts, differences and
+  licenses in `sources.md` (script: `tools/count_psalm67.py`).
+- Text-on-curve method tested and settled (`sources.md`, technical decisions).
+- **Next:** Yosef's answers to the §1 questions, starting with size and format.

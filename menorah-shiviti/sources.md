@@ -1,0 +1,72 @@
+# Menorah Shiviti: sources, counts, licenses, decisions
+
+## Text of Psalm 67: candidate editions (not yet chosen)
+
+All three come from the public Sefaria export bucket
+(`storage.googleapis.com/sefaria-export/json/Tanakh/Writings/Psalms/Hebrew/`).
+Counts are produced by `tools/count_psalm67.py`.
+
+| Edition (Sefaria version title) | Underlying source | License |
+|---|---|---|
+| Tanach with Ta'amei Hamikra | Westminster Leningrad Codex (tanach.us) | Public Domain |
+| Tanach with Nikkud | same, cantillation removed | Public Domain |
+| Miqra according to the Masorah (MAM) | Hebrew Wikisource, Aleppo Codex tradition | CC-BY-SA |
+
+MAM's CC-BY-SA license would require attribution and, arguably, releasing the
+poster under the same license: not suitable for a commercial piece unless
+Yosef decides otherwise. The Leningrad editions are public domain.
+
+### Where the editions differ
+
+| Verse | Leningrad (tanach.us) | MAM | Effect on counts |
+|---|---|---|---|
+| 1 | לַמְנַצֵּחַ without patach genuva | with patach genuva | none |
+| 2 | יְחָנֵּנוּ (qamats) | יְחׇנֵּנוּ (qamats qatan sign) | none |
+| 2 | יָאֵר and פָּנָיו as separate words | joined by an implicit maqaf | none (49 words either way, maqaf split) |
+| 3, 8 | בְּכָל, כָּל (qamats) | בְּכׇל, כׇּל (qamats qatan sign) | none |
+| 5 | מִישׁוֹר (with vav) | מִישֹׁר (defective) | v5 letters: **48** vs **47** |
+| 8 | אֹתוֹ (defective) | אוֹתוֹ (full) | v8 letters: **29** vs **30** |
+| 4, 5, 6 | paseq as a plain character | paseq marked up separately | none |
+
+The Torat Emet siddur text (used elsewhere in this repo) agrees with the
+Leningrad counts.
+
+### Counts
+
+Words split on spaces and on maqaf; letters alef to tav (final forms
+included), points and marks excluded.
+
+| Verse | Words | Letters (Leningrad) | Letters (MAM) |
+|---|---|---|---|
+| 1 (heading) | 4 | 19 | 19 |
+| 2 | 7 | 31 | 31 |
+| 3 | 6 | 25 | 25 |
+| 4 | 6 | 26 | 26 |
+| 5 (center) | 11 | 48 | 47 |
+| 6 | 6 | 26 | 26 |
+| 7 | 6 | 29 | 29 |
+| 8 | 7 | 29 | 30 |
+| **2–8** | **49** | 214 | 214 |
+
+- 49 words in verses 2–8 holds in every edition.
+- Neither edition gives the 49 letters often cited for verse 5. **Open: Yosef
+  decides which spelling the poster follows.**
+
+## Fonts
+
+- Hebrew: Taamey David CLM (Culmus, GPL with font exception), already in
+  `shared/fonts/`. Supports nikud and cantillation.
+
+## Technical decisions
+
+- Text on curved branches: whole words as TikZ nodes, each rotated to the arc
+  tangent, spaced along the arc by measured width (tested with verse 2, nikud
+  and te'amim: marks stay attached, order is right to left). The picture is
+  drawn in a left-to-right (English) context with each node set in Hebrew;
+  inside a Hebrew paragraph the TikZ canvas comes out mirrored.
+- `decorations.text` (text along a path) is ruled out: it reverses the letter
+  order and detaches the points.
+
+## Decisions by Yosef
+
+None yet.

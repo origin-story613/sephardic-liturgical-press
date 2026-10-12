@@ -48,7 +48,6 @@ local size         -- fitted font size, pt
 local function strip_teamim(w)
   w = w:gsub('\xD6[\x91-\xAF]', '')   -- U+0591..U+05AF accents
   w = w:gsub('\xD6\xBD', '')          -- U+05BD meteg
-  w = w:gsub(' ?\xD7\x80', '')        -- U+05C0 paseq
   return w
 end
 

@@ -58,9 +58,11 @@ included), points and marks excluded.
 text, "Tanach with Ta'amei Hamikra", as a **provisional** choice for the
 draft: public domain, and it matches Torat Emet. Until Yosef decides how to
 treat the name Elohim in source files, those words are stored as Unicode
-code-point escapes, never spelled out. For the ACEO and book formats the
-draft strips te'amim, meteg and paseq (nikud only), which reproduces the
-"Tanach with Nikkud" edition.
+code-point escapes, never spelled out. Punctuation is removed in every
+format (Yosef): no sof pasuq or paseq, and each maqaf becomes a word break,
+so the words per verse are 4, 7, 6, 6, 11, 6, 6, 7 (49 in verses 2-8). For
+the ACEO and book formats the draft also strips te'amim and meteg (nikud
+only).
 
 ## Fonts
 
@@ -91,3 +93,5 @@ draft strips te'amim, meteg and paseq (nikud only), which reproduces the
   the next, and so on, left to right, with verse 5 vertical down the centre
   shaft (not stacked horizontal lines). Every branch reads from its lamp
   downward.
+- **No punctuation:** sof pasuq, paseq and maqaf are removed; words joined by
+  a maqaf are set as separate words.

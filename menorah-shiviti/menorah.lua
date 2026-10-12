@@ -7,8 +7,9 @@
 -- the branches from the lamp toward the shaft, in order from left to right:
 -- verses 2, 3, 4 on the left branches (outer to inner), verse 5 straight
 -- down the shaft, verses 6, 7, 8 on the right branches (inner to outer).
--- Each word is a separate TikZ node rotated to the direction of its path,
--- so nikud and te'amim stay attached to their letters.
+-- The last words of verse 5 form the base, set horizontally under the shaft.
+-- The text is letters only (see psalm67.lua).
+-- Each word is a separate TikZ node rotated to the direction of its path.
 --
 -- Lengths are fractions of the page width unless noted, so every format is
 -- the same design scaled. main.tex calls setup(format), measure(), draw().
@@ -18,17 +19,20 @@ local M = {}
 
 -- Page sizes in inches. Poster size is a placeholder until Yosef chooses.
 M.formats = {
-  aceo   = { w = 2.5,  h = 3.5,  teamim = false },
-  book   = { w = 3.5,  h = 4.75, teamim = false },
-  poster = { w = 12,   h = 18,   teamim = true  },
+  aceo   = { w = 2.5,  h = 3.5  },
+  book   = { w = 3.5,  h = 4.75 },
+  poster = { w = 12,   h = 18   },
 }
 
 -- Layout parameters.
 M.p = {
-  cy     = 0.40,  -- height of the arc centres, as a fraction of page height
+  cy     = 0.44,  -- height of the arc centres, as a fraction of page height
   radii  = { 0.20, 0.31, 0.42 },  -- inner, middle, outer branch
   stem   = 0.44,  -- straight upright part of every branch, above the arcs
-  foot   = 0.08,  -- shaft length below the outer arc
+  foot   = 0.06,  -- shaft length below the outer arc
+  base_words = 4, -- last words of verse 5 set as the base (3 or 4)
+  base_gap   = 0.05, -- from the end of the shaft to the base baseline
+  base_width = 0.50, -- width the base words are spread across
   shaft_half = 0.03, -- half the width of the shaft line of text
   pad    = 0.02,  -- clearance between branch text and the shaft
   fill   = 0.86,  -- share of a branch taken by words at the fitted size
@@ -45,12 +49,6 @@ local text, fmt, W, H
 local widths = {}  -- widths[v][i]: word width at BASE pt, in pt
 local size         -- fitted font size, pt
 
-local function strip_teamim(w)
-  w = w:gsub('\xD6[\x91-\xAF]', '')   -- U+0591..U+05AF accents
-  w = w:gsub('\xD6\xBD', '')          -- U+05BD meteg
-  return w
-end
-
 local function heb(sz, s)
   return string.format(
     '\\foreignlanguage{hebrew}{\\fontsize{%.3f}{%.3f}\\selectfont %s}',
@@ -63,11 +61,10 @@ function M.setup(name, dir)
   fmt = M.formats[name] or error('unknown format ' .. tostring(name))
   W, H = fmt.w * 2.54, fmt.h * 2.54
   text = dofile(dir .. 'psalm67.lua')
-  if not fmt.teamim then
-    for _, verse in ipairs(text) do
-      for i, w in ipairs(verse) do verse[i] = strip_teamim(w) end
-    end
-  end
+  -- Split verse 5: the shaft keeps the start, the base ("verse 9") the end.
+  local v5, n = text[5], #text[5] - M.p.base_words
+  text[9] = { table.unpack(v5, n + 1) }
+  text[5] = { table.unpack(v5, 1, n) }
   tex.sprint(string.format(
     '\\geometry{paperwidth=%.4fin,paperheight=%.4fin,margin=0pt}', fmt.w, fmt.h))
 end
@@ -121,6 +118,8 @@ local function fit_size(ps)
     local need = sum(widths[p.verse]) * CM_PER_PT / BASE  -- cm per pt
     s = math.min(s, (p.fill or M.p.fill) * p.len / need)
   end
+  local need = sum(widths[9]) * CM_PER_PT / BASE      -- the base line
+  s = math.min(s, M.p.fill * M.p.base_width * W / need)
   return s
 end
 
@@ -138,6 +137,13 @@ local function place(out, p)
       math.deg(math.atan(-ty, -tx)), x, y, heb(size, w))
     d = d + ws[i] + gap
   end
+end
+
+-- A horizontal line of words spread evenly across width, centred at x.
+local function spread(out, words, width, x, y)
+  out[#out + 1] = string.format(
+    '\\node[anchor=base,inner sep=0pt,text width=%.4fcm] at (%.4f,%.4f) {%s\\par};',
+    width, x, y, heb(size, '\\leavevmode ' .. table.concat(words, ' \\hfill ')))
 end
 
 function M.draw()
@@ -161,12 +167,11 @@ function M.draw()
 
   for _, p in ipairs(ps) do place(out, p) end
 
-  -- verse 1 across the top, spread over the width of the menorah
-  local span = 2 * M.p.radii[3] * W
-  out[#out + 1] = string.format(
-    '\\node[anchor=base,inner sep=0pt,text width=%.4fcm] at (%.4f,%.4f) ' ..
-    '{%s\\par};', span, cx, cy + L + M.p.title * W,
-    heb(size, '\\leavevmode ' .. table.concat(text[1], ' \\hfill ')))
+  -- verse 1 across the top, over the width of the menorah
+  spread(out, text[1], 2 * M.p.radii[3] * W, cx, cy + L + M.p.title * W)
+  -- the end of verse 5 as the base, under the shaft
+  spread(out, text[9], M.p.base_width * W, cx,
+    cy + L - ps[#ps].len - M.p.base_gap * W)
 
   out[#out + 1] = '\\end{tikzpicture}'
   out[#out + 1] = '\\end{otherlanguage}'

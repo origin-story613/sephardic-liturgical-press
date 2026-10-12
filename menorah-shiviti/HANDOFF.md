@@ -198,8 +198,9 @@ Read this whole file before doing anything.
 - **Draft sketch** (layout per Yosef; styling not decided): `main.tex` +
   `menorah.lua` + `psalm67.lua`. Three nested branches per side (upright stem
   over a quarter arc). Verse 1 across the top; verses 2, 3, 4 down the left
-  branches (outer to inner), verse 5 vertically down the shaft, verses 6, 7, 8
-  down the right branches (inner to outer). Faint guide lines. Format chosen
+  branches (outer to inner), verse 5 vertically down the shaft with its last
+  4 words as a horizontal base, verses 6, 7, 8 down the right branches (inner
+  to outer). Letters only, no nikud or te'amim. Faint guide lines. Format chosen
   by `\menorahformat` (aceo, book, poster) at the top of `main.tex`;
   locally: `lualatex -jobname=aceo "\def\menorahformat{aceo}\input{main}"`.
   Compile twice (the picture is placed relative to the page).

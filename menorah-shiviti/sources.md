@@ -58,11 +58,11 @@ included), points and marks excluded.
 text, "Tanach with Ta'amei Hamikra", as a **provisional** choice for the
 draft: public domain, and it matches Torat Emet. Until Yosef decides how to
 treat the name Elohim in source files, those words are stored as Unicode
-code-point escapes, never spelled out. Punctuation is removed in every
-format (Yosef): no sof pasuq or paseq, and each maqaf becomes a word break,
-so the words per verse are 4, 7, 6, 6, 11, 6, 6, 7 (49 in verses 2-8). For
-the ACEO and book formats the draft also strips te'amim and meteg (nikud
-only).
+code-point escapes, never spelled out. The text is **letters only** in
+every format (Yosef): no nikud, te'amim, sof pasuq or paseq, and each maqaf
+becomes a word break, so the words per verse are 4, 7, 6, 6, 11, 6, 6, 7
+(49 in verses 2-8). Without points, spelling differences now show: this
+edition has מישור (full) in verse 5 and אתו (defective) in verse 8.
 
 ## Fonts
 
@@ -95,3 +95,7 @@ only).
   downward.
 - **No punctuation:** sof pasuq, paseq and maqaf are removed; words joined by
   a maqaf are set as separate words.
+- **Letters only:** no nikud or te'amim, in every format.
+- **Base:** verse 5 is split; its start runs down the shaft and its last words
+  form the base of the menorah, set horizontally. Yosef allows the last 3 or
+  4 words; the draft uses 4 (`base_words` in `menorah.lua`).

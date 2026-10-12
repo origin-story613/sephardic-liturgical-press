@@ -26,13 +26,13 @@ M.formats = {
 
 -- Layout parameters.
 M.p = {
-  cy     = 0.44,  -- height of the arc centres, as a fraction of page height
+  cy     = 0.48,  -- height of the arc centres, as a fraction of page height
   radii  = { 0.20, 0.31, 0.42 },  -- inner, middle, outer branch
   stem   = 0.44,  -- straight upright part of every branch, above the arcs
-  foot   = 0.06,  -- shaft length below the outer arc
-  base_words = 4, -- last words of verse 5 set as the base (3 or 4)
+  foot   = 0.13,  -- shaft length below the outer arc
+  base_words = 3, -- last words of verse 5 set as the base
   base_gap   = 0.05, -- from the end of the shaft to the base baseline
-  base_width = 0.50, -- width the base words are spread across
+  base_width = 0.36, -- width the base words are spread across
   shaft_half = 0.03, -- half the width of the shaft line of text
   pad    = 0.02,  -- clearance between branch text and the shaft
   fill   = 0.86,  -- share of a branch taken by words at the fitted size

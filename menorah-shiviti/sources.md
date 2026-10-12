@@ -97,5 +97,8 @@ edition has מישור (full) in verse 5 and אתו (defective) in verse 8.
   a maqaf are set as separate words.
 - **Letters only:** no nikud or te'amim, in every format.
 - **Base:** verse 5 is split; its start runs down the shaft and its last words
-  form the base of the menorah, set horizontally. Yosef allows the last 3 or
-  4 words; the draft uses 4 (`base_words` in `menorah.lua`).
+  form the base of the menorah, set horizontally: the last **three** words,
+  בארץ תנחם סלה (`base_words` in `menorah.lua`). The shaft reaches well
+  below the curved branches, so the base sits clearly under them.
+- **Lower curves of the left branches:** the text keeps following the path,
+  so words there are nearly upside down. That is as it should be (Yosef).

@@ -7,7 +7,9 @@
 -- the branches from the lamp toward the shaft, in order from left to right:
 -- verses 2, 3, 4 on the left branches (outer to inner), verse 5 straight
 -- down the shaft, verses 6, 7, 8 on the right branches (inner to outer).
--- The last words of verse 5 form the base, set horizontally under the shaft.
+-- The last words of verse 5 form the base, arched under the shaft. Above
+-- the menorah, Psalm 16:8 with the Name large in the centre: shviti to its
+-- right, lenegdi to its left, tamid beneath it.
 -- The text is letters only (see psalm67.lua).
 -- Each word is a separate TikZ node rotated to the direction of its path.
 --
@@ -29,15 +31,19 @@ M.p = {
   cy     = 0.48,  -- height of the arc centres, as a fraction of page height
   radii  = { 0.20, 0.31, 0.42 },  -- inner, middle, outer branch
   stem   = 0.44,  -- straight upright part of every branch, above the arcs
-  foot   = 0.13,  -- shaft length below the outer arc
+  foot   = 0.10,  -- shaft length below the outer arc
   base_words = 3, -- last words of verse 5 set as the base
-  base_gap   = 0.05, -- from the end of the shaft to the base baseline
-  base_width = 0.36, -- width the base words are spread across
+  base_gap   = 0.04, -- from the end of the shaft to the top of the base arch
+  base_width = 0.40, -- length of the base arch
+  base_radius = 0.40, -- radius of the base arch
   shaft_half = 0.03, -- half the width of the shaft line of text
   pad    = 0.02,  -- clearance between branch text and the shaft
   fill   = 0.86,  -- share of a branch taken by words at the fitted size
   shaft_fill = 0.95, -- the same for the shaft (verse 5 is the longest)
   title  = 0.05,  -- gap between the lamp line and the verse 1 baseline
+  top    = 0.05,  -- page margin above the Name
+  name_scale = 2.6, -- size of the Name, relative to the text size
+  name_gap   = 0.03, -- between the Name and the words beside it
   guides = true,  -- draw faint construction lines (draft only)
 }
 
@@ -45,7 +51,17 @@ local CM_PER_PT = 2.54 / 72.27
 local SP_PER_PT = 65536
 local BASE = 10  -- measuring size, pt
 
-local text, fmt, W, H
+-- Psalm 16:8 around the Name: the words before and after it, and the one
+-- set beneath it (Leningrad, letters only; same in Yosef's siddur).
+local SHVITI, LENEGDI, TAMID = 'שויתי', 'לנגדי', 'תמיד'
+
+-- The Name, unpointed, assembled from code points so it is never written
+-- out in any file.
+local function the_name()
+  return utf8.char(0x05D9, 0x05D4, 0x05D5, 0x05D4)
+end
+
+local text, fmt, W, H, shaft_len
 local widths = {}  -- widths[v][i]: word width at BASE pt, in pt
 local size         -- fitted font size, pt
 
@@ -105,9 +121,17 @@ local function paths()
         end }
     end
   end
-  local shaft_len = L + M.p.radii[3] * W + M.p.foot * W
+  shaft_len = L + M.p.radii[3] * W + M.p.foot * W
   out[#out + 1] = { verse = 5, len = shaft_len, fill = M.p.shaft_fill,
     pos = function(d) return cx, cy + L - d, 0, -1 end }
+  -- the base: an arch under the shaft, read right to left over its top
+  local R, top = M.p.base_radius * W, cy + L - shaft_len - M.p.base_gap * W
+  local blen = M.p.base_width * W
+  out[#out + 1] = { verse = 9, len = blen, pos = function(d)
+    local t = math.pi / 2 - (blen / 2 - d) / R
+    return cx + R * math.cos(t), top - R + R * math.sin(t),
+           -math.sin(t), math.cos(t)
+  end }
   return out
 end
 
@@ -118,8 +142,6 @@ local function fit_size(ps)
     local need = sum(widths[p.verse]) * CM_PER_PT / BASE  -- cm per pt
     s = math.min(s, (p.fill or M.p.fill) * p.len / need)
   end
-  local need = sum(widths[9]) * CM_PER_PT / BASE      -- the base line
-  s = math.min(s, M.p.fill * M.p.base_width * W / need)
   return s
 end
 
@@ -161,7 +183,7 @@ function M.draw()
         cx + r * W, cy + L, -L, r * W, L)
     end
     out[#out + 1] = string.format('\\draw (%.4f,%.4f) -- ++(0,%.4f);',
-      cx, cy + L, -ps[#ps].len)
+      cx, cy + L, -shaft_len)
     out[#out + 1] = '\\end{scope}'
   end
 
@@ -169,9 +191,23 @@ function M.draw()
 
   -- verse 1 across the top, over the width of the menorah
   spread(out, text[1], 2 * M.p.radii[3] * W, cx, cy + L + M.p.title * W)
-  -- the end of verse 5 as the base, under the shaft
-  spread(out, text[9], M.p.base_width * W, cx,
-    cy + L - ps[#ps].len - M.p.base_gap * W)
+
+  -- Psalm 16:8: the Name large in the centre near the top of the page.
+  -- Inside these Hebrew nodes east and west come out mirrored, hence
+  -- lenegdi at the Name's east anchor shows on its left.
+  local g = M.p.name_gap * W
+  out[#out + 1] = string.format(
+    '\\node[anchor=north,inner sep=0pt] (name) at (%.4f,%.4f) {%s};',
+    cx, H - M.p.top * W, heb(size * M.p.name_scale, the_name()))
+  out[#out + 1] = string.format(
+    '\\node[anchor=base west,inner sep=0pt] at ([xshift=%.4fcm]name.base east) {%s};',
+    g, heb(size, LENEGDI))
+  out[#out + 1] = string.format(
+    '\\node[anchor=base east,inner sep=0pt] at ([xshift=%.4fcm]name.base west) {%s};',
+    -g, heb(size, SHVITI))
+  out[#out + 1] = string.format(
+    '\\node[anchor=north,inner sep=0pt] at ([yshift=%.4fcm]name.south) {%s};',
+    -g, heb(size, TAMID))
 
   out[#out + 1] = '\\end{tikzpicture}'
   out[#out + 1] = '\\end{otherlanguage}'

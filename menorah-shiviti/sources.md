@@ -108,3 +108,10 @@ Leningrad (the `SIDDUR` table in the generator): בנגינות (v1), מישר (
   בנגינות in verse 1 (Leningrad בנגינת), מישר in verse 5 (Leningrad מישור),
   אותו in verse 8 (Leningrad אתו). The siddur's base is four words; Yosef
   chose three for this piece.
+- **Above the menorah:** Psalm 16:8, with the Name large (unpointed) in the
+  centre, שויתי to its right, לנגדי to its left and תמיד beneath it. The
+  Name is assembled from code points in `menorah.lua` (`the_name()`), never
+  written out.
+- **Base arched**, as in his siddur: the base words run over the top of a
+  shallow arch under the shaft. Still three words (his earlier decision;
+  the siddur arches four).

@@ -6,9 +6,12 @@ Read this whole file before doing anything.
 
 ## 1. The goal
 
-- An **original, commercial-grade poster** of Psalm 67 laid out as a menorah,
-  intended **for sale**. It is a single large page, not a pocket book: it
-  does **not** use `shared/geometry/pocket-dimensions.sty`.
+- An **original, commercial-grade** design of Psalm 67 laid out as a menorah,
+  intended **for sale**, produced in several formats from one parametric
+  master (see `sources.md`, decisions): ACEO cards, a page for the birkon and
+  siddur, a poster, and possibly a stencil for hand printing on fine paper.
+  Each format is its own single-page output with its own page size; the book
+  page matches the books' trim but is not set like a book page.
 - Typeset in **LuaLaTeX + TikZ**: text placed at computed coordinates, not
   traced from an image. Vector PDF output for printing.
 - The design must be **Yosef's own**. Shiviti menorahs are a centuries-old
@@ -183,3 +186,23 @@ Read this whole file before doing anything.
    with nikud, and show Yosef a rendered preview.
 5. Then the full menorah, parametric. Iterate on the design with rendered
    previews, one decision at a time.
+
+## 8. Progress
+
+- Pre-commit hook installed and tested; LuaLaTeX + TikZ compile with Taamey
+  David CLM (already in `shared/fonts/`).
+- Psalm 67 fetched from three Sefaria editions; counts, differences and
+  licenses in `sources.md` (script: `tools/count_psalm67.py`).
+- Text-on-curve method tested and settled (`sources.md`, technical decisions).
+- **Formats (Yosef):** ACEO, book page, poster, possibly a hand-printed stencil.
+- **Draft sketch** (layout per Yosef; styling not decided): `main.tex` +
+  `menorah.lua` + `psalm67.lua`. Three nested branches per side (upright stem
+  over a quarter arc). Verse 1 across the top; verses 2, 3, 4 down the left
+  branches (outer to inner), verse 5 vertically down the shaft with its last
+  3 words as an arched base well below the branches. Above: Psalm 16:8 with
+  the Name large in the centre, verses 6, 7, 8 down the right branches (inner
+  to outer). Letters only, no nikud or te'amim; spellings per Yosef's siddur. Faint guide lines. Format chosen
+  by `\menorahformat` (aceo, book, poster) at the top of `main.tex`;
+  locally: `lualatex -jobname=aceo "\def\menorahformat{aceo}\input{main}"`.
+  Compile twice (the picture is placed relative to the page).
+- **Next:** how the stencil would be printed (it constrains the whole design).

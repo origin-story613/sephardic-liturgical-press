@@ -1,0 +1,33 @@
+% menorah-shiviti/main.tex
+% Menorah Shiviti: Psalm 67 in the shape of a menorah. DRAFT sketch.
+% Compile with LuaLaTeX (twice: the drawing is positioned on the page).
+
+% Output format: aceo, book or poster (sizes in menorah.lua).
+\providecommand{\menorahformat}{poster}
+
+\documentclass{article}
+
+% Locate the repository root so the shared files resolve whether this file
+% is compiled from menorah-shiviti/ (locally) or from the project root
+% (Overleaf).
+\IfFileExists{../shared/macros/hebrew-layout.sty}
+  {\def\pressroot{../}}
+  {\def\pressroot{}}
+\makeatletter
+\def\input@path{{\pressroot shared/macros/}}
+\makeatother
+
+\usepackage{geometry}
+\usepackage{hebrew-layout}
+\usepackage{tikz}
+
+\directlua{
+  menorah = dofile("\pressroot menorah-shiviti/menorah.lua")
+  menorah.setup("\menorahformat", "\pressroot menorah-shiviti/")
+}
+
+\begin{document}
+\pagestyle{empty}
+\directlua{menorah.measure()}
+\noindent\directlua{menorah.draw()}
+\end{document}

@@ -49,8 +49,9 @@ included), points and marks excluded.
 | **2–8** | **49** | 214 | 214 |
 
 - 49 words in verses 2–8 holds in every edition.
-- Neither edition gives the 49 letters often cited for verse 5. **Open: Yosef
-  decides which spelling the poster follows.**
+- Neither edition gives the 49 letters often cited for verse 5. The poster
+  follows Yosef's siddur (below): verse 5 has **47** letters (מישר), verse 8
+  has 30 (אותו), verse 1 has 20 (בנגינות).
 
 ## Draft text in use
 
@@ -61,8 +62,9 @@ treat the name Elohim in source files, those words are stored as Unicode
 code-point escapes, never spelled out. The text is **letters only** in
 every format (Yosef): no nikud, te'amim, sof pasuq or paseq, and each maqaf
 becomes a word break, so the words per verse are 4, 7, 6, 6, 11, 6, 6, 7
-(49 in verses 2-8). Without points, spelling differences now show: this
-edition has מישור (full) in verse 5 and אתו (defective) in verse 8.
+(49 in verses 2-8). Spellings follow Yosef's siddur where it differs from
+Leningrad (the `SIDDUR` table in the generator): בנגינות (v1), מישר (v5),
+אותו (v8).
 
 ## Fonts
 
@@ -102,3 +104,7 @@ edition has מישור (full) in verse 5 and אתו (defective) in verse 8.
   below the curved branches, so the base sits clearly under them.
 - **Lower curves of the left branches:** the text keeps following the path,
   so words there are nearly upside down. That is as it should be (Yosef).
+- **Spelling:** follows Yosef's siddur (photo of its shiviti page, Shacharit):
+  בנגינות in verse 1 (Leningrad בנגינת), מישר in verse 5 (Leningrad מישור),
+  אותו in verse 8 (Leningrad אתו). The siddur's base is four words; Yosef
+  chose three for this piece.

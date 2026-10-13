@@ -192,19 +192,18 @@ function M.draw()
   -- verse 1 across the top, over the width of the menorah
   spread(out, text[1], 2 * M.p.radii[3] * W, cx, cy + L + M.p.title * W)
 
-  -- Psalm 16:8: the Name large in the centre near the top of the page.
-  -- Inside these Hebrew nodes east and west come out mirrored, hence
-  -- lenegdi at the Name's east anchor shows on its left.
+  -- Psalm 16:8: the Name large in the centre near the top of the page,
+  -- shviti on its right (east), lenegdi on its left (west).
   local g = M.p.name_gap * W
   out[#out + 1] = string.format(
     '\\node[anchor=north,inner sep=0pt] (name) at (%.4f,%.4f) {%s};',
     cx, H - M.p.top * W, heb(size * M.p.name_scale, the_name()))
   out[#out + 1] = string.format(
     '\\node[anchor=base west,inner sep=0pt] at ([xshift=%.4fcm]name.base east) {%s};',
-    g, heb(size, LENEGDI))
+    g, heb(size, SHVITI))
   out[#out + 1] = string.format(
     '\\node[anchor=base east,inner sep=0pt] at ([xshift=%.4fcm]name.base west) {%s};',
-    -g, heb(size, SHVITI))
+    -g, heb(size, LENEGDI))
   out[#out + 1] = string.format(
     '\\node[anchor=north,inner sep=0pt] at ([yshift=%.4fcm]name.south) {%s};',
     -g, heb(size, TAMID))

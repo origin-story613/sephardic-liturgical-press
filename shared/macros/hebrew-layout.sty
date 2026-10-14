@@ -51,6 +51,10 @@
       Path           = \pressfonts,
       Extension      = #1,
       UprightFont    = *-Medium,
+      % HarfBuzz shaping: in LuaTeX's default node mode, Taamey David drops
+      % the vowel on any letter that also has a dagesh (e.g. the qamats of
+      % בָּ). HarfBuzz places dagesh and vowel together correctly.
+      Renderer       = HarfBuzz,
       BoldFont       = *-Bold,
       % Hebrew is never set in italics, even inside an italic rubric.
       ItalicFont     = *-Medium,
@@ -66,6 +70,8 @@
   \babelfont[hebrew]{rm}[
       Extension      = .otf,
       UprightFont    = *-Medium,
+      % HarfBuzz shaping, as for Taamey David above.
+      Renderer       = HarfBuzz,
       BoldFont       = *-Bold,
       % Hebrew is never set in italics, even inside an italic rubric.
       ItalicFont     = *-Medium,

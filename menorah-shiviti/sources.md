@@ -121,3 +121,7 @@ Leningrad (the `SIDDUR` table in the generator): בנגינות (v1), מישר (
   the siddur arches four).
 - **No guide lines** under the text (Yosef).
 - **Font:** Stam Sefarad CLM for all the Hebrew of this piece (Yosef).
+- **Verse 1 over the lamps** (tradition, as in his siddur): its 20 letters run
+  together in groups of three over each branch and two over the shaft,
+  right to left: למנ צחב נגי נו תמז מור שיר. Letters keep their in-word forms
+  (`lamp_groups` in `menorah.lua`).

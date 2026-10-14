@@ -204,7 +204,8 @@ Read this whole file before doing anything.
   hand-printed stencil.
 - **Draft sketch** (layout per Yosef; styling not decided): `main.tex` +
   `menorah.lua` + `psalm67.lua`. Three nested branches per side (upright stem
-  over a quarter arc). Verse 1 across the top; verses 2, 3, 4 down the left
+  over a quarter arc). Verse 1 across the top in letter groups over the lamps
+  (3, 3, 3, 2, 3, 3, 3); verses 2, 3, 4 down the left
   branches (outer to inner), verse 5 vertically down the shaft with its last
   3 words as an arched base well below the branches, verses 6, 7, 8 down the
   right branches (inner to outer). Above: Psalm 16:8 with the Name large in

@@ -22,12 +22,14 @@ local M = {}
 -- Page sizes in inches. Poster size is a placeholder until Yosef chooses.
 M.formats = {
   aceo   = { w = 2.5,  h = 3.5  },
-  book   = { w = 3.5,  h = 4.75 },
+  siddur = { w = 3.5,  h = 4.75 },  -- Shabbat siddur page
+  birkon = { w = 4.25, h = 5.5  },  -- birkon and Seder HaShulchan page
   poster = { w = 12,   h = 18   },
 }
 
 -- Layout parameters.
 M.p = {
+  ratio  = 1.5,   -- height of the design box over its width (the poster's)
   cy     = 0.48,  -- height of the arc centres, as a fraction of page height
   radii  = { 0.20, 0.31, 0.42 },  -- inner, middle, outer branch
   stem   = 0.44,  -- straight upright part of every branch, above the arcs
@@ -44,7 +46,8 @@ M.p = {
   top    = 0.05,  -- page margin above the Name
   name_scale = 2.6, -- size of the Name, relative to the text size
   name_gap   = 0.03, -- between the Name and the words beside it
-  guides = true,  -- draw faint construction lines and a size label (draft only)
+  guides = false, -- draw faint construction lines (layout checks only)
+  label  = true,  -- small corner label: format, page and text size (draft only)
 }
 
 local CM_PER_PT = 2.54 / 72.27
@@ -61,13 +64,16 @@ local function the_name()
   return utf8.char(0x05D9, 0x05D4, 0x05D5, 0x05D4)
 end
 
-local text, fmt, W, H, shaft_len
+-- W, H: the design box, always M.p.ratio tall for its width, fitted inside
+-- the page (PW, PH) and centred at offset (OX, OY), so every format has the
+-- same proportions whatever its page shape.
+local text, fmt, W, H, PW, PH, OX, OY, shaft_len
 local widths = {}  -- widths[v][i]: word width at BASE pt, in pt
 local size         -- fitted font size, pt
 
 local function heb(sz, s)
   return string.format(
-    '\\foreignlanguage{hebrew}{\\fontsize{%.3f}{%.3f}\\selectfont %s}',
+    '\\foreignlanguage{hebrew}{\\stamfont\\fontsize{%.3f}{%.3f}\\selectfont %s}',
     sz, sz * 1.25, s)
 end
 
@@ -76,7 +82,10 @@ local function sum(t) local s = 0 for _, x in ipairs(t) do s = s + x end return 
 function M.setup(name, dir)
   fmt = M.formats[name] or error('unknown format ' .. tostring(name))
   fmt.name = name
-  W, H = fmt.w * 2.54, fmt.h * 2.54
+  PW, PH = fmt.w * 2.54, fmt.h * 2.54
+  W = math.min(PW, PH / M.p.ratio)
+  H = W * M.p.ratio
+  OX, OY = (PW - W) / 2, (PH - H) / 2
   text = dofile(dir .. 'psalm67.lua')
   -- Split verse 5: the shaft keeps the start, the base ("verse 9") the end.
   local v5, n = text[5], #text[5] - M.p.base_words
@@ -174,7 +183,8 @@ function M.draw()
   local ps = paths()
   size = fit_size(ps)
   local out = { '\\begin{otherlanguage}{english}',
-    '\\begin{tikzpicture}[remember picture,overlay,shift={(current page.south west)}]' }
+    '\\begin{tikzpicture}[remember picture,overlay,shift={(current page.south west)}]',
+    string.format('\\begin{scope}[shift={(%.4f,%.4f)}]', OX, OY) }
 
   if M.p.guides then
     out[#out + 1] = '\\begin{scope}[line width=0.3pt,black!15]'
@@ -185,13 +195,16 @@ function M.draw()
     end
     out[#out + 1] = string.format('\\draw (%.4f,%.4f) -- ++(0,%.4f);',
       cx, cy + L, -shaft_len)
+    out[#out + 1] = '\\end{scope}'
+  end
+
+  if M.p.label then
     -- draft label in the bottom-right corner: format, page size, text size
     out[#out + 1] = string.format(
       '\\node[anchor=south east,inner sep=0pt,black!40,font=\\fontsize{%.2f}{%.2f}\\selectfont] ' ..
       'at (%.4f,%.4f) {DRAFT: %s, %s x %s in, text %.1f pt};',
-      size * 0.3, size * 0.36, W - 0.02 * W, 0.02 * W,
+      size * 0.3, size * 0.36, PW - OX - 0.02 * W, 0.02 * W - OY,
       fmt.name, fmt.w, fmt.h, size)
-    out[#out + 1] = '\\end{scope}'
   end
 
   for _, p in ipairs(ps) do place(out, p) end
@@ -215,6 +228,7 @@ function M.draw()
     '\\node[anchor=north,inner sep=0pt] at ([yshift=%.4fcm]name.south) {%s};',
     -g, heb(size, TAMID))
 
+  out[#out + 1] = '\\end{scope}'
   out[#out + 1] = '\\end{tikzpicture}'
   out[#out + 1] = '\\end{otherlanguage}'
   tex.print(out)

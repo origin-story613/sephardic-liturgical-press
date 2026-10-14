@@ -2,7 +2,7 @@
 % Menorah Shiviti: Psalm 67 in the shape of a menorah. DRAFT sketch.
 % Compile with LuaLaTeX (twice: the drawing is positioned on the page).
 
-% Output format: aceo, book or poster (sizes in menorah.lua).
+% Output format: aceo, siddur, birkon or poster (sizes in menorah.lua).
 \providecommand{\menorahformat}{aceo}
 
 \documentclass{article}
@@ -20,6 +20,11 @@
 \usepackage{geometry}
 \usepackage{hebrew-layout}
 \usepackage{tikz}
+
+% Hebrew face for this piece: Stam Sefarad CLM (Culmus), a Sephardic
+% scribal (STaM) hand. It ships with TeX Live, so it is not copied into the
+% repo: a second copy under the same name confuses the LuaTeX font cache.
+\newfontfamily\stamfont{StamSefaradCLM.ttf}[Script=Hebrew, Renderer=HarfBuzz]
 
 \directlua{
   menorah = dofile("\pressroot menorah-shiviti/menorah.lua")

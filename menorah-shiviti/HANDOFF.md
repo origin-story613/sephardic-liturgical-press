@@ -11,7 +11,8 @@ Read this whole file before doing anything.
   master (see `sources.md`, decisions): ACEO cards, a page for the birkon and
   siddur, a poster, and possibly a stencil for hand printing on fine paper.
   Each format is its own single-page output with its own page size; the book
-  page matches the books' trim but is not set like a book page.
+  pages (siddur 3.5 x 4.75 in, birkon 4.25 x 5.5 in) match the books' trim
+  but are not set like book pages.
 - Typeset in **LuaLaTeX + TikZ**: text placed at computed coordinates, not
   traced from an image. Vector PDF output for printing.
 - The design must be **Yosef's own**. Shiviti menorahs are a centuries-old
@@ -194,15 +195,24 @@ Read this whole file before doing anything.
 - Psalm 67 fetched from three Sefaria editions; counts, differences and
   licenses in `sources.md` (script: `tools/count_psalm67.py`).
 - Text-on-curve method tested and settled (`sources.md`, technical decisions).
-- **Formats (Yosef):** ACEO, book page, poster, possibly a hand-printed stencil.
+- **Font (Yosef):** Stam Sefarad CLM from TeX Live (`\stamfont` in
+  `main.tex`), not the books' Taamey David.
+- **Merging (Yosef):** merge your own pull requests for this project into
+  `main` without asking (they touch only `menorah-shiviti/`); Overleaf syncs
+  from `main`.
+- **Formats (Yosef):** ACEO, siddur page, birkon page, poster, possibly a
+  hand-printed stencil.
 - **Draft sketch** (layout per Yosef; styling not decided): `main.tex` +
   `menorah.lua` + `psalm67.lua`. Three nested branches per side (upright stem
   over a quarter arc). Verse 1 across the top; verses 2, 3, 4 down the left
   branches (outer to inner), verse 5 vertically down the shaft with its last
-  3 words as an arched base well below the branches. Above: Psalm 16:8 with
-  the Name large in the centre, verses 6, 7, 8 down the right branches (inner
-  to outer). Letters only, no nikud or te'amim; spellings per Yosef's siddur. Faint guide lines. Format chosen
-  by `\menorahformat` (aceo, book, poster) at the top of `main.tex`;
+  3 words as an arched base well below the branches, verses 6, 7, 8 down the
+  right branches (inner to outer). Above: Psalm 16:8 with the Name large in
+  the centre. Letters only, no nikud or te'amim; spellings per Yosef's
+  siddur. No guide lines (Yosef; `guides` in `menorah.lua` turns them back on
+  for layout checks); a small grey corner label names the format and sizes
+  while drafting (`label`). Format chosen
+  by `\menorahformat` (aceo, siddur, birkon, poster) at the top of `main.tex`;
   locally: `lualatex -jobname=aceo "\def\menorahformat{aceo}\input{main}"`.
   Compile twice (the picture is placed relative to the page).
 - **Next:** how the stencil would be printed (it constrains the whole design).

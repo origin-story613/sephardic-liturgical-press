@@ -68,8 +68,12 @@ Leningrad (the `SIDDUR` table in the generator): בנגינות (v1), מישר (
 
 ## Fonts
 
-- Hebrew: Taamey David CLM (Culmus, GPL with font exception), already in
-  `shared/fonts/`. Supports nikud and cantillation.
+- Hebrew: **Stam Sefarad CLM** (Culmus Project, GPL with font exception:
+  free for commercial use, embedding allowed). A Sephardic STaM hand with
+  tagin. Ships with TeX Live and Overleaf (`StamSefaradCLM.ttf`), so it is
+  **not** copied into the repo. Loaded in `main.tex` as `\stamfont`, used for
+  all Hebrew in the piece.
+- Latin (draft label only): Gentium Plus, from `shared/fonts/`.
 
 ## Technical decisions
 
@@ -85,8 +89,8 @@ Leningrad (the `SIDDUR` table in the generator): בנגינות (v1), מישר (
 
 - **Formats:** one design, several outputs:
   - ACEO cards (2.5 x 3.5 in);
-  - a page sized to go into his birkon or siddur (the birkon and Seder HaShulchan
-    are 4.25 x 5.5 in; the Shabbat siddur is 3.5 x 4.75 in);
+  - a page for each book size: `siddur` 3.5 x 4.75 in (Shabbat siddur) and
+    `birkon` 4.25 x 5.5 in (birkon and Seder HaShulchan);
   - a poster (size not chosen);
   - possibly a stencil, hand printed on fine paper for posters and cards
     (printing method not chosen).
@@ -115,3 +119,5 @@ Leningrad (the `SIDDUR` table in the generator): בנגינות (v1), מישר (
 - **Base arched**, as in his siddur: the base words run over the top of a
   shallow arch under the shaft. Still three words (his earlier decision;
   the siddur arches four).
+- **No guide lines** under the text (Yosef).
+- **Font:** Stam Sefarad CLM for all the Hebrew of this piece (Yosef).

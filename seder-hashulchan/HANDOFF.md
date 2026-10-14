@@ -237,9 +237,10 @@ Typographic decisions already made (don't change without asking):
 - **Shared texts (Yosef):** Birkat HaMazon, Me'ein Shalosh and Borei Nefashot
   moved to `shared/texts/` (records in `shared/texts/sources/`); both books
   `\input` them.
-- **Page size (Yosef):** 4.25in x 5.5in for this book only, via
+- **Page size (Yosef):** 4.25in x 5.5in, via
   `shared/geometry/quarter-letter-dimensions.sty`; same margins as the pocket
-  size. The other books stay 3.5in x 4.75in.
+  size. The birkon later moved to the same size (Yosef); the Shabbat siddur
+  stays 3.5in x 4.75in.
 - **Title page (Yosef):** title סֵדֶר הַשֻּׁלְחָן / Seder HaShulchan; custom line
   כְּמִנְהַג מִשְׁפַּחַת מַעְיָין (pointed, keeping the family's two-yod spelling) /
   "According to the custom of the Maayan family". Imprint, copyright and

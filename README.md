@@ -2,8 +2,8 @@
 
 LuaLaTeX sources for Sephardic liturgical works. All projects share one set of
 fonts and one house style. The page size is the pocket size (3.5in x 4.75in,
-matched to the Bne Issakhar pocket siddur), except Seder HaShulchan, which is
-4.25in x 5.5in.
+matched to the Bne Issakhar pocket siddur), except the birkon and Seder
+HaShulchan, which are 4.25in x 5.5in.
 
 | Project | Status |
 |---|---|
@@ -19,7 +19,7 @@ shared/
   fonts/                    Gentium Plus (bundled); put TaameyDavidCLM here
   macros/hebrew-layout.sty  languages, fonts, liturgical macros
   geometry/pocket-dimensions.sty         3.5in x 4.75in (default)
-  geometry/quarter-letter-dimensions.sty 4.25in x 5.5in (Seder HaShulchan)
+  geometry/quarter-letter-dimensions.sty 4.25in x 5.5in (birkon, Seder HaShulchan)
   texts/                    texts printed in more than one book (Birkat HaMazon,
                             Me'ein Shalosh, Borei Nefashot); sources/ beside them
 birkon/

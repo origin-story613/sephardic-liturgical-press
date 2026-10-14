@@ -85,8 +85,8 @@ Leningrad (the `SIDDUR` table in the generator): בנגינות (v1), מישר (
 
 - **Formats:** one design, several outputs:
   - ACEO cards (2.5 x 3.5 in);
-  - a page sized to go into his birkon or siddur (the books are 3.5 x 4.75 in;
-    Seder HaShulchan is 4.25 x 5.5 in);
+  - a page sized to go into his birkon or siddur (the birkon and Seder HaShulchan
+    are 4.25 x 5.5 in; the Shabbat siddur is 3.5 x 4.75 in);
   - a poster (size not chosen);
   - possibly a stencil, hand printed on fine paper for posters and cards
     (printing method not chosen).

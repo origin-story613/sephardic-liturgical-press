@@ -11,7 +11,10 @@
 \RequireLuaTeX
 
 \providecommand{\pressroot}{}
-\newcommand{\pressfonts}{\pressroot shared/fonts/}
+% Absolute path to the font folder. LuaTeX's font cache remembers the path a
+% font was first loaded from; a relative path ("../shared/fonts/") then breaks
+% builds run from a folder at another depth (e.g. birkon/cover/).
+\edef\pressfonts{\directlua{tex.sprint(lfs.currentdir() .. "/")}\pressroot shared/fonts/}
 
 % ---------------------------------------------------------------------------
 % Languages

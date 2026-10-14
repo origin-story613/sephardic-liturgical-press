@@ -1,0 +1,103 @@
+% birkon/cover/ornament-options.tex
+% Three original cover-ornament options for the birkon, one per page, at
+% label size (3.25in x 4.5in, for the front board of the 4.25in x 5.5in book).
+% For choosing a design; the chosen one becomes the cover label or wrap.
+\documentclass{article}
+\IfFileExists{../../shared/macros/hebrew-layout.sty}
+  {\def\pressroot{../../}}
+  {\def\pressroot{}}
+\makeatletter
+\def\input@path{{\pressroot shared/macros/}}
+\makeatother
+\usepackage[paperwidth=3.25in,paperheight=4.5in,margin=0pt]{geometry}
+\usepackage{hebrew-layout}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+% Each design is an ordinary tikzpicture exactly the size of the label.
+% (Text inside "remember picture, overlay" pictures is lost under babel's
+% right-to-left mode, so overlays are not used.)
+\def\W{8.255}  % 3.25in in cm
+\def\H{11.43}  % 4.5in in cm
+% The picture sits in a left-to-right box: in a right-to-left paragraph pgf's
+% drawing coordinates are mirrored off the page. Text in nodes is set back
+% to right to left.
+\newenvironment{coverlabel}{\noindent\hbox dir TLT\bgroup\begin{tikzpicture}[
+    every node/.style={execute at begin node={\pardir TRT\textdir TRT}}]
+  \useasboundingbox (0,0) rectangle (\W,\H);
+  \coordinate (C) at (\W/2,\H/2);}{\end{tikzpicture}\egroup\newpage}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+
+\newcommand{\coverTitle}{%
+  {\fontsize{19}{24}\selectfont\bfseries סֵדֶר}\\[2pt]%
+  {\fontsize{19}{24}\selectfont\bfseries בִּרְכַּת הַמָּזוֹן}}
+\newcommand{\coverSub}{%
+  \foreignlanguage{english}{\small\itshape Birkat HaMazon}}
+
+% One wheat ear: a stalk along a curve and paired grains.
+% #1 = mirror (1 or -1)
+\newcommand{\wheatEar}[1]{%
+  \begin{scope}[xscale=#1]
+    \draw[line width=0.7pt] (0,0) .. controls (0.35,0.25) and (0.75,0.75) .. (0.9,1.45);
+    \foreach \t/\a in {0.30/38,0.42/45,0.54/52,0.66/58,0.78/63,0.90/68}{
+      \path (0,0) .. controls (0.35,0.25) and (0.75,0.75) .. (0.9,1.45)
+        coordinate[pos=\t] (g);
+      \fill[rotate around={\a+35:(g)}] ($(g)+(0.07,0)$) ellipse (0.075 and 0.03);
+      \fill[rotate around={\a-35+180:(g)}] ($(g)+(-0.07,0)$) ellipse (0.075 and 0.03);
+    }
+    \path (0,0) .. controls (0.35,0.25) and (0.75,0.75) .. (0.9,1.45) coordinate[pos=1] (tip);
+    \fill[rotate around={68:(tip)}] (tip) ellipse (0.07 and 0.03);
+  \end{scope}}
+
+% Eight-pointed star rosette, radius #1 (cm).
+\newcommand{\rosette}[1]{%
+  \draw[line width=0.6pt] (45:#1) -- (135:#1) -- (225:#1) -- (315:#1) -- cycle;
+  \draw[line width=0.6pt] (0:#1*1.414/1.414) -- (90:#1) -- (180:#1) -- (270:#1) -- cycle;
+  \draw[line width=0.5pt] (0,0) circle (#1*0.42);
+  \fill (0,0) circle (#1*0.10);}
+
+\newcommand{\ornDiamond}[1]{\fill (#1) +(0,0.06) -- +(0.06,0) -- +(0,-0.06) -- +(-0.06,0) -- cycle;}
+
+\begin{document}
+
+% ---- A: single frame, notched corners -------------------------------------
+\begin{coverlabel}
+  \def\r{0.32}\def\m{1.15}
+  \begin{scope}[line width=0.7pt]
+  \draw (\m,\m+\r) arc[start angle=90,end angle=0,radius=\r]
+     -- (\W-\m-\r,\m) arc[start angle=180,end angle=90,radius=\r]
+     -- (\W-\m,\H-\m-\r) arc[start angle=270,end angle=180,radius=\r]
+     -- (\m+\r,\H-\m) arc[start angle=0,end angle=-90,radius=\r]
+     -- cycle;
+  \end{scope}
+  \ornDiamond{\W/2,\m}\ornDiamond{\W/2,\H-\m}%
+  \ornDiamond{\m,\H/2}\ornDiamond{\W-\m,\H/2}
+  \node[align=center] at (C) {\coverTitle\\[6pt]%
+    \rule[0.5ex]{1.4cm}{0.5pt}\\[4pt]\coverSub};
+  \node[font=\scriptsize] at (\W/2,0.45) {A};
+\end{coverlabel}
+
+% ---- B: wheat ----------------------------------------------------------------
+\begin{coverlabel}
+  \node[align=center] at ($(C)+(0,0.7)$) {\coverTitle\\[6pt]\coverSub};
+  \begin{scope}[shift={($(C)+(0,-2.3)$)},scale=1.25]
+    \begin{scope}[shift={(0.12,0)}]\wheatEar{1}\end{scope}
+    \begin{scope}[shift={(-0.12,0)}]\wheatEar{-1}\end{scope}
+  \end{scope}
+  \node[font=\scriptsize] at (\W/2,0.45) {B};
+\end{coverlabel}
+
+% ---- C: eight-pointed star rosette ---------------------------------------
+\begin{coverlabel}
+  \begin{scope}[shift={($(C)+(0,2.6)$)}]\rosette{0.75}\end{scope}
+  \node[align=center] at ($(C)+(0,0.2)$) {\coverTitle};
+  \draw[line width=0.5pt] ($(C)+(-1.2,-1.4)$) -- ($(C)+(1.2,-1.4)$);
+  \ornDiamond{$(C)+(-1.32,-1.4)$}
+  \ornDiamond{$(C)+(1.32,-1.4)$}
+  \node at ($(C)+(0,-1.85)$) {\coverSub};
+  \node[font=\scriptsize] at (\W/2,0.45) {C};
+\end{coverlabel}
+
+\end{document}

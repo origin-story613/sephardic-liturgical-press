@@ -44,7 +44,7 @@ M.p = {
   top    = 0.05,  -- page margin above the Name
   name_scale = 2.6, -- size of the Name, relative to the text size
   name_gap   = 0.03, -- between the Name and the words beside it
-  guides = true,  -- draw faint construction lines (draft only)
+  guides = true,  -- draw faint construction lines and a size label (draft only)
 }
 
 local CM_PER_PT = 2.54 / 72.27
@@ -75,6 +75,7 @@ local function sum(t) local s = 0 for _, x in ipairs(t) do s = s + x end return 
 
 function M.setup(name, dir)
   fmt = M.formats[name] or error('unknown format ' .. tostring(name))
+  fmt.name = name
   W, H = fmt.w * 2.54, fmt.h * 2.54
   text = dofile(dir .. 'psalm67.lua')
   -- Split verse 5: the shaft keeps the start, the base ("verse 9") the end.
@@ -184,6 +185,12 @@ function M.draw()
     end
     out[#out + 1] = string.format('\\draw (%.4f,%.4f) -- ++(0,%.4f);',
       cx, cy + L, -shaft_len)
+    -- draft label in the bottom-right corner: format, page size, text size
+    out[#out + 1] = string.format(
+      '\\node[anchor=south east,inner sep=0pt,black!40,font=\\fontsize{%.2f}{%.2f}\\selectfont] ' ..
+      'at (%.4f,%.4f) {DRAFT: %s, %s x %s in, text %.1f pt};',
+      size * 0.3, size * 0.36, W - 0.02 * W, 0.02 * W,
+      fmt.name, fmt.w, fmt.h, size)
     out[#out + 1] = '\\end{scope}'
   end
 

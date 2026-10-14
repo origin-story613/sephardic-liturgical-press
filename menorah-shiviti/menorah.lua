@@ -69,6 +69,7 @@ end
 -- the page (PW, PH) and centred at offset (OX, OY), so every format has the
 -- same proportions whatever its page shape.
 local text, fmt, W, H, PW, PH, OX, OY, shaft_len
+local letter_h     -- letter body height at BASE pt, in pt
 local widths = {}  -- widths[v][i]: word width at BASE pt, in pt
 local size         -- fitted font size, pt
 
@@ -105,6 +106,13 @@ function M.measure()
         string.format('\\directlua{menorah.record(%d,%d)}', v, i))
     end
   end
+  -- body height of a letter (bet: no ascender or descender)
+  tex.sprint('\\setbox0\\hbox{' .. heb(BASE, utf8.char(0x05D1)) .. '}' ..
+    '\\directlua{menorah.record_letter()}')
+end
+
+function M.record_letter()
+  letter_h = tex.box[0].height / SP_PER_PT
 end
 
 function M.record(v, i)
@@ -187,11 +195,15 @@ local function lamp_groups(out, y)
   end
   local r = M.p.radii
   local xs = { r[3], r[2], r[1], 0, -r[1], -r[2], -r[3] }  -- right to left
+  -- The branch and shaft words stand on their path with their tops turned
+  -- to the left, so the visible column of letters is centred half a letter
+  -- height left of the path. Centre each group on that column.
+  local shift = letter_h * size / BASE * CM_PER_PT / 2
   local k = 0
   for g, n in ipairs(sizes) do
     out[#out + 1] = string.format(
       '\\node[anchor=base,inner sep=0pt] at (%.4f,%.4f) {%s};',
-      W / 2 + xs[g] * W, y, heb(size, table.concat(letters, '', k + 1, k + n)))
+      W / 2 + xs[g] * W - shift, y, heb(size, table.concat(letters, '', k + 1, k + n)))
     k = k + n
   end
 end

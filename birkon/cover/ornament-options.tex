@@ -58,11 +58,12 @@
   \draw[line width=0.5pt] (0,0) circle (#1*0.42);
   \fill (0,0) circle (#1*0.10);}
 
+\def\skylineWidth{7.6}
 % Seattle skyline as one continuous line: the outline of the Space Needle
-% (#1 = 1; 0 leaves it out), downtown towers, Smith Tower's pointed cap and
-% Mount Rainier, starting and ending on the ground. Origin at the left end;
-% 7.1cm wide. \skylinePath continues a path from (0,0) and ends at (7.1,0),
-% so a frame can run into it.
+% (#1 = 1; 0 leaves it out), the Great Wheel, downtown towers, Smith Tower's
+% pointed cap and Mount Rainier, starting and ending on the ground. Origin at
+% the left end; \skylineWidth wide. \skylinePath continues a path from (0,0)
+% and ends at (\skylineWidth,0), so a frame can run into it.
 \newcommand{\seattleSkyline}[1]{%
   \draw[line width=0.6pt,line join=round,line cap=round]
     (0,0) \skylinePath{#1};}
@@ -73,13 +74,22 @@
       -- (1.35,2.27) -- (1.42,2.27) -- (1.45,2.17) -- (1.65,2.17) -- (1.77,2.08)
       -- (1.65,2.0) -- (1.48,2.0) -- (1.40,1.45) -- (1.59,0)
     \fi
+    % the Great Wheel: legs, spokes (out and back from the hub), rim
+    -- (1.80,0) -- (2.05,0.46)
+    \foreach \a in {0,45,...,315}{ -- ++(\a:0.33) -- (2.05,0.46) }
+    -- ++(0:0.33) arc[start angle=0,end angle=360,radius=0.33]
+    -- (2.05,0.46) -- (2.30,0)
+    % downtown, ending with Smith Tower's point
     -- (2.55,0) -- (2.55,1.35) -- (2.95,1.35) -- (2.95,2.05) -- (3.12,2.25)
     -- (3.3,2.25) -- (3.47,2.05) -- (3.47,1.62) -- (3.85,1.62) -- (3.85,1.05)
     -- (3.96,1.05) -- (4.12,1.175) -- (4.12,1.25) -- (4.24,1.25) -- (4.31,1.55)
-    -- (4.354,1.36) -- (4.6,1.55)
-    .. controls (4.85,1.75) and (5.05,1.84) .. (5.25,1.84)
-    .. controls (5.5,1.82) and (5.75,1.68) .. (6.0,1.45)
-    -- (7.1,0)}
+    -- (4.354,1.36) -- (4.354,0.70)
+    % Rainier: broad and low, long concave slopes, a shoulder on the left,
+    % a flattened summit with a small notch
+    .. controls (4.8,0.75) and (5.1,0.92) .. (5.35,1.08) -- (5.45,1.10)
+    .. controls (5.6,1.2) and (5.75,1.3) .. (5.9,1.36)
+    -- (5.98,1.38) -- (6.04,1.34) -- (6.12,1.38) -- (6.22,1.36)
+    .. controls (6.5,1.15) and (6.85,0.35) .. (\skylineWidth,0)}
 
 \newcommand{\ornDiamond}[1]{\fill (#1) +(0,0.06) -- +(0.06,0) -- +(0,-0.06) -- +(-0.06,0) -- cycle;}
 
@@ -126,14 +136,14 @@
 % ---- D: Seattle skyline in one line, with the Space Needle ------------------
 \begin{coverlabel}
   \node[align=center] at ($(C)+(0,2.2)$) {\coverTitle\\[6pt]\coverSub};
-  \begin{scope}[shift={(\W/2-3.55,1.75)}]\seattleSkyline{1}\end{scope}
+  \begin{scope}[shift={(\W/2-\skylineWidth/2,1.75)}]\seattleSkyline{1}\end{scope}
   \node[font=\scriptsize] at (\W/2,0.45) {D};
 \end{coverlabel}
 
 % ---- E: Seattle skyline in one line, without the Space Needle ---------------
 \begin{coverlabel}
   \node[align=center] at ($(C)+(0,2.2)$) {\coverTitle\\[6pt]\coverSub};
-  \begin{scope}[shift={(\W/2-3.55,1.75)}]\seattleSkyline{0}\end{scope}
+  \begin{scope}[shift={(\W/2-\skylineWidth/2,1.75)}]\seattleSkyline{0}\end{scope}
   \node[font=\scriptsize] at (\W/2,0.45) {E};
 \end{coverlabel}
 
@@ -142,7 +152,7 @@
 % between the lower notches.
 \begin{coverlabel}
   \def\r{0.32}\def\m{1.15}
-  \pgfmathsetmacro\s{(\W-2*\m-2*\r)/7.1}
+  \pgfmathsetmacro\s{(\W-2*\m-2*\r)/\skylineWidth}
   \begin{scope}[line width=0.7pt,line join=round]
   \draw (\m+\r,\m)
      {[shift={(\m+\r,\m)},scale=\s] \skylinePath{1}}

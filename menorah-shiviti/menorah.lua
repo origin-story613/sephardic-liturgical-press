@@ -44,6 +44,7 @@ M.p = {
   shaft_fill = 0.95, -- the same for the shaft (verse 5 is the longest)
   title  = 0.015, -- gap between the lamp line and the verse 1 baseline
   lamp_groups = { 3, 3, 3, 2, 3, 3, 3 },  -- verse 1 letters per lamp, right to left
+  lamp_scale  = 1.2, -- size of the verse 1 letter groups, relative to the text size
   top    = 0.05,  -- page margin above the Name
   name_scale = 3.3, -- size of the Name, relative to the text size
   name_gap   = 0.03, -- between the Name and the words beside it
@@ -224,7 +225,8 @@ local function lamp_groups(out, y)
   for g, n in ipairs(sizes) do
     out[#out + 1] = string.format(
       '\\node[anchor=base,inner sep=0pt] at (%.4f,%.4f) {%s};',
-      W / 2 + xs[g] * W, y, heb(size, table.concat(letters, '', k + 1, k + n)))
+      W / 2 + xs[g] * W, y,
+      heb(size * M.p.lamp_scale, table.concat(letters, '', k + 1, k + n)))
     k = k + n
   end
 end

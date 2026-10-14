@@ -209,7 +209,7 @@ Read this whole file before doing anything.
   branches (outer to inner), verse 5 vertically down the shaft with its last
   3 words as an arched base well below the branches, verses 6, 7, 8 down the
   right branches (inner to outer). Above: Psalm 16:8 with the Name large in
-  the centre. Letters only, no nikud or te'amim; spellings per Yosef's
+  the centre, its final he stretched with Adonai small beneath the roof. Letters only, no nikud or te'amim; spellings per Yosef's
   siddur. No guide lines (Yosef; `guides` in `menorah.lua` turns them back on
   for layout checks); a small grey corner label names the format and sizes
   while drafting (`label`). Format chosen

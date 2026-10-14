@@ -47,6 +47,9 @@ M.p = {
   top    = 0.05,  -- page margin above the Name
   name_scale = 2.6, -- size of the Name, relative to the text size
   name_gap   = 0.03, -- between the Name and the words beside it
+  adonai_scale = 0.30, -- size of Adonai inside the final he, relative to the Name
+  adonai_pad   = 0.12, -- space each side of Adonai, in he widths
+  adonai_rise  = 0.10, -- Adonai's baseline above the Name's, in Name sizes
   guides = false, -- draw faint construction lines (layout checks only)
   label  = true,  -- small corner label: format, page and text size (draft only)
 }
@@ -59,11 +62,18 @@ local BASE = 10  -- measuring size, pt
 -- set beneath it (Leningrad, letters only; same in Yosef's siddur).
 local SHVITI, LENEGDI, TAMID = 'שויתי', 'לנגדי', 'תמיד'
 
--- The Name, unpointed, assembled from code points so it is never written
--- out in any file.
-local function the_name()
-  return utf8.char(0x05D9, 0x05D4, 0x05D5, 0x05D4)
-end
+-- The Name, unpointed, and the name Adonai set inside its final he, both
+-- assembled from code points so they are never written out in any file.
+-- NAME_HEAD is the Name's first three letters; its last letter is HE.
+local NAME_HEAD = utf8.char(0x05D9, 0x05D4, 0x05D5)
+local HE = utf8.char(0x05D4)
+local ADONAI = utf8.char(0x05D0, 0x05D3, 0x05E0, 0x05D9)
+
+-- The stretched he: Stam Sefarad's he, measured as fractions of its width.
+-- Only the plain roof between STRETCH_A and STRETCH_B is widened; the left
+-- leg with its stem and ball, and the right leg, keep their own shape.
+local STRETCH_A, STRETCH_B = 0.32, 0.68
+local LEFT_LEG_END, RIGHT_LEG_START = 0.27, 0.75
 
 -- W, H: the design box, always M.p.ratio tall for its width, fitted inside
 -- the page (PW, PH) and centred at offset (OX, OY), so every format has the
@@ -106,13 +116,22 @@ function M.measure()
         string.format('\\directlua{menorah.record(%d,%d)}', v, i))
     end
   end
-  -- body height of a letter (bet: no ascender or descender)
-  tex.sprint('\\setbox0\\hbox{' .. heb(BASE, utf8.char(0x05D1)) .. '}' ..
-    '\\directlua{menorah.record_letter()}')
+  -- body height of a letter (bet: no ascender or descender), and the pieces
+  -- of the Name
+  for key, str in pairs({ bet = utf8.char(0x05D1), head = NAME_HEAD, he = HE,
+                          adonai = ADONAI }) do
+    tex.sprint('\\setbox0\\hbox{' .. heb(BASE, str) .. '}' ..
+      string.format('\\directlua{menorah.record_box("%s")}', key))
+  end
 end
 
-function M.record_letter()
-  letter_h = tex.box[0].height / SP_PER_PT
+-- boxes[key] = { w, h, d } at BASE pt, in pt
+local boxes = {}
+function M.record_box(key)
+  local b = tex.box[0]
+  boxes[key] = { w = b.width / SP_PER_PT, h = b.height / SP_PER_PT,
+                 d = b.depth / SP_PER_PT }
+  if key == 'bet' then letter_h = boxes.bet.h end
 end
 
 function M.record(v, i)
@@ -243,11 +262,51 @@ function M.draw()
   lamp_groups(out, cy + L + M.p.title * W)
 
   -- Psalm 16:8: the Name large in the centre near the top of the page,
-  -- shviti on its right (east), lenegdi on its left (west).
+  -- shviti on its right (east), lenegdi on its left (west). The Name's final
+  -- he is stretched, with Adonai written small beneath its roof.
   local g = M.p.name_gap * W
+  local ns = size * M.p.name_scale                    -- Name size, pt
+  local function cm(key, f) return boxes[key][f] * ns / BASE * CM_PER_PT end
+  local hw = cm('he', 'w')
+  local aw = cm('adonai', 'w') * M.p.adonai_scale
+  -- widen the roof so Adonai fits between the legs with padding
+  local extra = math.max(0, aw + 2 * M.p.adonai_pad * hw
+                            - (RIGHT_LEG_START - LEFT_LEG_END) * hw)
+  local mid = (STRETCH_B - STRETCH_A) * hw + extra    -- stretched roof width
+  local he_w = hw + extra
+  local name_w = cm('head', 'w') + he_w
+  local nh = math.max(cm('head', 'h'), cm('he', 'h'))
+  local nd = math.max(cm('head', 'd'), cm('he', 'd'))
+  local xl = cx - name_w / 2                          -- left edge of the Name
+  local yb = H - M.p.top * W - nh                     -- the Name's baseline
+  local function he_piece(x0, x1, at, sx)
+    out[#out + 1] = string.format(
+      '\\begin{scope}\\clip (%.4f,%.4f) rectangle (%.4f,%.4f);' ..
+      '\\node[anchor=base west,inner sep=0pt] at (%.4f,%.4f) {\\scalebox{%.4f}[1]{%s}};' ..
+      '\\end{scope}',
+      x0, yb - 2 * nd - 1, x1, yb + 2 * nh, at, yb, sx, heb(ns, HE))
+  end
+  local eps = 0.002 * hw                              -- overlap, no hairline seams
+  local xa = xl + STRETCH_A * hw                      -- roof stretch starts
+  local xb = xa + mid                                 -- and ends
+  local k = mid / ((STRETCH_B - STRETCH_A) * hw)
+  he_piece(xl - hw, xa + eps, xl, 1)                  -- left leg, stem, roof end
+  he_piece(xa, xb, xa - k * STRETCH_A * hw, k)        -- the roof, widened
+  he_piece(xb - eps, xl + he_w + hw, xb - STRETCH_B * hw, 1)  -- right leg
   out[#out + 1] = string.format(
-    '\\node[anchor=north,inner sep=0pt] (name) at (%.4f,%.4f) {%s};',
-    cx, H - M.p.top * W, heb(size * M.p.name_scale, the_name()))
+    '\\node[anchor=base east,inner sep=0pt] at (%.4f,%.4f) {%s};',
+    xl + name_w, yb, heb(ns, NAME_HEAD))
+  -- Adonai, centred between the legs
+  local gap_mid = xl + (LEFT_LEG_END * hw + RIGHT_LEG_START * hw + extra) / 2
+  out[#out + 1] = string.format(
+    '\\node[anchor=base,inner sep=0pt] at (%.4f,%.4f) {%s};',
+    gap_mid, yb + M.p.adonai_rise * ns * CM_PER_PT,
+    heb(ns * M.p.adonai_scale, ADONAI))
+  -- an empty node the size of the whole Name, for placing the words around it
+  out[#out + 1] = string.format(
+    '\\node[anchor=base west,inner sep=0pt,minimum width=%.4fcm,' ..
+    'text height=%.4fcm,text depth=%.4fcm] (name) at (%.4f,%.4f) {};',
+    name_w, nh, nd, xl, yb)
   out[#out + 1] = string.format(
     '\\node[anchor=base west,inner sep=0pt] at ([xshift=%.4fcm]name.base east) {%s};',
     g, heb(size, SHVITI))

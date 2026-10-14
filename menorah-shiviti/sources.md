@@ -114,8 +114,8 @@ Leningrad (the `SIDDUR` table in the generator): בנגינות (v1), מישר (
   chose three for this piece.
 - **Above the menorah:** Psalm 16:8, with the Name large (unpointed) in the
   centre, שויתי to its right, לנגדי to its left and תמיד beneath it. The
-  Name is assembled from code points in `menorah.lua` (`the_name()`), never
-  written out.
+  Name is assembled from code points in `menorah.lua` (`NAME_HEAD`, `HE`),
+  never written out.
 - **Base arched**, as in his siddur: the base words run over the top of a
   shallow arch under the shaft. Still three words (his earlier decision;
   the siddur arches four).
@@ -125,3 +125,10 @@ Leningrad (the `SIDDUR` table in the generator): בנגינות (v1), מישר (
   together in groups of three over each branch and two over the shaft,
   right to left: למנ צחב נגי נו תמז מור שיר. Letters keep their in-word forms
   (`lamp_groups` in `menorah.lua`).
+- **Stretched final he with Adonai** (from an example he shared): the last
+  letter of the Name has its roof drawn out, and the name Adonai is written
+  small beneath it, between the legs. Built by cutting Stam Sefarad's he into
+  three slices and widening only the plain middle of the roof, so the legs
+  and the stem keep their true shape and weight. Adonai is assembled from
+  code points (`ADONAI`), never written out. Sizes: `adonai_scale`,
+  `adonai_pad`, `adonai_rise` in `menorah.lua`.

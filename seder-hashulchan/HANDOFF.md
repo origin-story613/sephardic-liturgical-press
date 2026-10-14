@@ -253,3 +253,9 @@ Typographic decisions already made (don't change without asking):
   is recorded in each `sources/*.md`.
 - **To do:** festival and Rosh HaShanah Kiddush (needs a usable source),
   simanim, siddur comparison of every drafted section.
+- **Menorah Shiviti (Yosef):** the shiviti from `menorah-shiviti/` is on a
+  page of its own right after the front matter (`\menorahshivitipage` in
+  `main.tex`, set up by `\input{\pressroot menorah-shiviti/menorah-setup}`).
+  It is drawn from that project's files and fits the page automatically;
+  change it there, not here. It adds one page, so later page numbers and
+  cross-references move by one (they update automatically).

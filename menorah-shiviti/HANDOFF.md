@@ -200,6 +200,12 @@ Read this whole file before doing anything.
 - **Merging (Yosef):** merge your own pull requests for this project into
   `main` without asking (they touch only `menorah-shiviti/`); Overleaf syncs
   from `main`.
+- **In the books (Yosef):** the birkon, Seder HaShulchan and Shabbat siddur
+  each carry the shiviti on its own page after their front matter.
+  `menorah-setup.tex` is the shared preamble (fonts, Lua, `\menorahshiviti`,
+  `\menorahshivitipage`); the drawing reads the page size from the document.
+  The books' `main.tex` files each gained two lines; their own sessions also
+  edit those files, so keep further changes there minimal.
 - **Formats (Yosef):** ACEO, siddur page, birkon page, poster, possibly a
   hand-printed stencil.
 - **Draft sketch** (layout per Yosef; styling not decided): `main.tex` +

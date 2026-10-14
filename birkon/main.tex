@@ -14,10 +14,16 @@
 \usepackage{quarter-letter-dimensions}  % 4.25in x 5.5in, same as Seder HaShulchan
 \usepackage{hebrew-layout}
 
+% The Menorah Shiviti (menorah-shiviti/), on a page of its own after the
+% front matter.
+\input{\pressroot menorah-shiviti/menorah-setup}
+
 \begin{document}
 \pagestyle{empty}
 
 \input{\pressroot birkon/sections/front-matter}
+
+\menorahshivitipage
 
 \input{\pressroot shared/texts/birkat-hamazon}
 

@@ -137,3 +137,5 @@ Leningrad (the `SIDDUR` table in the generator): בנגינות (v1), מישר (
   and the stem keep their true shape and weight. Adonai is assembled from
   code points (`ADONAI`), never written out. Sizes: `adonai_scale`,
   `adonai_pad`, `adonai_rise` in `menorah.lua`.
+- **In every book:** birkon, Seder HaShulchan and Shabbat siddur, on a page
+  of its own after the front matter, with no page number and no draft label.

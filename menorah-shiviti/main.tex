@@ -19,21 +19,10 @@
 
 \usepackage{geometry}
 \usepackage{hebrew-layout}
-\usepackage{graphicx}
-\usepackage{tikz}
-
-% Hebrew face for this piece: Stam Sefarad CLM (Culmus), a Sephardic
-% scribal (STaM) hand. It ships with TeX Live, so it is not copied into the
-% repo: a second copy under the same name confuses the LuaTeX font cache.
-\newfontfamily\stamfont{StamSefaradCLM.ttf}[Script=Hebrew, Renderer=HarfBuzz]
-
-\directlua{
-  menorah = dofile("\pressroot menorah-shiviti/menorah.lua")
-  menorah.setup("\menorahformat", "\pressroot menorah-shiviti/")
-}
+\input{\pressroot menorah-shiviti/menorah-setup}
+\directlua{menorah.page_format("\menorahformat")}
 
 \begin{document}
 \pagestyle{empty}
-\directlua{menorah.measure()}
-\noindent\directlua{menorah.draw()}
+\menorahshiviti
 \end{document}

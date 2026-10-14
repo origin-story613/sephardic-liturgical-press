@@ -3,7 +3,7 @@
 --
 -- Draft layout: three nested branches on each side of a central shaft, each
 -- an upright stem over a quarter circle, so all seven lamps share one line.
--- Verse 1 runs across the top, above the lamps. The other verses run down
+-- Verse 1 runs across the top, its letters grouped over the seven lamps. The other verses run down
 -- the branches from the lamp toward the shaft, in order from left to right:
 -- verses 2, 3, 4 on the left branches (outer to inner), verse 5 straight
 -- down the shaft, verses 6, 7, 8 on the right branches (inner to outer).
@@ -43,6 +43,7 @@ M.p = {
   fill   = 0.86,  -- share of a branch taken by words at the fitted size
   shaft_fill = 0.95, -- the same for the shaft (verse 5 is the longest)
   title  = 0.05,  -- gap between the lamp line and the verse 1 baseline
+  lamp_groups = { 3, 3, 3, 2, 3, 3, 3 },  -- verse 1 letters per lamp, right to left
   top    = 0.05,  -- page margin above the Name
   name_scale = 2.6, -- size of the Name, relative to the text size
   name_gap   = 0.03, -- between the Name and the words beside it
@@ -171,11 +172,28 @@ local function place(out, p)
   end
 end
 
--- A horizontal line of words spread evenly across width, centred at x.
-local function spread(out, words, width, x, y)
-  out[#out + 1] = string.format(
-    '\\node[anchor=base,inner sep=0pt,text width=%.4fcm] at (%.4f,%.4f) {%s\\par};',
-    width, x, y, heb(size, '\\leavevmode ' .. table.concat(words, ' \\hfill ')))
+-- Verse 1 over the seven lamps: its letters run together and are cut into
+-- groups, three over each branch and two over the shaft, reading right to
+-- left. Letters keep their in-word forms (no final forms at the cuts).
+local function lamp_groups(out, y)
+  local letters = {}
+  for _, w in ipairs(text[1]) do
+    for _, c in utf8.codes(w) do letters[#letters + 1] = utf8.char(c) end
+  end
+  local sizes = M.p.lamp_groups
+  if sum(sizes) ~= #letters then
+    error(string.format('verse 1 has %d letters, lamp groups need %d',
+      #letters, sum(sizes)))
+  end
+  local r = M.p.radii
+  local xs = { r[3], r[2], r[1], 0, -r[1], -r[2], -r[3] }  -- right to left
+  local k = 0
+  for g, n in ipairs(sizes) do
+    out[#out + 1] = string.format(
+      '\\node[anchor=base,inner sep=0pt] at (%.4f,%.4f) {%s};',
+      W / 2 + xs[g] * W, y, heb(size, table.concat(letters, '', k + 1, k + n)))
+    k = k + n
+  end
 end
 
 function M.draw()
@@ -209,8 +227,8 @@ function M.draw()
 
   for _, p in ipairs(ps) do place(out, p) end
 
-  -- verse 1 across the top, over the width of the menorah
-  spread(out, text[1], 2 * M.p.radii[3] * W, cx, cy + L + M.p.title * W)
+  -- verse 1 across the top, in letter groups over the lamps
+  lamp_groups(out, cy + L + M.p.title * W)
 
   -- Psalm 16:8: the Name large in the centre near the top of the page,
   -- shviti on its right (east), lenegdi on its left (west).

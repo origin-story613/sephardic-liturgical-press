@@ -302,3 +302,9 @@ Points that apply here:
   places: Kedushah, Atah Echad, Atah Honantanu, the Havdalah verses. Also ask
   how to point the Name in the Amidah closings (the source's kabbalistic
   vowels, or the standard pointing as drafted).
+- **Menorah Shiviti (Yosef):** the shiviti from `menorah-shiviti/` is on a
+  page of its own right after the front matter (`\menorahshivitipage` in
+  `main.tex`, set up by `\input{\pressroot menorah-shiviti/menorah-setup}`).
+  It is drawn from that project's files and fits the page automatically;
+  change it there, not here. It adds one page, so later page numbers and
+  cross-references move by one (they update automatically).

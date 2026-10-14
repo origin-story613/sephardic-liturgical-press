@@ -1,0 +1,32 @@
+% menorah-shiviti/menorah-setup.tex
+% Preamble setup for the Menorah Shiviti, shared by the standalone poster
+% (menorah-shiviti/main.tex) and the books that carry it (birkon, Seder
+% HaShulchan, Shabbat siddur). \input it in the preamble, after
+% hebrew-layout, with \pressroot defined. Then:
+%   \menorahshiviti      draws the shiviti on the current page
+%   \menorahshivitipage  gives it a page of its own, with no page number
+% The drawing reads the page size from the document, so it fits any page.
+
+\usepackage{graphicx}
+\usepackage{tikz}
+
+% Hebrew face for this piece: Stam Sefarad CLM (Culmus), a Sephardic
+% scribal (STaM) hand. It ships with TeX Live, so it is not copied into the
+% repo: a second copy under the same name confuses the LuaTeX font cache.
+\newfontfamily\stamfont{StamSefaradCLM.ttf}[Script=Hebrew, Renderer=HarfBuzz]
+
+\directlua{
+  menorah = dofile("\pressroot menorah-shiviti/menorah.lua")
+  menorah.load("\pressroot menorah-shiviti/")
+}
+
+% The drawing is placed relative to the page: compile twice.
+\newcommand{\menorahshiviti}{%
+  \directlua{menorah.measure()}%
+  \noindent\directlua{menorah.draw()}}
+
+\newcommand{\menorahshivitipage}{%
+  \clearpage
+  \thispagestyle{empty}%
+  \menorahshiviti
+  \clearpage}

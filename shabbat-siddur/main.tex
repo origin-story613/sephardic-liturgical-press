@@ -17,6 +17,10 @@
 \usepackage{pocket-dimensions}
 \usepackage{hebrew-layout}
 
+% The Menorah Shiviti (menorah-shiviti/), on a page of its own after the
+% front matter.
+\input{\pressroot menorah-shiviti/menorah-setup}
+
 % Congregational response (Amen etc.) inside Kaddish and the repetition:
 % slightly smaller bold, no brackets (Yosef). Square brackets mean optional
 % words and parentheses whispered words, so responses use neither.
@@ -35,6 +39,8 @@
 \pagestyle{empty}
 
 \input{\pressroot shabbat-siddur/sections/front-matter}
+
+\menorahshivitipage
 
 \pagestyle{plain}
 

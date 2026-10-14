@@ -14,8 +14,10 @@
 -- Each word is a separate TikZ node rotated to the direction of its path.
 --
 -- Lengths are fractions of the page width unless noted, so every format is
--- the same design scaled. main.tex calls setup(format), measure(), draw().
--- Each step prints TeX that runs before the next.
+-- the same design scaled. menorah-setup.tex loads this file and the text;
+-- \menorahshiviti calls measure() then draw(), each printing TeX that runs
+-- before the next. The page size is read from the document, so the same
+-- drawing fits the poster formats and the books' pages.
 
 local M = {}
 
@@ -52,7 +54,8 @@ M.p = {
   adonai_pad   = 0.12, -- space each side of Adonai, in he widths
   adonai_rise  = 0.10, -- Adonai's baseline above the Name's, in Name sizes
   guides = false, -- draw faint construction lines (layout checks only)
-  label  = true,  -- small corner label: format, page and text size (draft only)
+  label  = true,  -- small corner label: format, page and text size (standalone
+                  -- drafts only; never in the books)
 }
 
 local CM_PER_PT = 2.54 / 72.27
@@ -92,20 +95,32 @@ end
 
 local function sum(t) local s = 0 for _, x in ipairs(t) do s = s + x end return s end
 
-function M.setup(name, dir)
-  fmt = M.formats[name] or error('unknown format ' .. tostring(name))
-  fmt.name = name
-  PW, PH = fmt.w * 2.54, fmt.h * 2.54
-  W = math.min(PW, PH / M.p.ratio)
-  H = W * M.p.ratio
-  OX, OY = (PW - W) / 2, (PH - H) / 2
+-- Load the text once: from menorah-setup.tex, in the poster's own main.tex
+-- and in each book that carries the shiviti.
+function M.load(dir)
   text = dofile(dir .. 'psalm67.lua')
   -- Split verse 5: the shaft keeps the start, the base ("verse 9") the end.
   local v5, n = text[5], #text[5] - M.p.base_words
   text[9] = { table.unpack(v5, n + 1) }
   text[5] = { table.unpack(v5, 1, n) }
+end
+
+-- Standalone output only (menorah-shiviti/main.tex): set the page to one of
+-- M.formats. In a book the page is the book's own.
+function M.page_format(name)
+  fmt = M.formats[name] or error('unknown format ' .. tostring(name))
+  fmt.name = name
   tex.sprint(string.format(
     '\\geometry{paperwidth=%.4fin,paperheight=%.4fin,margin=0pt}', fmt.w, fmt.h))
+end
+
+-- Fit the design box to the current page.
+local function fit_page()
+  PW = tex.dimen.paperwidth / SP_PER_PT * CM_PER_PT
+  PH = tex.dimen.paperheight / SP_PER_PT * CM_PER_PT
+  W = math.min(PW, PH / M.p.ratio)
+  H = W * M.p.ratio
+  OX, OY = (PW - W) / 2, (PH - H) / 2
 end
 
 -- Box every word at BASE size and record its width.
@@ -232,6 +247,7 @@ local function lamp_groups(out, y)
 end
 
 function M.draw()
+  fit_page()
   local cx, cy, L = W / 2, M.p.cy * H, M.p.stem * W
   local ps = paths()
   size = fit_size(ps)
@@ -251,7 +267,7 @@ function M.draw()
     out[#out + 1] = '\\end{scope}'
   end
 
-  if M.p.label then
+  if M.p.label and fmt then
     -- draft label in the bottom-right corner: format, page size, text size
     out[#out + 1] = string.format(
       '\\node[anchor=south east,inner sep=0pt,black!40,font=\\fontsize{%.2f}{%.2f}\\selectfont] ' ..

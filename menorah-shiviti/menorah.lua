@@ -184,17 +184,23 @@ local function fit_size(ps)
 end
 
 -- Hebrew reads right to left, so a word's own x-axis points against the
--- direction of travel.
+-- direction of travel. Each word is centred on its path: its baseline is
+-- moved half a letter height away from the side its tops face, so text
+-- turned either way (the upside-down lower left curves, the upright lower
+-- right ones) meets the shaft at the same height.
 local function place(out, p)
+  local half = letter_h * size / BASE * CM_PER_PT / 2
   local ws = {}
   for i, w in ipairs(widths[p.verse]) do ws[i] = w * size / BASE * CM_PER_PT end
   local gap = (p.len - sum(ws)) / #ws          -- half a gap at each end
   local d = gap / 2
   for i, w in ipairs(text[p.verse]) do
     local x, y, tx, ty = p.pos(d + ws[i] / 2)
+    local a = math.atan(-ty, -tx)                -- the word's rotation
+    local ux, uy = -math.sin(a), math.cos(a)     -- where its tops point
     out[#out + 1] = string.format(
       '\\node[rotate=%.3f,anchor=base,inner sep=0pt] at (%.4f,%.4f) {%s};',
-      math.deg(math.atan(-ty, -tx)), x, y, heb(size, w))
+      math.deg(a), x - half * ux, y - half * uy, heb(size, w))
     d = d + ws[i] + gap
   end
 end
@@ -214,15 +220,11 @@ local function lamp_groups(out, y)
   end
   local r = M.p.radii
   local xs = { r[3], r[2], r[1], 0, -r[1], -r[2], -r[3] }  -- right to left
-  -- The branch and shaft words stand on their path with their tops turned
-  -- to the left, so the visible column of letters is centred half a letter
-  -- height left of the path. Centre each group on that column.
-  local shift = letter_h * size / BASE * CM_PER_PT / 2
   local k = 0
   for g, n in ipairs(sizes) do
     out[#out + 1] = string.format(
       '\\node[anchor=base,inner sep=0pt] at (%.4f,%.4f) {%s};',
-      W / 2 + xs[g] * W - shift, y, heb(size, table.concat(letters, '', k + 1, k + n)))
+      W / 2 + xs[g] * W, y, heb(size, table.concat(letters, '', k + 1, k + n)))
     k = k + n
   end
 end

@@ -82,6 +82,10 @@ Leningrad (the `SIDDUR` table in the generator): בנגינות (v1), מישר (
   and te'amim: marks stay attached, order is right to left). The picture is
   drawn in a left-to-right (English) context with each node set in Hebrew;
   inside a Hebrew paragraph the TikZ canvas comes out mirrored.
+- Words are **centred on their path**, not standing on it (baseline moved
+  half a letter height). Otherwise the upside-down words of the lower left
+  curves hang below the path and the upright ones on the right sit above it,
+  so the left branches met the shaft lower than the right (Yosef noticed).
 - `decorations.text` (text along a path) is ruled out: it reverses the letter
   order and detaches the points.
 

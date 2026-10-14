@@ -73,7 +73,7 @@ local size         -- fitted font size, pt
 
 local function heb(sz, s)
   return string.format(
-    '\\foreignlanguage{hebrew}{\\fontsize{%.3f}{%.3f}\\selectfont %s}',
+    '\\foreignlanguage{hebrew}{\\stamfont\\fontsize{%.3f}{%.3f}\\selectfont %s}',
     sz, sz * 1.25, s)
 end
 

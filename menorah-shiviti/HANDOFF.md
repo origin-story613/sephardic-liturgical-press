@@ -195,6 +195,11 @@ Read this whole file before doing anything.
 - Psalm 67 fetched from three Sefaria editions; counts, differences and
   licenses in `sources.md` (script: `tools/count_psalm67.py`).
 - Text-on-curve method tested and settled (`sources.md`, technical decisions).
+- **Font (Yosef):** Stam Sefarad CLM from TeX Live (`\stamfont` in
+  `main.tex`), not the books' Taamey David.
+- **Merging (Yosef):** merge your own pull requests for this project into
+  `main` without asking (they touch only `menorah-shiviti/`); Overleaf syncs
+  from `main`.
 - **Formats (Yosef):** ACEO, siddur page, birkon page, poster, possibly a
   hand-printed stencil.
 - **Draft sketch** (layout per Yosef; styling not decided): `main.tex` +

@@ -1,7 +1,7 @@
 % birkon/cover/ornament-options.tex
 % Original cover-ornament options for the birkon, one per page, at
 % label size (3.25in x 4.5in, for the front board of the 4.25in x 5.5in book).
-% For choosing a design; the chosen one becomes the cover label or wrap.
+% For choosing a design (A-F); the chosen one becomes the cover label or wrap.
 \documentclass{article}
 \IfFileExists{../../shared/macros/hebrew-layout.sty}
   {\def\pressroot{../../}}
@@ -61,10 +61,12 @@
 % Seattle skyline as one continuous line: the outline of the Space Needle
 % (#1 = 1; 0 leaves it out), downtown towers, Smith Tower's pointed cap and
 % Mount Rainier, starting and ending on the ground. Origin at the left end;
-% about 7.1cm wide.
+% 7.1cm wide. \skylinePath continues a path from (0,0) and ends at (7.1,0),
+% so a frame can run into it.
 \newcommand{\seattleSkyline}[1]{%
   \draw[line width=0.6pt,line join=round,line cap=round]
-    (0,0)
+    (0,0) \skylinePath{#1};}
+\newcommand{\skylinePath}[1]{%
     \ifnum#1=1
       -- (1.11,0) -- (1.30,1.45) -- (1.22,2.0) -- (1.05,2.0) -- (0.93,2.08)
       -- (1.05,2.17) -- (1.25,2.17) -- (1.28,2.27) -- (1.35,2.27) -- (1.35,2.62)
@@ -77,7 +79,7 @@
     -- (4.354,1.36) -- (4.6,1.55)
     .. controls (4.85,1.75) and (5.05,1.84) .. (5.25,1.84)
     .. controls (5.5,1.82) and (5.75,1.68) .. (6.0,1.45)
-    -- (7.1,0);}
+    -- (7.1,0)}
 
 \newcommand{\ornDiamond}[1]{\fill (#1) +(0,0.06) -- +(0.06,0) -- +(0,-0.06) -- +(-0.06,0) -- cycle;}
 
@@ -133,6 +135,28 @@
   \node[align=center] at ($(C)+(0,2.2)$) {\coverTitle\\[6pt]\coverSub};
   \begin{scope}[shift={(\W/2-3.55,1.75)}]\seattleSkyline{0}\end{scope}
   \node[font=\scriptsize] at (\W/2,0.45) {E};
+\end{coverlabel}
+
+% ---- F: frame A whose bottom edge becomes the skyline ---------------------
+% One line: the frame's bottom edge is the skyline of D, scaled to fit
+% between the lower notches.
+\begin{coverlabel}
+  \def\r{0.32}\def\m{1.15}
+  \pgfmathsetmacro\s{(\W-2*\m-2*\r)/7.1}
+  \begin{scope}[line width=0.7pt,line join=round]
+  \draw (\m+\r,\m)
+     {[shift={(\m+\r,\m)},scale=\s] \skylinePath{1}}
+     arc[start angle=180,end angle=90,radius=\r]
+     -- (\W-\m,\H-\m-\r) arc[start angle=270,end angle=180,radius=\r]
+     -- (\m+\r,\H-\m) arc[start angle=0,end angle=-90,radius=\r]
+     -- (\m,\m+\r) arc[start angle=90,end angle=0,radius=\r]
+     -- cycle;
+  \end{scope}
+  \ornDiamond{\W/2,\H-\m}%
+  \ornDiamond{\m,\H/2}\ornDiamond{\W-\m,\H/2}
+  \node[align=center] at ($(C)+(0,0.75)$) {\coverTitle\\[6pt]%
+    \rule[0.5ex]{1.4cm}{0.5pt}\\[4pt]\coverSub};
+  \node[font=\scriptsize] at (\W/2,0.45) {F};
 \end{coverlabel}
 
 \end{document}

@@ -1,5 +1,5 @@
 % birkon/cover/ornament-options.tex
-% Three original cover-ornament options for the birkon, one per page, at
+% Original cover-ornament options for the birkon, one per page, at
 % label size (3.25in x 4.5in, for the front board of the 4.25in x 5.5in book).
 % For choosing a design; the chosen one becomes the cover label or wrap.
 \documentclass{article}
@@ -58,6 +58,42 @@
   \draw[line width=0.5pt] (0,0) circle (#1*0.42);
   \fill (0,0) circle (#1*0.10);}
 
+% Seattle skyline, simple line drawing, origin at the left end of the ground
+% line, about 6.9cm wide. #1 = 1 to include the Space Needle, 0 without.
+\newcommand{\seattleSkyline}[1]{%
+  \begin{scope}[line width=0.6pt,line join=round,line cap=round]
+    % Mount Rainier behind the city (its left slope hidden by the towers),
+    % with its snow line
+    \draw (3.0,0.3) -- (4.6,1.55) .. controls (4.85,1.75) and (5.05,1.84) .. (5.25,1.84)
+          .. controls (5.5,1.82) and (5.75,1.68) .. (6.0,1.45) -- (6.9,0.25);
+    \draw[line width=0.4pt] (4.88,1.66) -- (5.0,1.52) -- (5.12,1.66) -- (5.26,1.5)
+          -- (5.4,1.66) -- (5.55,1.52) -- (5.7,1.62) -- (5.86,1.48);
+    % Downtown towers, drawn opaque so they sit in front of the mountain
+    \filldraw[fill=white] (2.55,0) rectangle (2.95,1.35);            % tower
+    \filldraw[fill=white] (2.95,0) -- (2.95,2.05) -- (3.12,2.25)      % stepped tower
+        -- (3.3,2.25) -- (3.47,2.05) -- (3.47,0) -- cycle;
+    \draw (3.12,2.25) -- (3.12,0.15) (3.3,2.25) -- (3.3,0.15);
+    \filldraw[fill=white] (3.47,0) rectangle (3.85,1.62);            % tower
+    \filldraw[fill=white] (3.85,0) rectangle (4.12,1.05);            % low block
+    \filldraw[fill=white] (4.12,0) -- (4.12,1.25) -- (4.24,1.25)     % Smith Tower
+        -- (4.31,1.55) -- (4.38,1.25) -- (4.5,1.25) -- (4.5,0) -- cycle;
+    \filldraw[fill=white] (4.5,0) rectangle (4.85,0.78);             % low block
+    \ifnum#1=1
+      % Space Needle
+      \begin{scope}[shift={(1.35,0)}]
+        \draw (-0.24,0) -- (-0.05,1.45) -- (-0.13,2.0);
+        \draw (0.24,0) -- (0.05,1.45) -- (0.13,2.0);
+        \draw (-0.05,1.45) -- (0.05,1.45);
+        \filldraw[fill=white] (-0.42,2.08) -- (0.42,2.08) -- (0.3,2.0) -- (-0.3,2.0) -- cycle;
+        \draw (-0.42,2.08) -- (-0.3,2.17) -- (0.3,2.17) -- (0.42,2.08);
+        \draw (-0.1,2.17) -- (-0.07,2.27) -- (0.07,2.27) -- (0.1,2.17);
+        \draw (0,2.27) -- (0,2.62);
+      \end{scope}
+    \fi
+    % Ground line
+    \draw (0,0) -- (6.9,0);
+  \end{scope}}
+
 \newcommand{\ornDiamond}[1]{\fill (#1) +(0,0.06) -- +(0.06,0) -- +(0,-0.06) -- +(-0.06,0) -- cycle;}
 
 \begin{document}
@@ -98,6 +134,20 @@
   \ornDiamond{$(C)+(1.32,-1.4)$}
   \node at ($(C)+(0,-1.85)$) {\coverSub};
   \node[font=\scriptsize] at (\W/2,0.45) {C};
+\end{coverlabel}
+
+% ---- D: Seattle skyline with the Space Needle --------------------------------
+\begin{coverlabel}
+  \node[align=center] at ($(C)+(0,2.2)$) {\coverTitle\\[6pt]\coverSub};
+  \begin{scope}[shift={(\W/2-3.45,1.75)}]\seattleSkyline{1}\end{scope}
+  \node[font=\scriptsize] at (\W/2,0.45) {D};
+\end{coverlabel}
+
+% ---- E: Seattle skyline without the Space Needle -----------------------------
+\begin{coverlabel}
+  \node[align=center] at ($(C)+(0,2.2)$) {\coverTitle\\[6pt]\coverSub};
+  \begin{scope}[shift={(\W/2-3.45,1.75)}]\seattleSkyline{0}\end{scope}
+  \node[font=\scriptsize] at (\W/2,0.45) {E};
 \end{coverlabel}
 
 \end{document}

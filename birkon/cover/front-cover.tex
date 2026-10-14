@@ -1,0 +1,92 @@
+% birkon/cover/front-cover.tex
+% Front cover of the birkon, at label size (3.25in x 4.5in, for the front
+% board of the 4.25in x 5.5in book). One continuous line: a frame with
+% notched corners whose bottom edge becomes the Seattle skyline. The Space
+% Needle stands at the lower left notch, then downtown with Columbia Center,
+% and Mount Rainier behind the city, whose right slope runs into the right
+% side of the frame.
+\documentclass{article}
+\IfFileExists{../../shared/macros/hebrew-layout.sty}
+  {\def\pressroot{../../}}
+  {\def\pressroot{}}
+\makeatletter
+\def\input@path{{\pressroot shared/macros/}}
+\makeatother
+\usepackage[paperwidth=3.25in,paperheight=4.5in,margin=0pt]{geometry}
+\usepackage{hebrew-layout}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+% The drawing is an ordinary tikzpicture exactly the size of the page.
+% (Text inside "remember picture, overlay" pictures is lost under babel's
+% right-to-left mode, so overlays are not used.) It sits in a left-to-right
+% box: in a right-to-left paragraph pgf's drawing coordinates are mirrored
+% off the page. Text in nodes is set back to right to left.
+\def\W{8.255}  % 3.25in in cm
+\def\H{11.43}  % 4.5in in cm
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+
+\newcommand{\coverTitle}{%
+  {\fontsize{19}{24}\selectfont\bfseries סֵדֶר}\\[2pt]%
+  {\fontsize{19}{24}\selectfont\bfseries בִּרְכַּת הַמָּזוֹן}}
+\newcommand{\coverSub}{%
+  \foreignlanguage{english}{\small\itshape Birkat HaMazon}}
+
+% The skyline, continuing a path from (0,0) on the ground: the outline of the
+% Space Needle, then downtown (a low block, a tower, Columbia Center, the
+% tallest, with its stepped top, a tower with a pointed crown, then towers of
+% varied heights in front of Rainier's lower slope).
+\newcommand{\skylineCity}{%
+    -- (1.11,0) -- (1.30,1.45) -- (1.22,2.0) -- (1.05,2.0) -- (0.93,2.08)
+    -- (1.05,2.17) -- (1.25,2.17) -- (1.28,2.27) -- (1.35,2.27) -- (1.35,2.62)
+    -- (1.35,2.27) -- (1.42,2.27) -- (1.45,2.17) -- (1.65,2.17) -- (1.77,2.08)
+    -- (1.65,2.0) -- (1.48,2.0) -- (1.40,1.45) -- (1.59,0)
+    -- (1.80,0)
+    -- (1.8,1.3) -- (2.0,1.3) -- (2.0,2.0) -- (2.22,2.0) -- (2.22,2.1)
+    -- (2.28,2.1) -- (2.28,2.24) -- (2.34,2.24) -- (2.34,2.36) -- (2.40,2.36)
+    -- (2.40,2.47) -- (2.54,2.47) -- (2.54,2.36) -- (2.60,2.36) -- (2.60,2.24)
+    -- (2.66,2.24) -- (2.66,2.1) -- (2.72,2.1) -- (2.72,1.95) -- (2.78,1.95)
+    -- (2.78,2.08) -- (2.88,2.24) -- (2.98,2.08) -- (2.98,1.55) -- (3.2,1.55)
+    -- (3.2,2.12) -- (3.38,2.12) -- (3.38,1.45) -- (3.58,1.45) -- (3.58,1.85)
+    -- (3.66,1.85) -- (3.66,1.98) -- (3.86,1.98) -- (3.86,1.6) -- (4.05,1.6)
+    -- (4.05,1.88) -- (4.3,1.88) -- (4.3,1.75)}
+% Rainier, behind the city: broad, with gentle slopes that flare out below,
+% a blunt, slightly uneven top, and the right slope ending at x = 7.0, where
+% it meets the frame.
+\newcommand{\rainier}{%
+    .. controls (4.5,1.98) and (4.68,2.25) .. (4.85,2.52)
+    .. controls (4.95,2.68) and (5.05,2.77) .. (5.2,2.8)
+    -- (5.35,2.78) -- (5.45,2.81) -- (5.6,2.79)
+    .. controls (5.75,2.77) and (5.85,2.7) .. (5.95,2.6)
+    .. controls (6.3,2.15) and (6.75,1.75) .. (7.0,1.62)}
+
+\newcommand{\ornDiamond}[1]{\fill (#1) +(0,0.06) -- +(0.06,0) -- +(0,-0.06) -- +(-0.06,0) -- cycle;}
+
+\begin{document}
+\noindent\hbox dir TLT\bgroup\begin{tikzpicture}[
+    every node/.style={execute at begin node={\pardir TRT\textdir TRT}}]
+  \useasboundingbox (0,0) rectangle (\W,\H);
+  \coordinate (C) at (\W/2,\H/2);
+  % \r: corner notch radius; \m: frame inset from the page edge.
+  % The skyline (x from 0.9 to 7.0) is scaled to fill the frame's width (\sx)
+  % and stretched a little in height (\sy) to rise toward the title.
+  \def\r{0.32}\def\m{1.15}
+  \pgfmathsetmacro\sx{(\W-2*\m-\r)/(7.0-0.9)}
+  \pgfmathsetmacro\sy{1.25*\sx}
+  \begin{scope}[line width=0.7pt,line join=round]
+  \draw (\m+\r,\m)
+     {[shift={(\m+\r-0.9*\sx,\m)},xscale=\sx,yscale=\sy]
+       \skylineCity \rainier}
+     -- (\W-\m,\H-\m-\r) arc[start angle=270,end angle=180,radius=\r]
+     -- (\m+\r,\H-\m) arc[start angle=0,end angle=-90,radius=\r]
+     -- (\m,\m+\r) arc[start angle=90,end angle=0,radius=\r]
+     -- cycle;
+  \end{scope}
+  \ornDiamond{\W/2,\H-\m}%
+  \ornDiamond{\m,\H/2}\ornDiamond{\W-\m,\H/2}
+  \node[align=center] at ($(C)+(0,0.75)$) {\coverTitle\\[6pt]%
+    \rule[0.5ex]{1.4cm}{0.5pt}\\[4pt]\coverSub};
+\end{tikzpicture}\egroup
+\end{document}

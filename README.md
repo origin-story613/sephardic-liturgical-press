@@ -25,7 +25,7 @@ shared/
 birkon/
   main.tex                  entry point
   sections/                 front-matter.tex: title, copyright, genizah notice
-  cover/
+  cover/front-cover.tex     front cover label, 3.25in x 4.5in (own main document)
 seder-hashulchan/
   main.tex                  entry point
   sections/                 one file per section (front-matter.tex as above)

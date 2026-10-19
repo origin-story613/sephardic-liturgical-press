@@ -18,13 +18,15 @@ in Shiviti 1.
   abbreviation הקב"ה takes a plain double quote, which the font has.
   To make room, the top margin is 0.03 of the width (was 0.05) and the
   menorah sits a little lower (`cy` 0.465, was 0.48).
-- **Combined names (Yosef), placed as in his siddur:** the letters of the
-  Name and of Adonai alternating. Name first on the right under שויתי, level
-  with תמיד; Adonai first on the left under לנגדי, a little lower
-  (`combined_drop`). At 0.9 of the text size (`combined_scale`). Built in
+- **Combined names (Yosef):** the letters of the Name and of Adonai
+  alternating. Name first on the right under שויתי, Adonai first on the left
+  under לנגדי, both on one line level with תמיד (Yosef; his siddur staggers
+  them, he wants them aligned). At 0.9 of the text size (`combined_scale`).
+  Built in
   `menorah.lua` by interleaving the two words' code points (`interleave()`),
   never written out; letter order checked from the compiled PDF. The
   pre-commit check would not catch an interleaved form typed into a file, so
   never type them. To make room: תמיד sits closer under the Name
   (`tamid_gap` 0.012 of the width) and the menorah a little lower (`cy`
   0.455).
+- **שויתי, לנגדי, תמיד** 20% larger than the text (`verse_scale`, Yosef).

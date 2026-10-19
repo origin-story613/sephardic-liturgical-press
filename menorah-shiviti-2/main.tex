@@ -1,0 +1,29 @@
+% menorah-shiviti-2/main.tex
+% Shiviti 2: Psalm 67 in the shape of a menorah, begun as a copy of
+% Shiviti 1 (menorah-shiviti/). DRAFT.
+% Compile with LuaLaTeX (twice: the drawing is positioned on the page).
+
+% Output format: aceo, siddur, birkon or poster (sizes in menorah.lua).
+\providecommand{\menorahformat}{poster}
+
+\documentclass{article}
+
+% Locate the repository root so the shared files resolve whether this file
+% is compiled from menorah-shiviti-2/ (locally) or from the project root
+% (Overleaf).
+\IfFileExists{../shared/macros/hebrew-layout.sty}
+  {\def\pressroot{../}}
+  {\def\pressroot{}}
+\makeatletter
+\def\input@path{{\pressroot shared/macros/}}
+\makeatother
+
+\usepackage{geometry}
+\usepackage{hebrew-layout}
+\input{\pressroot menorah-shiviti-2/shiviti2-setup}
+\directlua{shiviti2.page_format("\menorahformat")}
+
+\begin{document}
+\pagestyle{empty}
+\shivitiII
+\end{document}

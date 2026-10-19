@@ -190,6 +190,11 @@ Read this whole file before doing anything.
 
 ## 8. Progress
 
+- **Names (Yosef):** this project is **Shiviti 1**. **Shiviti 2**
+  (`menorah-shiviti-2/`) began as an exact copy and is changed separately;
+  the books carry Shiviti 1. Both setups can load in one document (separate
+  Lua tables and commands; `\stamfont` defined once).
+
 - Pre-commit hook installed and tested; LuaLaTeX + TikZ compile with Taamey
   David CLM (already in `shared/fonts/`).
 - Psalm 67 fetched from three Sefaria editions; counts, differences and

@@ -13,7 +13,9 @@
 % Hebrew face for this piece: Stam Sefarad CLM (Culmus), a Sephardic
 % scribal (STaM) hand. It ships with TeX Live, so it is not copied into the
 % repo: a second copy under the same name confuses the LuaTeX font cache.
-\newfontfamily\stamfont{StamSefaradCLM.ttf}[Script=Hebrew, Renderer=HarfBuzz]
+\ifdefined\stamfont\else
+  \newfontfamily\stamfont{StamSefaradCLM.ttf}[Script=Hebrew, Renderer=HarfBuzz]
+\fi
 
 \directlua{
   menorah = dofile("\pressroot menorah-shiviti/menorah.lua")

@@ -11,7 +11,8 @@
 -- down the shaft, verses 6, 7, 8 on the right branches (inner to outer).
 -- The last words of verse 5 form the base, arched under the shaft. Above
 -- the menorah, Psalm 16:8 with the Name large in the centre: shviti to its
--- right, lenegdi to its left, tamid beneath it.
+-- right, lenegdi to its left, tamid beneath it. Above it all, in smaller
+-- letters, "da lifnei mi atah omed".
 -- The text is letters only (see psalm67.lua).
 -- Each word is a separate TikZ node rotated to the direction of its path.
 --
@@ -34,7 +35,7 @@ M.formats = {
 -- Layout parameters.
 M.p = {
   ratio  = 1.5,   -- height of the design box over its width (the poster's)
-  cy     = 0.48,  -- height of the arc centres, as a fraction of page height
+  cy     = 0.465,  -- height of the arc centres, as a fraction of page height
   radii  = { 0.20, 0.31, 0.42 },  -- inner, middle, outer branch
   stem   = 0.44,  -- straight upright part of every branch, above the arcs
   foot   = 0.10,  -- shaft length below the outer arc
@@ -49,7 +50,9 @@ M.p = {
   title  = 0.015, -- gap between the lamp line and the verse 1 baseline
   lamp_groups = { 3, 3, 3, 2, 3, 3, 3 },  -- verse 1 letters per lamp, right to left
   lamp_scale  = 1.2, -- size of the verse 1 letter groups, relative to the text size
-  top    = 0.05,  -- page margin above the Name
+  top    = 0.03,  -- page margin above the top line
+  header_scale = 0.8, -- size of the top line, relative to the text size
+  header_gap   = 0.015, -- between the top line and the Name
   name_scale = 3.3, -- size of the Name, relative to the text size
   name_gap   = 0.03, -- between the Name and the words beside it
   adonai_scale = 0.33, -- size of Adonai inside the final he, relative to the Name
@@ -67,6 +70,10 @@ local BASE = 10  -- measuring size, pt
 -- Psalm 16:8 around the Name: the words before and after it, and the one
 -- set beneath it (Leningrad, letters only; same in Yosef's siddur).
 local SHVITI, LENEGDI, TAMID = 'שויתי', 'לנגדי', 'תמיד'
+
+-- Across the very top, in smaller letters (Yosef): "Know before whom you
+-- stand" (Berakhot 28b), spelled as in his siddur.
+local HEADER = 'דע לפני מי אתה עומד'
 
 -- The Name, unpointed, and the name Adonai set inside its final he, both
 -- assembled from code points so they are never written out in any file.
@@ -137,7 +144,7 @@ function M.measure()
   -- body height of a letter (bet: no ascender or descender), and the pieces
   -- of the Name
   for key, str in pairs({ bet = utf8.char(0x05D1), head = NAME_HEAD, he = HE,
-                          adonai = ADONAI }) do
+                          adonai = ADONAI, header = HEADER }) do
     tex.sprint('\\setbox0\\hbox{' .. heb(BASE, str) .. '}' ..
       string.format('\\directlua{shiviti2.record_box("%s")}', key))
   end
@@ -300,7 +307,13 @@ function M.draw()
   local nh = math.max(cm('head', 'h'), cm('he', 'h'))
   local nd = math.max(cm('head', 'd'), cm('he', 'd'))
   local xl = cx - name_w / 2                          -- left edge of the Name
-  local yb = H - M.p.top * W - nh                     -- the Name's baseline
+  -- the top line, then the Name below it
+  local hs = size * M.p.header_scale
+  local top_line_h = (boxes.header.h + boxes.header.d) * hs / BASE * CM_PER_PT
+  out[#out + 1] = string.format(
+    '\\node[anchor=north,inner sep=0pt] at (%.4f,%.4f) {%s};',
+    cx, H - M.p.top * W, heb(hs, HEADER))
+  local yb = H - M.p.top * W - top_line_h - M.p.header_gap * W - nh  -- Name baseline
   local function he_piece(x0, x1, at, sx)
     out[#out + 1] = string.format(
       '\\begin{scope}\\clip (%.4f,%.4f) rectangle (%.4f,%.4f);' ..

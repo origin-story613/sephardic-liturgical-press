@@ -54,11 +54,11 @@ M.p = {
   header_scale = 0.8, -- size of the top line, relative to the text size
   header_width = 0.90, -- the most of the width the top line may take
   combined_scale = 0.9, -- size of the combined names, relative to the text size
-  combined_drop  = 0.35, -- how much lower the Adonai-first form sits, in text sizes
   header_gap   = 0.015, -- between the top line and the Name
   name_scale = 3.3, -- size of the Name, relative to the text size
   name_gap   = 0.03, -- between the Name and the words beside it
   tamid_gap  = 0.012, -- between the Name and tamid below it
+  verse_scale = 1.2, -- size of shviti, lenegdi and tamid, relative to the text size
   adonai_scale = 0.33, -- size of Adonai inside the final he, relative to the Name
   adonai_pad   = 0.12, -- space each side of Adonai, in he widths
   adonai_rise  = 0.10, -- Adonai's baseline above the Name's, in Name sizes
@@ -366,22 +366,22 @@ function M.draw()
     name_w, nh, nd, xl, yb)
   out[#out + 1] = string.format(
     '\\node[anchor=base west,inner sep=0pt] (shviti) at ([xshift=%.4fcm]name.base east) {%s};',
-    g, heb(size, SHVITI))
+    g, heb(size * M.p.verse_scale, SHVITI))
   out[#out + 1] = string.format(
     '\\node[anchor=base east,inner sep=0pt] (lenegdi) at ([xshift=%.4fcm]name.base west) {%s};',
-    -g, heb(size, LENEGDI))
+    -g, heb(size * M.p.verse_scale, LENEGDI))
   out[#out + 1] = string.format(
     '\\node[anchor=north,inner sep=0pt] (tamid) at ([yshift=%.4fcm]name.south) {%s};',
-    -M.p.tamid_gap * W, heb(size, TAMID))
-  -- The combined names, as in Yosef's siddur: Name first under shviti, level
-  -- with tamid; Adonai first under lenegdi, a little lower.
+    -M.p.tamid_gap * W, heb(size * M.p.verse_scale, TAMID))
+  -- The combined names: Name first under shviti, Adonai first under
+  -- lenegdi, both on one line level with tamid.
   local cs = size * M.p.combined_scale
   out[#out + 1] = string.format(
     '\\node[anchor=base,inner sep=0pt] at (shviti.center |- tamid.base) {%s};',
     heb(cs, COMBINED_NAME_FIRST))
   out[#out + 1] = string.format(
-    '\\node[anchor=base,inner sep=0pt] at ([yshift=%.4fcm]lenegdi.center |- tamid.base) {%s};',
-    -M.p.combined_drop * size * CM_PER_PT, heb(cs, COMBINED_ADONAI_FIRST))
+    '\\node[anchor=base,inner sep=0pt] at (lenegdi.center |- tamid.base) {%s};',
+    heb(cs, COMBINED_ADONAI_FIRST))
 
   out[#out + 1] = '\\end{scope}'
   out[#out + 1] = '\\end{tikzpicture}'

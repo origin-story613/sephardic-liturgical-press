@@ -1,0 +1,33 @@
+% menorah-shiviti-2/shiviti2-setup.tex
+% Preamble setup for Shiviti 2, begun as a copy of Shiviti 1
+% (menorah-shiviti/). Used by menorah-shiviti-2/main.tex. \input it in the
+% preamble, after hebrew-layout, with \pressroot defined. Then:
+%   \shivitiII      draws Shiviti 2 on the current page
+%   \shivitiIIpage  gives it a page of its own, with no page number
+% The drawing reads the page size from the document, so it fits any page.
+
+\usepackage{graphicx}
+\usepackage{tikz}
+
+% Hebrew face for this piece: Stam Sefarad CLM (Culmus), a Sephardic
+% scribal (STaM) hand. It ships with TeX Live, so it is not copied into the
+% repo: a second copy under the same name confuses the LuaTeX font cache.
+\ifdefined\stamfont\else
+  \newfontfamily\stamfont{StamSefaradCLM.ttf}[Script=Hebrew, Renderer=HarfBuzz]
+\fi
+
+\directlua{
+  shiviti2 = dofile("\pressroot menorah-shiviti-2/menorah.lua")
+  shiviti2.load("\pressroot menorah-shiviti-2/")
+}
+
+% The drawing is placed relative to the page: compile twice.
+\newcommand{\shivitiII}{%
+  \directlua{shiviti2.measure()}%
+  \noindent\directlua{shiviti2.draw()}}
+
+\newcommand{\shivitiIIpage}{%
+  \clearpage
+  \thispagestyle{empty}%
+  \shivitiII
+  \clearpage}

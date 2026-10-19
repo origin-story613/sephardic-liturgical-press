@@ -10,4 +10,9 @@ in Shiviti 1.
 
 ## How Shiviti 2 differs from Shiviti 1
 
-None yet.
+- **Top line (Yosef):** דע לפני מי אתה עומד across the very top, above the
+  Name, at 0.8 of the text size (`header_scale`). Source: Berakhot 28b;
+  spelled as in his siddur (עומד with vav). Only these four words: his siddur
+  and an earlier example continue with לפני מלך מלכי המלכים הקב״ה, not added.
+  To make room, the top margin is 0.03 of the width (was 0.05) and the
+  menorah sits a little lower (`cy` 0.465, was 0.48).

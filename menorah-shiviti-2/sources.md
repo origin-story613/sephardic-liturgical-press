@@ -10,9 +10,11 @@ in Shiviti 1.
 
 ## How Shiviti 2 differs from Shiviti 1
 
-- **Top line (Yosef):** דע לפני מי אתה עומד across the very top, above the
-  Name, at 0.8 of the text size (`header_scale`). Source: Berakhot 28b;
-  spelled as in his siddur (עומד with vav). Only these four words: his siddur
-  and an earlier example continue with לפני מלך מלכי המלכים הקב״ה, not added.
+- **Top line (Yosef):** the whole passage across the very top, above the
+  Name: דע לפני מי אתה עומד לפני מלך מלכי המלכים הקב"ה (Berakhot 28b),
+  spelled as in his siddur (עומד with vav). At 0.8 of the text size
+  (`header_scale`), shrinking only if it would take more than 90% of the
+  width (`header_width`). Stam Sefarad has no gershayim (U+05F4), so the
+  abbreviation הקב"ה takes a plain double quote, which the font has.
   To make room, the top margin is 0.03 of the width (was 0.05) and the
   menorah sits a little lower (`cy` 0.465, was 0.48).

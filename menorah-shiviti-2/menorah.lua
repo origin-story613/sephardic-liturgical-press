@@ -52,6 +52,7 @@ M.p = {
   lamp_scale  = 1.2, -- size of the verse 1 letter groups, relative to the text size
   top    = 0.03,  -- page margin above the top line
   header_scale = 0.8, -- size of the top line, relative to the text size
+  header_width = 0.90, -- the most of the width the top line may take
   header_gap   = 0.015, -- between the top line and the Name
   name_scale = 3.3, -- size of the Name, relative to the text size
   name_gap   = 0.03, -- between the Name and the words beside it
@@ -72,8 +73,10 @@ local BASE = 10  -- measuring size, pt
 local SHVITI, LENEGDI, TAMID = 'שויתי', 'לנגדי', 'תמיד'
 
 -- Across the very top, in smaller letters (Yosef): "Know before whom you
--- stand" (Berakhot 28b), spelled as in his siddur.
-local HEADER = 'דע לפני מי אתה עומד'
+-- stand, before the King of kings, the Holy One, blessed be He", spelled as
+-- in his siddur. Stam Sefarad has no gershayim (U+05F4), so the abbreviation
+-- takes a plain double quote, which the font does have.
+local HEADER = 'דע לפני מי אתה עומד לפני מלך מלכי המלכים הקב"ה'
 
 -- The Name, unpointed, and the name Adonai set inside its final he, both
 -- assembled from code points so they are never written out in any file.
@@ -308,7 +311,8 @@ function M.draw()
   local nd = math.max(cm('head', 'd'), cm('he', 'd'))
   local xl = cx - name_w / 2                          -- left edge of the Name
   -- the top line, then the Name below it
-  local hs = size * M.p.header_scale
+  local hs = math.min(size * M.p.header_scale,       -- shrink to fit the width
+    BASE * M.p.header_width * W / (boxes.header.w * CM_PER_PT))
   local top_line_h = (boxes.header.h + boxes.header.d) * hs / BASE * CM_PER_PT
   out[#out + 1] = string.format(
     '\\node[anchor=north,inner sep=0pt] at (%.4f,%.4f) {%s};',

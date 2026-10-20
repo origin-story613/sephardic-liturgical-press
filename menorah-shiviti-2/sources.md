@@ -30,15 +30,14 @@ in Shiviti 1.
   (`tamid_gap` 0.012 of the width) and the menorah a little lower (`cy`
   0.455).
 - **שויתי, לנגדי, תמיד** 20% larger than the text (`verse_scale`, Yosef).
-- **Ana BeKoach (Yosef):** two blocks either side of the base, made of the
-  prayer's initials: each of its seven lines gives six letters, set as two
-  triads (42 letters in all). Each row of a block is one whole line, its two
-  triads side by side (Yosef: two triads per row): the right block holds
-  lines 1-4, the left block lines 5-7, tops aligned. Seven lines make the
-  blocks 4 and 3; adding the closing line (ברוך שם כבוד מלכותו לעולם ועד, its
-  initials as an eighth row) would make them even, not added. Order checked
-  against the prayer's lines. Stored as code points in `menorah.lua`
-  (`ANA_BEKOACH`), not written out, as the 42-letter name. At 0.6 of the
-  text size (`ana_scale`), blocks centred 0.31 of the width from the middle
-  (`ana_x`), the right block's last row 0.05 of the width above the foot
-  (`ana_bottom`).
+- **Ana BeKoach (Yosef):** two even blocks either side of the base, made of
+  the prayer's initials: each of its seven lines gives six letters, set as
+  two triads (42 letters in all), and the closing line ברוך שם כבוד מלכותו
+  לעולם ועד gives a further two (בשכ מלו, kaf not final), added by Yosef so
+  the blocks are even. Each row of a block is one whole line, its two triads
+  side by side: the right block holds lines 1-4, the left block lines 5-7
+  and the closing line, four rows each. Order checked against the prayer's
+  lines. Stored as code points in `menorah.lua` (`ANA_BEKOACH`), not
+  written out. At 0.6 of the text size (`ana_scale`), blocks centred 0.31 of
+  the width from the middle (`ana_x`), the last rows 0.05 of the width above
+  the foot (`ana_bottom`).

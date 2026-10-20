@@ -220,9 +220,11 @@ function M.ana_plans()
     for k = 1, math.min(2, #cand) do pick[cand[k]] = true end
     if #cand == 0 then error('Ana BeKoach row ' .. r .. ' has no letter to draw out') end
     local plan, run = {}, {}
+    -- A run's spaces become control spaces: TeX drops a plain space at the
+    -- start of a box, which would run the two triads together.
     local function flush()
       if #run > 0 then
-        plan[#plan + 1] = { str = utf8.char(table.unpack(run)) }
+        plan[#plan + 1] = { str = utf8.char(table.unpack(run)):gsub(' ', '\\ ') }
         run = {}
       end
     end

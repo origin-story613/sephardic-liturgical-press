@@ -30,6 +30,7 @@
 % the poster's proportions (2:3) that fits the page, so every format has the
 % same design whatever its page shape.
 \newcommand{\textsizefactor}{6.0}             % body text, in units
+\newcommand{\lastlinemin}{0.85}    % last line this full or more: stretched; else centred
 \newcommand{\headingfactor}{8.5}              % heading, in units
 \newcommand{\framemargin}{6}                  % page edge to frame, in units
 \newcommand{\textmargin}{6}                   % frame to text, in units
@@ -52,6 +53,12 @@
 % centre environment's space are fixed sizes, too big on an ACEO card.
 \setlength{\parskip}{0pt}
 
+% The text block: justified, the last line stretched or centred
+% (modim.lua).
+\newcommand{\modimtext}{\input{\pressroot modim-derabanan/text}}
+\newbox\modimblock
+\directlua{modim = dofile("\pressroot modim-derabanan/modim.lua")}
+
 \vspace*{\fill}
 {\centering
   {\stamfont\fontsize{\headingfactor\unit}{1.3\dimexpr\headingfactor\unit\relax}\selectfont
@@ -64,8 +71,8 @@
    \end{tikzpicture}%
    מודים דרבנן\par}
   \vspace{3\unit}
-  {\fontsize{\textsizefactor\unit}{1.65\dimexpr\textsizefactor\unit\relax}\selectfont
-   \input{\pressroot modim-derabanan/text}\par}
+  % the text as a block: justified; the last line full or centred
+  \directlua{modim.typeset(\textsizefactor, \lastlinemin)}\par
 }
 \vfill
 

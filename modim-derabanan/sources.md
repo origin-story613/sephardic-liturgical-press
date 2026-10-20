@@ -53,11 +53,18 @@ end. The finished text is `text.tex`.
 ## Draft (not yet Yosef's design decisions)
 
 `main.tex`: heading מודים דרבנן in Stam Sefarad CLM, letters only (a trial
-Yosef asked to see; the font has no vowel points or bold), the text centred
-line by line
-below it, a thin frame. Sizes in units: text 6, heading 8.5, frame 6 from
-the page edge, text 6 inside the frame. Only scaled spacing is used (the
-house style's paragraph gap is set to zero here), so the small formats fit.
+Yosef asked to see; the font has no vowel points or bold), a thin frame.
+Sizes in units: text 6, heading 8.5, frame 6 from the page edge, text 6
+inside the frame. Only scaled spacing is used (the house style's paragraph
+gap is set to zero here), so the small formats fit.
+
+- **Text as a block (Yosef):** justified with TeX's ordinary line breaks,
+  the block centred on the page. The last line is stretched edge to edge
+  when it is naturally at least 85% full (`\lastlinemin`); otherwise it is
+  centred (Yosef: "if the last line cannot easily be made to fit, centre
+  it"). Done in `modim.lua` after TeX sets the paragraph. Letters are not
+  drawn out here: with nikud, points under a stretched stroke would be
+  distorted.
 
 ## Notes
 

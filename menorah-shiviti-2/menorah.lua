@@ -117,8 +117,10 @@ local ANA_BEKOACH = {
   { "\u{05D7}\u{05E7}\u{05D1}", "\u{05D8}\u{05E0}\u{05E2}" },
   { "\u{05D9}\u{05D2}\u{05DC}", "\u{05E4}\u{05D6}\u{05E7}" },
   { "\u{05E9}\u{05E7}\u{05D5}", "\u{05E6}\u{05D9}\u{05EA}" },
-  -- the closing line, baruch shem kevod malchuto le'olam va'ed
-  { "\u{05D1}\u{05E9}\u{05DB}", "\u{05DE}\u{05DC}\u{05D5}" },
+  -- the closing line, baruch shem kevod malchuto le'olam va'ed: one word,
+  -- marked as an acronym before its last letter (a plain double quote; the
+  -- font has no gershayim)
+  { "\u{05D1}\u{05E9}\u{05DB}\u{05DE}\u{05DC}\"\u{05D5}" },
 }
 local COMBINED_NAME_FIRST = interleave(NAME, ADONAI)
 local COMBINED_ADONAI_FIRST = interleave(ADONAI, NAME)
@@ -340,7 +342,7 @@ function M.draw()
     out[#out + 1] = string.format(
       '\\node[anchor=base,inner sep=0pt] at (%.4f,%.4f) {%s};',
       cx + side * M.p.ana_x * W, top - (row - 1) * lh,
-      heb(as, line[1] .. ' ' .. line[2]))
+      heb(as, table.concat(line, ' ')))
   end
 
   -- verse 1 across the top, in letter groups over the lamps

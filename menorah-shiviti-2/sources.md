@@ -33,8 +33,9 @@ in Shiviti 1.
 - **Ana BeKoach (Yosef):** two even blocks either side of the base, made of
   the prayer's initials: each of its seven lines gives six letters, set as
   two triads (42 letters in all), and the closing line ברוך שם כבוד מלכותו
-  לעולם ועד gives a further two (בשכ מלו, kaf not final), added by Yosef so
-  the blocks are even. Each row of a block is one whole line, its two triads
+  לעולם ועד gives a further six letters, added by Yosef so the blocks are
+  even, set as one word with the acronym mark before its last letter:
+  בשכמל"ו (a plain double quote; Stam Sefarad has no gershayim). Each row of a block is one whole line, its two triads
   side by side: the right block holds lines 1-4, the left block lines 5-7
   and the closing line, four rows each. Order checked against the prayer's
   lines. Stored as code points in `menorah.lua` (`ANA_BEKOACH`), not

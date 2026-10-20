@@ -43,9 +43,9 @@ M.p = {
   base_gap   = 0.04, -- from the end of the shaft to the top of the base arch
   base_width = 0.40, -- length of the base arch
   base_radius = 0.40, -- radius of the base arch
-  ana_scale  = 0.6,  -- size of the Ana BeKoach triads, relative to the text size
-  ana_x      = 0.31, -- centre of each triad block, from the middle, in widths
-  ana_bottom = 0.05, -- baseline of the last row, above the design's foot
+  ana_side   = 0.24, -- side of each Ana BeKoach square, in widths (sets its text size)
+  ana_x      = 0.345, -- centre of each square, from the middle, in widths
+  ana_bottom = 0.045, -- baseline of the last row, above the design's foot
   ana_square_pad = 1.12, -- the square's side, over the widest row's natural width
   shaft_half = 0.03, -- half the width of the shaft line of text
   pad    = 0.02,  -- clearance between branch text and the shaft
@@ -424,16 +424,23 @@ function M.draw()
   -- Ana BeKoach: two square blocks either side of the base, one line of the
   -- prayer per row. Every row is set to the block's width by drawing out
   -- its chosen letters; the rows are spaced so the block is as tall as wide.
-  local as = size * M.p.ana_scale
+  -- The square's side is set; the text size follows from it: the widest
+  -- row's natural width is 1/ana_square_pad of the side.
   local plans = M.ana_plans()
+  local side = M.p.ana_side * W                       -- the square's side, cm
+  local widest = 0                                    -- at BASE pt, in pt
+  for _, plan in ipairs(plans) do
+    local w = 0
+    for _, seg in ipairs(plan) do w = w + boxes[seg.key].w end
+    widest = math.max(widest, w)
+  end
+  local as = BASE * side / (M.p.ana_square_pad * widest * CM_PER_PT)
   local function wcm(key) return boxes[key].w * as / BASE * CM_PER_PT end
-  local natural, side = {}, 0
+  local natural = {}
   for r, plan in ipairs(plans) do
     natural[r] = 0
     for _, seg in ipairs(plan) do natural[r] = natural[r] + wcm(seg.key) end
-    side = math.max(side, natural[r])
   end
-  side = side * M.p.ana_square_pad                    -- the square's side, cm
   local right_rows = math.ceil(#plans / 2)
   local body = letter_h * as / BASE * CM_PER_PT
   local lh = (side - body) / (right_rows - 1)         -- baseline to baseline

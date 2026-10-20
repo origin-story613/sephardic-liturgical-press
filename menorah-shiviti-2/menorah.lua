@@ -46,7 +46,7 @@ M.p = {
   ana_scale  = 0.6,  -- size of the Ana BeKoach triads, relative to the text size
   ana_x      = 0.31, -- centre of each triad block, from the middle, in widths
   ana_bottom = 0.05, -- baseline of the last row, above the design's foot
-  ana_leading = 1.35, -- row spacing, in triad sizes
+  ana_square_pad = 1.12, -- the square's side, over the widest row's natural width
   shaft_half = 0.03, -- half the width of the shaft line of text
   pad    = 0.02,  -- clearance between branch text and the shaft
   fill   = 0.86,  -- share of a branch taken by words at the fitted size
@@ -131,6 +131,20 @@ local COMBINED_ADONAI_FIRST = interleave(ADONAI, NAME)
 local STRETCH_A, STRETCH_B = 0.32, 0.68
 local LEFT_LEG_END, RIGHT_LEG_START = 0.27, 0.75
 
+-- Letters a scribe may draw out to fill a line, with the stretch of each in
+-- Stam Sefarad that is a plain horizontal stroke (fractions of the glyph's
+-- width, measured from the font, inner part of the plain run). Priority 1:
+-- the traditional dilatable letters (of אהלתם; alef has no straight run in
+-- this font, final mem too short a one); 2: dalet, resh, chet.
+local STRETCHABLE = {
+  [0x05EA] = { a = 0.476, b = 0.716, pri = 1 },  -- tav: roof
+  [0x05D4] = { a = STRETCH_A, b = STRETCH_B, pri = 1 },  -- he: roof
+  [0x05DC] = { a = 0.287, b = 0.403, pri = 1 },  -- lamed: bar
+  [0x05D3] = { a = 0.334, b = 0.660, pri = 2 },  -- dalet: roof
+  [0x05E8] = { a = 0.246, b = 0.619, pri = 2 },  -- resh: roof
+  [0x05D7] = { a = 0.349, b = 0.704, pri = 2 },  -- chet: roof
+}
+
 -- W, H: the design box, always M.p.ratio tall for its width, fitted inside
 -- the page (PW, PH) and centred at offset (OX, OY), so every format has the
 -- same proportions whatever its page shape.
@@ -175,6 +189,58 @@ local function fit_page()
   OX, OY = (PW - W) / 2, (PH - H) / 2
 end
 
+-- Box a string at BASE size and record it under key (see record_box). Keys
+-- are plain ASCII, since they pass through TeX.
+local function measure_box(key, str)
+  tex.sprint('\\setbox0\\hbox{' .. heb(BASE, str) .. '}' ..
+    string.format('\\directlua{shiviti2.record_box("%s")}', key))
+end
+
+-- Ana BeKoach rows, each split into pieces for setting it to a fixed width:
+-- runs of plain text, and the one or two letters to be drawn out (by
+-- STRETCHABLE priority, then reading order). Pieces are in reading order,
+-- so right to left.
+local ana_plans
+function M.ana_plans()
+  if ana_plans then return ana_plans end
+  ana_plans = {}
+  for r, line in ipairs(ANA_BEKOACH) do
+    local chars = {}
+    for _, c in utf8.codes(table.concat(line, ' ')) do chars[#chars + 1] = c end
+    local cand = {}
+    for i, c in ipairs(chars) do
+      if STRETCHABLE[c] then cand[#cand + 1] = i end
+    end
+    table.sort(cand, function(x, y)
+      local px, py = STRETCHABLE[chars[x]].pri, STRETCHABLE[chars[y]].pri
+      if px ~= py then return px < py end
+      return x < y
+    end)
+    local pick = {}
+    for k = 1, math.min(2, #cand) do pick[cand[k]] = true end
+    if #cand == 0 then error('Ana BeKoach row ' .. r .. ' has no letter to draw out') end
+    local plan, run = {}, {}
+    local function flush()
+      if #run > 0 then
+        plan[#plan + 1] = { str = utf8.char(table.unpack(run)) }
+        run = {}
+      end
+    end
+    for i, c in ipairs(chars) do
+      if pick[i] then
+        flush()
+        plan[#plan + 1] = { str = utf8.char(c), stretch = STRETCHABLE[c] }
+      else
+        run[#run + 1] = c
+      end
+    end
+    flush()
+    for j, seg in ipairs(plan) do seg.key = string.format('ana%d_%d', r, j) end
+    ana_plans[r] = plan
+  end
+  return ana_plans
+end
+
 -- Box every word at BASE size and record its width.
 function M.measure()
   for v, verse in ipairs(text) do
@@ -186,10 +252,12 @@ function M.measure()
   end
   -- body height of a letter (bet: no ascender or descender), and the pieces
   -- of the Name
+  for _, plan in ipairs(M.ana_plans()) do
+    for _, seg in ipairs(plan) do measure_box(seg.key, seg.str) end
+  end
   for key, str in pairs({ bet = utf8.char(0x05D1), head = NAME_HEAD, he = HE,
                           adonai = ADONAI, header = HEADER }) do
-    tex.sprint('\\setbox0\\hbox{' .. heb(BASE, str) .. '}' ..
-      string.format('\\directlua{shiviti2.record_box("%s")}', key))
+    measure_box(key, str)
   end
 end
 
@@ -298,6 +366,29 @@ local function lamp_groups(out, y)
   end
 end
 
+-- Draw one letter drawn out by extra cm: the glyph is cut into three
+-- slices at fractions a and b of its width; only the middle slice (a plain
+-- horizontal stroke) is widened, the rest keep their shape. xl is the
+-- letter's left edge, yb its baseline, sz its size in pt, w its natural
+-- width in cm.
+local function stretched(out, ch, sz, xl, yb, w, a, b, extra)
+  local em = sz * CM_PER_PT
+  local function piece(x0, x1, at, sx)
+    out[#out + 1] = string.format(
+      '\\begin{scope}\\clip (%.4f,%.4f) rectangle (%.4f,%.4f);' ..
+      '\\node[anchor=base west,inner sep=0pt] at (%.4f,%.4f) {\\scalebox{%.4f}[1]{%s}};' ..
+      '\\end{scope}',
+      x0, yb - em, x1, yb + 2 * em, at, yb, sx, heb(sz, ch))
+  end
+  local mid = (b - a) * w + extra                     -- widened stroke
+  local eps = 0.002 * w                               -- overlap, no hairline seams
+  local xa, xb = xl + a * w, xl + a * w + mid
+  local k = mid / ((b - a) * w)
+  piece(xl - w, xa + eps, xl, 1)
+  piece(xa, xb, xa - k * a * w, k)
+  piece(xb - eps, xl + w + extra + w, xb - b * w, 1)
+end
+
 function M.draw()
   fit_page()
   local cx, cy, L = W / 2, M.p.cy * H, M.p.stem * W
@@ -330,19 +421,43 @@ function M.draw()
 
   for _, p in ipairs(ps) do place(out, p) end
 
-  -- Ana BeKoach: two blocks either side of the base, one line per row
+  -- Ana BeKoach: two square blocks either side of the base, one line of the
+  -- prayer per row. Every row is set to the block's width by drawing out
+  -- its chosen letters; the rows are spaced so the block is as tall as wide.
   local as = size * M.p.ana_scale
-  local lh = as * M.p.ana_leading * CM_PER_PT
-  local n = #ANA_BEKOACH
-  local right_rows = math.ceil(n / 2)
-  local top = M.p.ana_bottom * W + (right_rows - 1) * lh  -- first row's baseline
-  for i, line in ipairs(ANA_BEKOACH) do
-    local side, row = 1, i
-    if i > right_rows then side, row = -1, i - right_rows end
-    out[#out + 1] = string.format(
-      '\\node[anchor=base,inner sep=0pt] at (%.4f,%.4f) {%s};',
-      cx + side * M.p.ana_x * W, top - (row - 1) * lh,
-      heb(as, table.concat(line, ' ')))
+  local plans = M.ana_plans()
+  local function wcm(key) return boxes[key].w * as / BASE * CM_PER_PT end
+  local natural, side = {}, 0
+  for r, plan in ipairs(plans) do
+    natural[r] = 0
+    for _, seg in ipairs(plan) do natural[r] = natural[r] + wcm(seg.key) end
+    side = math.max(side, natural[r])
+  end
+  side = side * M.p.ana_square_pad                    -- the square's side, cm
+  local right_rows = math.ceil(#plans / 2)
+  local body = letter_h * as / BASE * CM_PER_PT
+  local lh = (side - body) / (right_rows - 1)         -- baseline to baseline
+  for r, plan in ipairs(plans) do
+    local dir, row = 1, r
+    if r > right_rows then dir, row = -1, r - right_rows end
+    local y = M.p.ana_bottom * W + (right_rows - row) * lh
+    local x = cx + dir * M.p.ana_x * W + side / 2      -- right edge of the row
+    local n = 0
+    for _, seg in ipairs(plan) do if seg.stretch then n = n + 1 end end
+    local extra = (side - natural[r]) / n
+    for _, seg in ipairs(plan) do
+      local w = wcm(seg.key)
+      if seg.stretch then
+        stretched(out, seg.str, as, x - w - extra, y, w,
+          seg.stretch.a, seg.stretch.b, extra)
+        x = x - w - extra
+      else
+        out[#out + 1] = string.format(
+          '\\node[anchor=base east,inner sep=0pt] at (%.4f,%.4f) {%s};',
+          x, y, heb(as, seg.str))
+        x = x - w
+      end
+    end
   end
 
   -- verse 1 across the top, in letter groups over the lamps
@@ -359,7 +474,6 @@ function M.draw()
   -- widen the roof so Adonai fits between the legs with padding
   local extra = math.max(0, aw + 2 * M.p.adonai_pad * hw
                             - (RIGHT_LEG_START - LEFT_LEG_END) * hw)
-  local mid = (STRETCH_B - STRETCH_A) * hw + extra    -- stretched roof width
   local he_w = hw + extra
   local name_w = cm('head', 'w') + he_w
   local nh = math.max(cm('head', 'h'), cm('he', 'h'))
@@ -373,20 +487,7 @@ function M.draw()
     '\\node[anchor=north,inner sep=0pt] at (%.4f,%.4f) {%s};',
     cx, H - M.p.top * W, heb(hs, HEADER))
   local yb = H - M.p.top * W - top_line_h - M.p.header_gap * W - nh  -- Name baseline
-  local function he_piece(x0, x1, at, sx)
-    out[#out + 1] = string.format(
-      '\\begin{scope}\\clip (%.4f,%.4f) rectangle (%.4f,%.4f);' ..
-      '\\node[anchor=base west,inner sep=0pt] at (%.4f,%.4f) {\\scalebox{%.4f}[1]{%s}};' ..
-      '\\end{scope}',
-      x0, yb - 2 * nd - 1, x1, yb + 2 * nh, at, yb, sx, heb(ns, HE))
-  end
-  local eps = 0.002 * hw                              -- overlap, no hairline seams
-  local xa = xl + STRETCH_A * hw                      -- roof stretch starts
-  local xb = xa + mid                                 -- and ends
-  local k = mid / ((STRETCH_B - STRETCH_A) * hw)
-  he_piece(xl - hw, xa + eps, xl, 1)                  -- left leg, stem, roof end
-  he_piece(xa, xb, xa - k * STRETCH_A * hw, k)        -- the roof, widened
-  he_piece(xb - eps, xl + he_w + hw, xb - STRETCH_B * hw, 1)  -- right leg
+  stretched(out, HE, ns, xl, yb, hw, STRETCH_A, STRETCH_B, extra)
   out[#out + 1] = string.format(
     '\\node[anchor=base east,inner sep=0pt] at (%.4f,%.4f) {%s};',
     xl + name_w, yb, heb(ns, NAME_HEAD))

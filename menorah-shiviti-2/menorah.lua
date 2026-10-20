@@ -107,8 +107,8 @@ local NAME = NAME_HEAD .. HE
 
 -- Ana BeKoach: the initials of its seven lines, each line's six letters as
 -- two triads (the 42-letter name). Stored as code points, never written
--- out. Row by row, the first triad of each line stands right of the base
--- and the second left of it, so each row reads across the base.
+-- out. Each row of a block is one whole line (its two triads); the right
+-- block holds the first lines, the left block the rest, read right to left.
 local ANA_BEKOACH = {
   { "\u{05D0}\u{05D1}\u{05D2}", "\u{05D9}\u{05EA}\u{05E5}" },
   { "\u{05E7}\u{05E8}\u{05E2}", "\u{05E9}\u{05D8}\u{05DF}" },
@@ -326,17 +326,19 @@ function M.draw()
 
   for _, p in ipairs(ps) do place(out, p) end
 
-  -- Ana BeKoach: two even blocks of triads, either side of the base
+  -- Ana BeKoach: two blocks either side of the base, one line per row
   local as = size * M.p.ana_scale
   local lh = as * M.p.ana_leading * CM_PER_PT
-  for i, row in ipairs(ANA_BEKOACH) do
-    local y = M.p.ana_bottom * W + (#ANA_BEKOACH - i) * lh
+  local n = #ANA_BEKOACH
+  local right_rows = math.ceil(n / 2)
+  local top = M.p.ana_bottom * W + (right_rows - 1) * lh  -- first row's baseline
+  for i, line in ipairs(ANA_BEKOACH) do
+    local side, row = 1, i
+    if i > right_rows then side, row = -1, i - right_rows end
     out[#out + 1] = string.format(
       '\\node[anchor=base,inner sep=0pt] at (%.4f,%.4f) {%s};',
-      cx + M.p.ana_x * W, y, heb(as, row[1]))
-    out[#out + 1] = string.format(
-      '\\node[anchor=base,inner sep=0pt] at (%.4f,%.4f) {%s};',
-      cx - M.p.ana_x * W, y, heb(as, row[2]))
+      cx + side * M.p.ana_x * W, top - (row - 1) * lh,
+      heb(as, line[1] .. ' ' .. line[2]))
   end
 
   -- verse 1 across the top, in letter groups over the lamps

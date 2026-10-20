@@ -42,3 +42,14 @@ in Shiviti 1.
   written out. At 0.6 of the text size (`ana_scale`), blocks centred 0.31 of
   the width from the middle (`ana_x`), the last rows 0.05 of the width above
   the foot (`ana_bottom`).
+- **Ana BeKoach blocks are squares (Yosef):** every row is set to the same
+  width, 1.12 times the widest row's natural width (`ana_square_pad`), by
+  drawing out one or two letters, as a scribe fills a line; the rows are
+  spaced so each block is as tall as it is wide. Letters drawn out, by
+  priority: the traditional dilatable letters present (tav, he, lamed; alef
+  has no straight stroke in this font and final mem too short a one), else
+  dalet, resh, chet (`STRETCHABLE` in `menorah.lua`, stretches measured from
+  the font). Per row: אבג יתץ tav; קרע שטן resh; נגד יכש dalet; בטר צתג resh
+  and tav; חקב טנע chet; יגל פזק lamed; שקו צית tav; בשכמל"ו lamed. Same
+  three-slice method as the Name's he (`stretched()`, now shared by both).
+

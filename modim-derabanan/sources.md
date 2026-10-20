@@ -52,7 +52,9 @@ end. The finished text is `text.tex`.
 
 ## Draft (not yet Yosef's design decisions)
 
-`main.tex`: heading מוֹדִים דְּרַבָּנָן in bold, the text centred line by line
+`main.tex`: heading מודים דרבנן in Stam Sefarad CLM, letters only (a trial
+Yosef asked to see; the font has no vowel points or bold), the text centred
+line by line
 below it, a thin frame. Sizes in units: text 6, heading 8.5, frame 6 from
 the page edge, text 6 inside the frame. Only scaled spacing is used (the
 house style's paragraph gap is set to zero here), so the small formats fit.

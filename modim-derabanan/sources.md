@@ -30,12 +30,32 @@ The poster follows his siddur. Against Torat Emet:
 
 His siddur prints the Name as יְיָ. Heading: מודים דרבנן.
 
+Also corrected: Torat Emet has בָּשָׁר with a shin dot, a slip for בָּשָׂר
+(sin), as in his siddur. His siddur's punctuation is followed too: commas
+after וּתְחָנֵּנוּ and רְצוֹנְךָ, a full stop after מוֹדִים לָךְ, and a colon at the
+end. The finished text is `text.tex`.
+
 ## Decisions by Yosef
 
 - A poster of Modim deRabanan, "not exactly a shiviti".
 - **Concept: a formal text panel** (option B): the prayer as a set block
   with a heading, the Name treated specially, a frame or border. Text per
   his siddur (above).
+
+- **Nikud (Yosef):** with vowel points, like his siddur, so the face is
+  **Taamey David CLM** (the books' font, via `shared/macros/hebrew-layout.sty`).
+- **The Name (Yosef):** printed יְיָ, as in his siddur. It is not the
+  four-letter Name, so it is written directly in `text.tex`.
+- **Formats:** the shivitis' four (aceo, siddur, birkon, poster), chosen by
+  `\modimformat` in `main.tex`. Everything scales from one unit, 1% of the
+  largest 2:3 box that fits the page, so each size has the same design.
+
+## Draft (not yet Yosef's design decisions)
+
+`main.tex`: heading מוֹדִים דְּרַבָּנָן in bold, the text centred line by line
+below it, a thin frame. Sizes in units: text 6, heading 8.5, frame 6 from
+the page edge, text 6 inside the frame. Only scaled spacing is used (the
+house style's paragraph gap is set to zero here), so the small formats fit.
 
 ## Notes
 

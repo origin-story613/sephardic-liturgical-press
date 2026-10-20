@@ -106,9 +106,9 @@ end
 local NAME = NAME_HEAD .. HE
 
 -- Ana BeKoach: the initials of its seven lines, each line's six letters as
--- two triads (the 42-letter name). Stored as code points, never written
+-- two triads (the 42-letter name), then those of its closing line. Stored as code points, never written
 -- out. Each row of a block is one whole line (its two triads); the right
--- block holds the first lines, the left block the rest, read right to left.
+-- block holds lines 1-4, the left block lines 5-7 and the closing line.
 local ANA_BEKOACH = {
   { "\u{05D0}\u{05D1}\u{05D2}", "\u{05D9}\u{05EA}\u{05E5}" },
   { "\u{05E7}\u{05E8}\u{05E2}", "\u{05E9}\u{05D8}\u{05DF}" },
@@ -117,6 +117,8 @@ local ANA_BEKOACH = {
   { "\u{05D7}\u{05E7}\u{05D1}", "\u{05D8}\u{05E0}\u{05E2}" },
   { "\u{05D9}\u{05D2}\u{05DC}", "\u{05E4}\u{05D6}\u{05E7}" },
   { "\u{05E9}\u{05E7}\u{05D5}", "\u{05E6}\u{05D9}\u{05EA}" },
+  -- the closing line, baruch shem kevod malchuto le'olam va'ed
+  { "\u{05D1}\u{05E9}\u{05DB}", "\u{05DE}\u{05DC}\u{05D5}" },
 }
 local COMBINED_NAME_FIRST = interleave(NAME, ADONAI)
 local COMBINED_ADONAI_FIRST = interleave(ADONAI, NAME)

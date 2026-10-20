@@ -1,0 +1,18 @@
+% birkon/print/birkon-text-letter.tex
+% The sheets of birkon-text-half-letter.tex, two to a letter page (8.5in x
+% 11in), one above the other: 4 pages = 2 letter sheets printed on both
+% sides, making one book. Print duplex, flipping on the long edge, at 100%,
+% then cut each letter sheet in half across (at 5.5in).
+%
+% birkon-text-half-letter.pdf has, in order: sheet 1 outer, sheet 1 inner,
+% sheet 2 outer, sheet 2 inner, ... sheet 4 inner (pages 1-8). Letter sheet 1
+% carries sheets 1 (top) and 2 (bottom), letter sheet 2 carries sheets 3 and
+% 4; flipping on the long edge keeps each back behind its front.
+% Build birkon-text-half-letter.pdf first.
+\documentclass{article}
+\usepackage[paperwidth=8.5in,paperheight=11in,margin=0pt]{geometry}
+\usepackage{pdfpages}
+\begin{document}
+\includepdf[pages={1,3,2,4,5,7,6,8},
+  nup=1x2, delta=0 0, scale=1, noautoscale]{birkon-text-half-letter.pdf}
+\end{document}

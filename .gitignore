@@ -8,3 +8,7 @@
 *.synctex.gz
 *.pdf
 *.png
+
+# The birkon's files for the printer are kept, so they can be downloaded
+# from GitHub.
+!birkon/print/*.pdf

@@ -24,8 +24,10 @@ shared/
                             Me'ein Shalosh, Borei Nefashot); sources/ beside them
 birkon/
   main.tex                  entry point
-  sections/                 front-matter.tex: title, copyright, genizah notice
+  sections/                 front-matter.tex: title, copyright, genizah notice,
+                            dedications
   cover/front-cover.tex     front cover label, 3.25in x 4.5in (own main document)
+  print/                    imposed PDFs for the printer, and how to print them
 seder-hashulchan/
   main.tex                  entry point
   sections/                 one file per section (front-matter.tex as above)

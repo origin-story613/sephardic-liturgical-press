@@ -1,0 +1,17 @@
+% birkon/print/birkon-text-half-letter.tex
+% Printer's sheets for the birkon: one folded section of 16 pages, imposed
+% for a right-to-left book. Build ../main.pdf first, then compile this
+% (pdfLaTeX or LuaLaTeX). Output: 8 pages, 8.5in x 5.5in landscape = 4 sheets
+% printed on both sides. Print duplex, flipping on the short edge, at 100%.
+%
+% Sheet k (k = 0..3), outer side: [1+2k | 16-2k]; inner side: [15-2k | 2+2k]
+% (left | right). Page 1 sits on the left half of the outer sheet, so the fold
+% is on its right and the book opens from the right. The book has 15 pages;
+% page 16 is blank.
+\documentclass{article}
+\usepackage[paperwidth=8.5in,paperheight=5.5in,margin=0pt]{geometry}
+\usepackage{pdfpages}
+\begin{document}
+\includepdf[pages={1,{},15,2, 3,14,13,4, 5,12,11,6, 7,10,9,8},
+  nup=2x1, delta=0 0, scale=1, noautoscale]{../main.pdf}
+\end{document}

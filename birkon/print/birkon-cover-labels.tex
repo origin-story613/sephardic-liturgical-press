@@ -1,0 +1,25 @@
+% birkon/print/birkon-cover-labels.tex
+% Two front-cover labels (../cover/front-cover.pdf, 3.25in x 4.5in) on one
+% letter page, with crop marks. Print one-sided at 100%. Build the cover
+% first.
+\documentclass{article}
+\usepackage[paperwidth=8.5in,paperheight=11in,margin=0pt]{geometry}
+\usepackage{graphicx}
+\usepackage{tikz}
+\pagestyle{empty}
+\begin{document}
+\noindent\begin{tikzpicture}[x=1in,y=1in]
+  \useasboundingbox (0,0) rectangle (8.5,11);
+  % label lower-left corners: centred across, two rows
+  \foreach \y in {0.8,5.7}{
+    \node[anchor=south west,inner sep=0] at (2.625,\y)
+      {\includegraphics{../cover/front-cover.pdf}};
+    \foreach \x in {2.625,5.875}{
+      \draw[line width=0.25pt] (\x,\y-0.125) -- (\x,\y-0.375);
+      \draw[line width=0.25pt] (\x,\y+4.625) -- (\x,\y+4.875);}
+    \foreach \yy in {\y,\y+4.5}{
+      \draw[line width=0.25pt] (2.5,\yy) -- (2.25,\yy);
+      \draw[line width=0.25pt] (6.0,\yy) -- (6.25,\yy);}
+  }
+\end{tikzpicture}
+\end{document}

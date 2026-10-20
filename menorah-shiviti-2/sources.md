@@ -39,10 +39,12 @@ in Shiviti 1.
   side by side: the right block holds lines 1-4, the left block lines 5-7
   and the closing line, four rows each. Order checked against the prayer's
   lines. Stored as code points in `menorah.lua` (`ANA_BEKOACH`), not
-  written out. Sized and placed to fill the lower corners (Yosef): each
-  square's side is 0.24 of the width (`ana_side`; the text size follows from
-  it), centred 0.345 of the width from the middle (`ana_x`), the last rows
-  0.045 of the width above the foot (`ana_bottom`). Checked clear of the
+  written out. Sized and placed to fill the lower corners (Yosef), but not
+  reaching below the base (Yosef): each square runs from the base's lowest
+  point (computed from the base words' positions and tilts) up to 0.285 of
+  the width (`ana_top`); its text size follows from that side. Centred
+  0.345 of the width from the middle (`ana_x`). Checked on the poster: the
+  blocks' lowest ink is level with the base's to 0.02 in, and they clear the
   outer branches' curves and the base.
 - **Ana BeKoach blocks are squares (Yosef):** every row is set to the same
   width, 1.12 times the widest row's natural width (`ana_square_pad`), by

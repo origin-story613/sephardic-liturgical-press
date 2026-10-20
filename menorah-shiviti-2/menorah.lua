@@ -43,9 +43,10 @@ M.p = {
   base_gap   = 0.04, -- from the end of the shaft to the top of the base arch
   base_width = 0.40, -- length of the base arch
   base_radius = 0.40, -- radius of the base arch
-  ana_side   = 0.24, -- side of each Ana BeKoach square, in widths (sets its text size)
+  ana_top    = 0.285, -- top of each Ana BeKoach square, in widths; its bottom is
+                      -- level with the base's lowest point, and the side sets
+                      -- its text size
   ana_x      = 0.345, -- centre of each square, from the middle, in widths
-  ana_bottom = 0.045, -- baseline of the last row, above the design's foot
   ana_square_pad = 1.12, -- the square's side, over the widest row's natural width
   shaft_half = 0.03, -- half the width of the shaft line of text
   pad    = 0.02,  -- clearance between branch text and the shaft
@@ -326,8 +327,10 @@ end
 -- moved half a letter height away from the side its tops face, so text
 -- turned either way (the upside-down lower left curves, the upright lower
 -- right ones) meets the shaft at the same height.
+-- Returns the lowest point the path's words reach (their letter bodies).
 local function place(out, p)
   local half = letter_h * size / BASE * CM_PER_PT / 2
+  local low = math.huge
   local ws = {}
   for i, w in ipairs(widths[p.verse]) do ws[i] = w * size / BASE * CM_PER_PT end
   local gap = (p.len - sum(ws)) / #ws          -- half a gap at each end
@@ -339,8 +342,17 @@ local function place(out, p)
     out[#out + 1] = string.format(
       '\\node[rotate=%.3f,anchor=base,inner sep=0pt] at (%.4f,%.4f) {%s};',
       math.deg(a), x - half * ux, y - half * uy, heb(size, w))
+    -- corners of the word's body: along the baseline +-w/2, up 0 or 2*half
+    local bx, by = x - half * ux, y - half * uy
+    local vx, vy = math.cos(a), math.sin(a)
+    for _, sx in ipairs({ -1, 1 }) do
+      for _, up in ipairs({ 0, 2 * half }) do
+        low = math.min(low, by + sx * ws[i] / 2 * vy + up * uy)
+      end
+    end
     d = d + ws[i] + gap
   end
+  return low
 end
 
 -- Verse 1 over the seven lamps: its letters run together and are cut into
@@ -421,15 +433,20 @@ function M.draw()
       fmt.name, fmt.w, fmt.h, size)
   end
 
-  for _, p in ipairs(ps) do place(out, p) end
+  local base_low                                      -- lowest point of the base
+  for _, p in ipairs(ps) do
+    local low = place(out, p)
+    if p.verse == 9 then base_low = low end
+  end
 
   -- Ana BeKoach: two square blocks either side of the base, one line of the
   -- prayer per row. Every row is set to the block's width by drawing out
   -- its chosen letters; the rows are spaced so the block is as tall as wide.
-  -- The square's side is set; the text size follows from it: the widest
-  -- row's natural width is 1/ana_square_pad of the side.
+  -- The square runs from the base's lowest point up to ana_top; the text
+  -- size follows from its side: the widest row's natural width is
+  -- 1/ana_square_pad of the side.
   local plans = M.ana_plans()
-  local side = M.p.ana_side * W                       -- the square's side, cm
+  local side = M.p.ana_top * W - base_low             -- the square's side, cm
   local widest = 0                                    -- at BASE pt, in pt
   for _, plan in ipairs(plans) do
     local w = 0
@@ -449,7 +466,7 @@ function M.draw()
   for r, plan in ipairs(plans) do
     local dir, row = 1, r
     if r > right_rows then dir, row = -1, r - right_rows end
-    local y = M.p.ana_bottom * W + (right_rows - row) * lh
+    local y = base_low + (right_rows - row) * lh
     local x = cx + dir * M.p.ana_x * W + side / 2      -- right edge of the row
     local n = 0
     for _, seg in ipairs(plan) do if seg.stretch then n = n + 1 end end

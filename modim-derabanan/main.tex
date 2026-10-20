@@ -31,7 +31,8 @@
 % same design whatever its page shape.
 \newcommand{\textsizefactor}{6.0}             % body text, in units
 \newcommand{\lastlinemin}{0.85}    % last line this full or more: stretched; else centred
-\newcommand{\headingfactor}{8.5}              % heading, in units
+\newcommand{\headingfactor}{9.5}              % heading, in units
+\newcommand{\headinggap}{4.5}                % heading to text, in units
 \newcommand{\framemargin}{6}                  % page edge to frame, in units
 \newcommand{\textmargin}{6}                   % frame to text, in units
 
@@ -70,7 +71,7 @@
        ([xshift=-\framemargin\unit,yshift=-\framemargin\unit]current page.north east);
    \end{tikzpicture}%
    מודים דרבנן\par}
-  \vspace{3\unit}
+  \vspace{\headinggap\unit}
   % the text as a block: justified; the last line full or centred
   \directlua{modim.typeset(\textsizefactor, \lastlinemin)}\par
 }

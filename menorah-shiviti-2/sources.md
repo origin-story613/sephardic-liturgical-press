@@ -30,3 +30,13 @@ in Shiviti 1.
   (`tamid_gap` 0.012 of the width) and the menorah a little lower (`cy`
   0.455).
 - **שויתי, לנגדי, תמיד** 20% larger than the text (`verse_scale`, Yosef).
+- **Ana BeKoach (Yosef):** two even blocks either side of the base, made of
+  the prayer's initials: each of its seven lines gives six letters, set as
+  two triads (42 letters in all). Row by row, the line's first triad stands
+  in the right block and its second in the left, so each row reads across
+  the base. Order checked against the prayer's lines (אנא בכח… through
+  שועתנו קבל…). The closing line (ברוך שם כבוד מלכותו לעולם ועד) is not
+  included. Stored as code points in `menorah.lua` (`ANA_BEKOACH`), not
+  written out, as the 42-letter name. At 0.6 of the text size (`ana_scale`),
+  blocks centred 0.31 of the width from the middle (`ana_x`), the last row
+  0.05 of the width above the foot (`ana_bottom`).

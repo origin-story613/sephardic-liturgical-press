@@ -54,4 +54,8 @@ in Shiviti 1.
   the font). Per row: אבג יתץ tav; קרע שטן resh; נגד יכש dalet; בטר צתג resh
   and tav; חקב טנע chet; יגל פזק lamed; שקו צית tav; בשכמל"ו lamed. Same
   three-slice method as the Name's he (`stretched()`, now shared by both).
+  The space between a row's triads is a control space: where the drawn-out
+  letter ended the first triad, the second triad's piece began with a plain
+  space, which TeX drops, so the triads ran together (Yosef noticed, in
+  נגד יכש, בטר צתג and יגל פזק).
 

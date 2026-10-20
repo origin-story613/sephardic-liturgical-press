@@ -43,6 +43,10 @@ M.p = {
   base_gap   = 0.04, -- from the end of the shaft to the top of the base arch
   base_width = 0.40, -- length of the base arch
   base_radius = 0.40, -- radius of the base arch
+  ana_scale  = 0.6,  -- size of the Ana BeKoach triads, relative to the text size
+  ana_x      = 0.31, -- centre of each triad block, from the middle, in widths
+  ana_bottom = 0.05, -- baseline of the last row, above the design's foot
+  ana_leading = 1.35, -- row spacing, in triad sizes
   shaft_half = 0.03, -- half the width of the shaft line of text
   pad    = 0.02,  -- clearance between branch text and the shaft
   fill   = 0.86,  -- share of a branch taken by words at the fitted size
@@ -100,6 +104,20 @@ local function interleave(a, b)
   return table.concat(out)
 end
 local NAME = NAME_HEAD .. HE
+
+-- Ana BeKoach: the initials of its seven lines, each line's six letters as
+-- two triads (the 42-letter name). Stored as code points, never written
+-- out. Row by row, the first triad of each line stands right of the base
+-- and the second left of it, so each row reads across the base.
+local ANA_BEKOACH = {
+  { "\u{05D0}\u{05D1}\u{05D2}", "\u{05D9}\u{05EA}\u{05E5}" },
+  { "\u{05E7}\u{05E8}\u{05E2}", "\u{05E9}\u{05D8}\u{05DF}" },
+  { "\u{05E0}\u{05D2}\u{05D3}", "\u{05D9}\u{05DB}\u{05E9}" },
+  { "\u{05D1}\u{05D8}\u{05E8}", "\u{05E6}\u{05EA}\u{05D2}" },
+  { "\u{05D7}\u{05E7}\u{05D1}", "\u{05D8}\u{05E0}\u{05E2}" },
+  { "\u{05D9}\u{05D2}\u{05DC}", "\u{05E4}\u{05D6}\u{05E7}" },
+  { "\u{05E9}\u{05E7}\u{05D5}", "\u{05E6}\u{05D9}\u{05EA}" },
+}
 local COMBINED_NAME_FIRST = interleave(NAME, ADONAI)
 local COMBINED_ADONAI_FIRST = interleave(ADONAI, NAME)
 
@@ -307,6 +325,19 @@ function M.draw()
   end
 
   for _, p in ipairs(ps) do place(out, p) end
+
+  -- Ana BeKoach: two even blocks of triads, either side of the base
+  local as = size * M.p.ana_scale
+  local lh = as * M.p.ana_leading * CM_PER_PT
+  for i, row in ipairs(ANA_BEKOACH) do
+    local y = M.p.ana_bottom * W + (#ANA_BEKOACH - i) * lh
+    out[#out + 1] = string.format(
+      '\\node[anchor=base,inner sep=0pt] at (%.4f,%.4f) {%s};',
+      cx + M.p.ana_x * W, y, heb(as, row[1]))
+    out[#out + 1] = string.format(
+      '\\node[anchor=base,inner sep=0pt] at (%.4f,%.4f) {%s};',
+      cx - M.p.ana_x * W, y, heb(as, row[2]))
+  end
 
   -- verse 1 across the top, in letter groups over the lamps
   lamp_groups(out, cy + L + M.p.title * W)

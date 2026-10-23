@@ -150,6 +150,7 @@ local STRETCHABLE = {
 -- the page (PW, PH) and centred at offset (OX, OY), so every format has the
 -- same proportions whatever its page shape.
 local text, fmt, W, H, PW, PH, OX, OY, shaft_len
+local outlines  -- glyph-outlines.lua: font outlines of the drawn-out letters
 local letter_h     -- letter body height at BASE pt, in pt
 local widths = {}  -- widths[v][i]: word width at BASE pt, in pt
 local size         -- fitted font size, pt
@@ -166,6 +167,7 @@ local function sum(t) local s = 0 for _, x in ipairs(t) do s = s + x end return 
 -- and in each book that carries the shiviti.
 function M.load(dir)
   text = dofile(dir .. 'psalm67.lua')
+  outlines = dofile(dir .. 'glyph-outlines.lua')
   -- Split verse 5: the shaft keeps the start, the base ("verse 9") the end.
   local v5, n = text[5], #text[5] - M.p.base_words
   text[9] = { table.unpack(v5, n + 1) }
@@ -380,27 +382,34 @@ local function lamp_groups(out, y)
   end
 end
 
--- Draw one letter drawn out by extra cm: the glyph is cut into three
--- slices at fractions a and b of its width; only the middle slice (a plain
--- horizontal stroke) is widened, the rest keep their shape. xl is the
--- letter's left edge, yb its baseline, sz its size in pt, w its natural
--- width in cm.
+-- Draw one letter drawn out by extra cm, as a single filled shape from the
+-- font's outline (glyph-outlines.lua): every outline point between
+-- fractions a and b of the letter's width (a plain horizontal stroke) is
+-- spread over the widened stroke, points beyond b move right by extra, the
+-- rest stay. No clipping, so SVG importers and laser software see one clean
+-- shape. xl is the letter's left edge, yb its baseline, sz its size in pt,
+-- w its natural width in cm.
 local function stretched(out, ch, sz, xl, yb, w, a, b, extra)
-  local em = sz * CM_PER_PT
-  local function piece(x0, x1, at, sx)
-    out[#out + 1] = string.format(
-      '\\begin{scope}\\clip (%.4f,%.4f) rectangle (%.4f,%.4f);' ..
-      '\\node[anchor=base west,inner sep=0pt] at (%.4f,%.4f) {\\scalebox{%.4f}[1]{%s}};' ..
-      '\\end{scope}',
-      x0, yb - em, x1, yb + 2 * em, at, yb, sx, heb(sz, ch))
+  local cp = utf8.codepoint(ch)
+  local g = outlines[cp] or error('no outline for U+' .. string.format('%04X', cp))
+  local s = sz * CM_PER_PT / outlines.units_per_em    -- cm per font unit
+  local A, B = a * w, b * w
+  local k = (B - A + extra) / (B - A)
+  local function pt(x, y)
+    x = x * s
+    if x > B then x = x + extra elseif x > A then x = A + (x - A) * k end
+    return string.format('(%.4f,%.4f)', xl + x, yb + y * s)
   end
-  local mid = (b - a) * w + extra                     -- widened stroke
-  local eps = 0.002 * w                               -- overlap, no hairline seams
-  local xa, xb = xl + a * w, xl + a * w + mid
-  local k = mid / ((b - a) * w)
-  piece(xl - w, xa + eps, xl, 1)
-  piece(xa, xb, xa - k * a * w, k)
-  piece(xb - eps, xl + w + extra + w, xb - b * w, 1)
+  local d = {}
+  for _, op in ipairs(g.path) do
+    if op[1] == 'm' then d[#d + 1] = pt(op[2], op[3])
+    elseif op[1] == 'l' then d[#d + 1] = '--' .. pt(op[2], op[3])
+    elseif op[1] == 'c' then
+      d[#d + 1] = '..controls' .. pt(op[2], op[3]) .. 'and' .. pt(op[4], op[5]) ..
+                  '..' .. pt(op[6], op[7])
+    else d[#d + 1] = '--cycle' end
+  end
+  out[#out + 1] = '\\fill ' .. table.concat(d, ' ') .. ';'
 end
 
 function M.draw()

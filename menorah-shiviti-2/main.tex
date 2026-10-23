@@ -22,6 +22,9 @@
 \usepackage{hebrew-layout}
 \input{\pressroot menorah-shiviti-2/shiviti2-setup}
 \directlua{shiviti2.page_format("\menorahformat")}
+% Final output (for printing or the laser): no draft label. Build with
+%   lualatex "\def\menorahformat{poster}\def\menorahfinal{}\input{main}"
+\ifdefined\menorahfinal \directlua{shiviti2.p.label = false}\fi
 
 \begin{document}
 \pagestyle{empty}

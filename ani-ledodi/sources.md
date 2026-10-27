@@ -25,11 +25,23 @@ chapter 5, mishnah 16; some editions number it 5:19):
 הַתְּלוּיָה בְדָבָר, זוֹ אַהֲבַת אַמְנוֹן וְתָמָר. וְשֶׁאֵינָהּ תְּלוּיָה בְדָבָר, זוֹ
 אַהֲבַת דָּוִד וִיהוֹנָתָן:
 
-How much of the mishnah goes on the poster, and in which wording, is not
-decided yet. No divine name.
+No divine name.
+
+**On the poster (Yosef's wording):**
+
+אַהֲבָה שֶׁאֵינָהּ תְּלוּיָה בְדָבָר, אֵינָהּ בְּטֵלָה לְעוֹלָם
+
+This is the mishnah's second clause (וְשֶׁאֵינָהּ תְּלוּיָה בְדָבָר, אֵינָהּ
+בְּטֵלָה לְעוֹלָם) with אַהֲבָה in place of the opening וְ, so it stands on its
+own. Checked by code point against Torat Emet: the same letters and points
+(only the order of combining marks inside a letter differs, which renders
+the same).
 
 ## Decisions by Yosef
 
 - **Texts:** Ani LeDodi (Shir HaShirim 6:3) **plus** the mishnah
   אַהֲבָה הַתְּלוּיָה בְּדָבָר (Avot 5:16). Option b, after reviewing a list
   of love verses he pasted.
+- **Mishnah wording:** his own line, אַהֲבָה שֶׁאֵינָהּ תְּלוּיָה בְדָבָר,
+  אֵינָהּ בְּטֵלָה לְעוֹלָם (above), rather than the full principle or the
+  whole mishnah.

@@ -37,6 +37,16 @@ own. Checked by code point against Torat Emet: the same letters and points
 (only the order of combining marks inside a letter differs, which renders
 the same).
 
+### Dedication line (Yosef's words)
+
+טדלה חיה, רַעְיָתִי אֲהוּבָתִי
+
+Her name as in the birkon's dedication page
+(`birkon/sections/front-matter.tex`: טדלה חיה מעיין), without מעיין, by
+Yosef's choice. רַעְיָתִי as in Shir HaShirim 2:2 (the verse on that page);
+אֲהוּבָתִי is his own word. Pointing shown for spelling only; whether the
+poster is pointed is not decided yet.
+
 ## Decisions by Yosef
 
 - **Texts:** Ani LeDodi (Shir HaShirim 6:3) **plus** the mishnah
@@ -45,3 +55,5 @@ the same).
 - **Mishnah wording:** his own line, אַהֲבָה שֶׁאֵינָהּ תְּלוּיָה בְדָבָר,
   אֵינָהּ בְּטֵלָה לְעוֹלָם (above), rather than the full principle or the
   whole mishnah.
+- **Dedication line:** טדלה חיה, רַעְיָתִי אֲהוּבָתִי (option a: without
+  מעיין).

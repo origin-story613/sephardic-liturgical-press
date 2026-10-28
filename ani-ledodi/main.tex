@@ -1,0 +1,98 @@
+% ani-ledodi/main.tex
+% Ahava poster: the whole of Shir HaShirim as a dense background block, with
+% a large 2x2 block of the letters of אהבה over its centre. DRAFT.
+% Compile with LuaLaTeX (twice: the letters are placed relative to the page).
+
+% Output format: aceo, siddur, birkon or poster.
+\providecommand{\ahavaformat}{poster}
+
+\documentclass{article}
+
+% Locate the repository root so the shared files resolve whether this file
+% is compiled from ani-ledodi/ (locally) or from the project root (Overleaf).
+\IfFileExists{../shared/macros/hebrew-layout.sty}
+  {\def\pressroot{../}}
+  {\def\pressroot{}}
+\makeatletter
+\def\input@path{{\pressroot shared/macros/}}
+\makeatother
+
+\usepackage{geometry}
+\usepackage{hebrew-layout}
+\usepackage{tikz}
+\usepackage{pdfrender}   % outline (halo) around the large letters
+
+% Stam Sefarad CLM (as in the shivitis), letters only: it has no vowel
+% points or bold. It ships with TeX Live, so it is not copied into the repo.
+\newfontfamily\stamfont{StamSefaradCLM.ttf}[Script=Hebrew, Renderer=HarfBuzz]
+\newcommand{\bgfont}{\stamfont\color{ahavatext}}   % background text
+% The large letters: the same font in luaotfload's node mode, which gives
+% ahava.lua the extents of each glyph's outline (HarfBuzz mode does not).
+% Single letters need no shaping.
+\newfontfamily\bigfont{StamSefaradCLM.ttf}[Script=Hebrew]
+
+% Colours (draft): the letters in a flat gold, the background in black.
+\definecolor{ahavagold}{RGB}{191,149,63}
+\definecolor{ahavatext}{gray}{0}
+
+% Everything scales with one unit: 1% of the width of the largest box of
+% the poster's proportions (2:3) that fits the page, so every format has the
+% same design whatever its page shape.
+\newcommand{\pagemargin}{5}      % page edge to background text, in units
+\newcommand{\bglead}{1.25}       % background baseline distance / type size
+\newcommand{\bgfillmin}{0.95}    % last line at least this full (then justified)
+\newcommand{\blocksize}{78}      % the letter block's ink, width or height, units
+\newcommand{\lettergap}{4}       % between the letters' ink, across and down, units
+\newcommand{\halo}{0.8}          % paper-coloured edge around each letter, units
+
+% Page sizes in inches: the same formats as the shivitis.
+\directlua{
+  local f = ({ aceo = { 2.5, 3.5 }, siddur = { 3.5, 4.75 },
+               birkon = { 4.25, 5.5 }, poster = { 12, 18 } })["\ahavaformat"]
+  local u = math.min(f[1], f[2] / 1.5) / 100
+  tex.sprint("\string\\geometry{paperwidth=" .. f[1] .. "in,paperheight="
+    .. f[2] .. "in,margin=" .. (u * \pagemargin) .. "in}")
+  tex.sprint("\string\\newlength{\string\\unit}\string\\setlength{\string\\unit}{" .. u .. "in}")
+}
+
+% The four letters. Their cells (right to left: top row א ה, bottom row
+% ב ה) are in ahava.lua, by code point.
+\newcommand{\LA}{א}
+\newcommand{\LH}{ה}
+\newcommand{\LB}{ב}
+
+\newbox\ahavabg
+\newcommand{\ahavatext}{\input{\pressroot ani-ledodi/text}}
+\directlua{ahava = dofile("\pressroot ani-ledodi/ahava.lua")}
+
+% One large letter in cell #1 (TR, TL, BR, BL), its origin placed by
+% ahava.lua: first its paper-coloured outline, then the gold letter over it.
+\newcommand{\bigletter}[2]{%
+  \foreach \look in {halo, gold}{%
+    \node[inner sep=0pt, anchor=base west, text=ahavagold] at
+      ([xshift=\csname ahavaX#1\endcsname, yshift=\csname ahavaY#1\endcsname]current page.center)
+      {\textdir TRT\bigfont\fontsize{\ahavasize}{\ahavasize}\selectfont
+       \ifx\look\halolook
+         \textpdfrender{TextRenderingMode=Stroke, LineWidth=2\dimexpr\halo\unit\relax,
+           LineJoinStyle=1, StrokeColor=white}{#2}%
+       \else #2\fi};}}
+\def\halolook{halo}
+
+% The letter block, drawn over the finished page. TikZ works left to right
+% here, so positive x is to the right.
+\AddToHook{shipout/foreground}{\put(0,0){\textdir TLT%
+  \begin{tikzpicture}[remember picture, overlay]
+    \bigletter{TR}{\LA}
+    \bigletter{TL}{\LH}
+    \bigletter{BR}{\LB}
+    \bigletter{BL}{\LH}
+  \end{tikzpicture}}}
+
+\begin{document}
+\pagestyle{empty}
+\setlength{\parskip}{0pt}
+
+\directlua{local u = tex.sp("\the\unit"); ahava.letters(\blocksize * u, \lettergap * u)}
+\directlua{ahava.background(\bglead, \bgfillmin)}
+
+\end{document}

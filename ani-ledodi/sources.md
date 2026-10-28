@@ -1,59 +1,60 @@
-# Ani LeDodi: sources and decisions
+# Ani LeDodi (Ahava poster): sources and decisions
 
-## Texts
+## Text
 
-### Shir HaShirim 6:3
+### Background: the whole of Shir HaShirim
 
 Westminster Leningrad Codex, "Tanach with Ta'amei Hamikra", **public
 domain**, from the Sefaria export
-(`json/Tanakh/Writings/Song of Songs/Hebrew/Tanach with Ta'amei Hamikra.json`):
+(`json/Tanakh/Writings/Song of Songs/Hebrew/Tanach with Ta'amei Hamikra.json`).
+`make-text.py` turns it into `text.tex`: letters only (no vowels or
+te'amim), a maqaf becomes a space, the paseq, sof pasuq and the section
+marks (ס)/(פ) are dropped, so the book is one continuous run of words.
+1,250 words, 5,151 letters. The four-letter Name does not occur in the
+book. 6:3 (אני לדודי ודודי לי הרעה בשושנים) is part of it.
 
-אֲנִ֤י לְדוֹדִי֙ וְדוֹדִ֣י לִ֔י הָרֹעֶ֖ה בַּשׁוֹשַׁנִּֽים׃
+**Not yet decided by Yosef** (the draft follows Leningrad's written text):
 
-How much of the verse goes on the poster is not decided yet. Leningrad
-spells הָרֹעֶה (defective); many printings have הָרוֹעֶה. No divine name.
+- **Ketiv/qere.** Four words are written one way and read another. The
+  draft has the written form (as a scroll would):
+  1:17 רחיטנו (read רהיטנו), 2:11 הסתו (read הסתיו), 2:13 לכי (read לך),
+  4:9 באחד (read באחת).
+- **8:6 שלהבתיה**, one word in Leningrad; some read its ending as a divine
+  name, and some printings split it in two.
 
-### Pirkei Avot 5:16
+### The large letters
 
-*Mishnah Avot*, version "Torat Emet 357" (Torat Emet freeware,
-toratemetfreeware.com), **public domain**, from the Sefaria export
-(`json/Mishnah/Seder Nezikin/Pirkei Avot/Hebrew/Torat Emet 357.json`,
-chapter 5, mishnah 16; some editions number it 5:19):
+אהבה, in a 2x2 grid, right to left: top row א ה, bottom row ב ה.
 
-כָּל אַהֲבָה שֶׁהִיא תְלוּיָה בְדָבָר, בָּטֵל דָּבָר, בְּטֵלָה אַהֲבָה.
-וְשֶׁאֵינָהּ תְּלוּיָה בְדָבָר, אֵינָהּ בְּטֵלָה לְעוֹלָם. אֵיזוֹ הִיא אַהֲבָה
-הַתְּלוּיָה בְדָבָר, זוֹ אַהֲבַת אַמְנוֹן וְתָמָר. וְשֶׁאֵינָהּ תְּלוּיָה בְדָבָר, זוֹ
-אַהֲבַת דָּוִד וִיהוֹנָתָן:
+## Fonts
 
-No divine name.
-
-**On the poster (Yosef's wording):**
-
-אַהֲבָה שֶׁאֵינָהּ תְּלוּיָה בְדָבָר, אֵינָהּ בְּטֵלָה לְעוֹלָם
-
-This is the mishnah's second clause (וְשֶׁאֵינָהּ תְּלוּיָה בְדָבָר, אֵינָהּ
-בְּטֵלָה לְעוֹלָם) with אַהֲבָה in place of the opening וְ, so it stands on its
-own. Checked by code point against Torat Emet: the same letters and points
-(only the order of combining marks inside a letter differs, which renders
-the same).
-
-### Dedication line (Yosef's words)
-
-טדלה חיה, רַעְיָתִי אֲהוּבָתִי
-
-Her name as in the birkon's dedication page
-(`birkon/sections/front-matter.tex`: טדלה חיה מעיין), without מעיין, by
-Yosef's choice. רַעְיָתִי as in Shir HaShirim 2:2 (the verse on that page);
-אֲהוּבָתִי is his own word. Pointing shown for spelling only; whether the
-poster is pointed is not decided yet.
+- **Stam Sefarad CLM** (Culmus, GPL with font exception), as shipped with
+  TeX Live (`StamSefaradCLM.ttf`), for both the background and the large
+  letters. Not copied into the repo.
 
 ## Decisions by Yosef
 
-- **Texts:** Ani LeDodi (Shir HaShirim 6:3) **plus** the mishnah
-  אַהֲבָה הַתְּלוּיָה בְּדָבָר (Avot 5:16). Option b, after reviewing a list
-  of love verses he pasted.
-- **Mishnah wording:** his own line, אַהֲבָה שֶׁאֵינָהּ תְּלוּיָה בְדָבָר,
-  אֵינָהּ בְּטֵלָה לְעוֹלָם (above), rather than the full principle or the
-  whole mishnah.
-- **Dedication line:** טדלה חיה, רַעְיָתִי אֲהוּבָתִי (option a: without
-  מעיין).
+- **Concept:** a dense, justified block of tiny unvowelled Shir HaShirim
+  as the background, with a large 2x2 block of אהבה over its centre (his
+  description: in the manner of Robert Indiana's LOVE layout, the letters
+  in Stam Sefarad, in gold leaf, the background showing through the gaps).
+  Indiana made a Hebrew AHAVA himself (1977); the poster takes only the
+  idea of a 2x2 letter grid, not his letterforms or tilted letter.
+- **This replaces the earlier plan** (option a): no separate Ani LeDodi
+  verse, no Pirkei Avot line, no dedication line.
+
+## Draft (not yet Yosef's design decisions)
+
+`main.tex`, compiled with LuaLaTeX (twice), in the four formats (aceo,
+siddur, birkon, poster; `\ahavaformat`). Everything scales from one unit,
+1% of the largest 2:3 box that fits the page.
+
+- Background (`ahava.lua`): black, justified edge to edge inside a margin
+  of 5 units; the type size is searched so the book fills the area exactly
+  with a full last line (about 15.6pt on the poster, 3.3pt on an ACEO card).
+  Baseline distance 1.25 times the type size.
+- Letters: flat gold (RGB 191,149,63) as a stand-in for gold leaf or foil,
+  each with a paper-coloured edge of 0.8 units so the text does not touch
+  it. Placed by their ink: the block is 78 units tall, the ink gap between
+  letters at least 4 units across and down, centred on the page (measured
+  within 0.1 unit in all four formats).

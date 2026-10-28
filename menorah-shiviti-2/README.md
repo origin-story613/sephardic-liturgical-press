@@ -14,3 +14,7 @@ carry it are not affected by changes here.
 
 Everything in `menorah-shiviti/sources.md` and `HANDOFF.md` (text, spelling,
 font, rules about the Name) applies here unless `sources.md` says otherwise.
+
+**Final files** (no draft label; letters as shapes, for CorelDRAW or a laser
+engraver): `export/`, rebuilt with `sh tools/export.sh [format]`. See
+`sources.md`.

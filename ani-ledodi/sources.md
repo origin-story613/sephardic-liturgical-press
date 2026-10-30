@@ -33,9 +33,12 @@ book. 6:3 (אני לדודי ודודי לי הרעה בשושנים) is part of
   `fonts/` with its licence (`fonts/README.md`, `fonts/GPL-2.txt`), taken
   unmodified from Culmus Fancy Fonts as packaged in Debian (`culmus-fancy`
   0.0.20140315-1).
-- **Stam Sefarad CLM** (Culmus, GPL with font exception), as shipped with
-  TeX Live (`StamSefaradCLM.ttf`), for the large letters in the draft
-  only (see below). Not copied into the repo.
+- **Hofesh** (Meir Sadan, Oketz, version 2.00, 1998-2003), for the large
+  letters. From hebrewfont.net (`download/Hofesh.zip`), unmodified, in
+  `fonts/` with its licence (`fonts/README.md`). Licence, embedded in the
+  font: **Creative Commons Attribution-NoDerivs-NonCommercial 1.0**:
+  personal use with credit to Meir Sadan is fine; **selling the poster
+  needs his permission** (meir@sadan.com); the font may not be altered.
 
 ## Decisions by Yosef
 
@@ -49,10 +52,9 @@ book. 6:3 (אני לדודי ודודי לי הרעה בשושנים) is part of
   verse, no Pirkei Avot line, no dedication line.
 - **Background font: Keter Aram Tsova** (his choice, from the Open Siddur
   font list).
-- **Large letters: Hofesh**, from hebrewfont.net (his choice). Not yet
-  usable: Hofesh MF is a Masterfont font (Omer Peleg) sold on MyFonts, so
-  its licence must be settled before it can be added. The draft keeps
-  Stam Sefarad CLM until then.
+- **Large letters: Hofesh**, from hebrewfont.net (his choice). It is
+  Meir Sadan's free font (above), not the commercial Hofesh MF sold by
+  Masterfont.
 
 ## Draft (not yet Yosef's design decisions)
 
@@ -64,8 +66,11 @@ siddur, birkon, poster; `\ahavaformat`). Everything scales from one unit,
   of 5 units; the type size is searched so the book fills the area exactly
   with a full last line (15.3pt on the poster in Keter Aram Tsova).
   Baseline distance 1.25 times the type size.
-- Letters: flat gold (RGB 191,149,63) as a stand-in for gold leaf or foil,
+- Letters: Hofesh, flat gold (RGB 191,149,63) as a stand-in for gold leaf or foil,
   each with a paper-coloured edge of 0.8 units so the text does not touch
   it. Placed by their ink: the block is 78 units tall, the ink gap between
   letters at least 4 units across and down, centred on the page (measured
-  within 0.1 unit in all four formats).
+  in Hofesh on the poster, each letter drawn alone: 4.8 units across, 4.1
+  down; centred within 0.1 unit).
+- `font-samples.tex`: a temporary comparison sheet of the candidate fonts;
+  to be removed once the fonts are settled.

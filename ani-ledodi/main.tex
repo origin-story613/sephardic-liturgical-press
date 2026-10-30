@@ -22,13 +22,18 @@
 \usepackage{tikz}
 \usepackage{pdfrender}   % outline (halo) around the large letters
 
-% Stam Sefarad CLM (as in the shivitis), letters only: it has no vowel
-% points or bold. It ships with TeX Live, so it is not copied into the repo.
-\newfontfamily\stamfont{StamSefaradCLM.ttf}[Script=Hebrew, Renderer=HarfBuzz]
-\newcommand{\bgfont}{\stamfont\color{ahavatext}}   % background text
-% The large letters: the same font in luaotfload's node mode, which gives
-% ahava.lua the extents of each glyph's outline (HarfBuzz mode does not).
-% Single letters need no shaping.
+% Background: Keter Aram Tsova (Yoram Gnat, after the Aleppo Codex; GPL
+% with font exception), in ani-ledodi/fonts/ since TeX Live does not have
+% it. An absolute path, as in hebrew-layout.sty: LuaTeX's font cache
+% remembers the path a font was first loaded from.
+\edef\ahavafonts{\directlua{tex.sprint(lfs.currentdir() .. "/")}\pressroot ani-ledodi/fonts/}
+\newfontfamily\keterfont{KeterAramTsova.ttf}[Path=\ahavafonts, Script=Hebrew, Renderer=HarfBuzz]
+\newcommand{\bgfont}{\keterfont\color{ahavatext}}   % background text
+
+% The large letters (draft): Stam Sefarad CLM (as in the shivitis). It
+% ships with TeX Live, so it is not copied into the repo. Loaded in
+% luaotfload's node mode, which gives ahava.lua the extents of each
+% glyph's outline (HarfBuzz mode does not). Single letters need no shaping.
 \newfontfamily\bigfont{StamSefaradCLM.ttf}[Script=Hebrew]
 
 % Colours (draft): the letters in a flat gold, the background in black.

@@ -5,6 +5,8 @@
 
 % Output format: aceo, siddur, birkon or poster.
 \providecommand{\ahavaformat}{poster}
+% Font of the large letters, for comparing: Busta or Hofesh.
+\providecommand{\ahavaletters}{Busta}
 
 \documentclass{article}
 
@@ -30,11 +32,11 @@
 \newfontfamily\keterfont{KeterAramTsova.ttf}[Path=\ahavafonts, Script=Hebrew, Renderer=HarfBuzz]
 \newcommand{\bgfont}{\keterfont\color{ahavatext}}   % background text
 
-% The large letters: Hofesh (Meir Sadan; CC BY-NC-ND 1.0: personal use,
-% with credit), in ani-ledodi/fonts/. Loaded in luaotfload's node mode,
-% which gives ahava.lua the extents of each glyph's outline (HarfBuzz mode
-% does not). Single letters need no shaping.
-\newfontfamily\bigfont{Hofesh.ttf}[Path=\ahavafonts, Script=Hebrew]
+% The large letters: Busta or Hofesh (both Meir Sadan; CC BY-NC-ND 1.0:
+% personal use, with credit), in ani-ledodi/fonts/. Loaded in luaotfload's
+% node mode, which gives ahava.lua the extents of each glyph's outline
+% (HarfBuzz mode does not). Single letters need no shaping.
+\newfontfamily\bigfont{\ahavaletters.ttf}[Path=\ahavafonts, Script=Hebrew]
 
 % Colours (draft): the letters in a flat gold, the background in black.
 \definecolor{ahavagold}{RGB}{191,149,63}

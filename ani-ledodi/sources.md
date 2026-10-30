@@ -56,6 +56,10 @@ book. 6:3 (אני לדודי ודודי לי הרעה בשושנים) is part of
   Meir Sadan's free font (above), not the commercial Hofesh MF sold by
   Masterfont. **Weight: as it is** (option a), not thickened. Kept after
   comparing it with the other candidates, Busta among them (option a).
+- **Busta on the poster, to compare** (his request): the large letters are
+  now in Busta, with a switch at the top of `main.tex` (`\ahavaletters`:
+  Busta or Hofesh) until he chooses. Busta (Meir Sadan) has the same
+  licence as Hofesh (`fonts/README.md`).
 
 ## Draft (not yet Yosef's design decisions)
 
@@ -67,9 +71,11 @@ siddur, birkon, poster; `\ahavaformat`). Everything scales from one unit,
   of 5 units; the type size is searched so the book fills the area exactly
   with a full last line (15.3pt on the poster in Keter Aram Tsova).
   Baseline distance 1.25 times the type size.
-- Letters: Hofesh, flat gold (RGB 191,149,63) as a stand-in for gold leaf or foil,
+- Letters: Busta or Hofesh (`\ahavaletters`), flat gold (RGB 191,149,63) as a stand-in for gold leaf or foil,
   each with a paper-coloured edge of 0.8 units so the text does not touch
   it. Placed by their ink: the block is 78 units tall, the ink gap between
   letters at least 4 units across and down, centred on the page (measured
   in Hofesh on the poster, each letter drawn alone: 4.8 units across, 4.1
-  down; centred within 0.1 unit).
+  down; centred within 0.1 unit. In Busta, whose letters differ more in
+  size: 4.2 units at the closest, up to 10.8 where a short ה stands next
+  to a tall א; centred within 0.12 unit).

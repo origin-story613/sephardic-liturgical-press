@@ -54,9 +54,8 @@ book. 6:3 (אני לדודי ודודי לי הרעה בשושנים) is part of
   font list).
 - **Large letters: Hofesh**, from hebrewfont.net (his choice). It is
   Meir Sadan's free font (above), not the commercial Hofesh MF sold by
-  Masterfont. **Weight: as it is** (option a), not thickened.
-- **Busta** (Meir Sadan, same licence as Hofesh) added to the sample sheet
-  at his request, to look at.
+  Masterfont. **Weight: as it is** (option a), not thickened. Kept after
+  comparing it with the other candidates, Busta among them (option a).
 
 ## Draft (not yet Yosef's design decisions)
 
@@ -74,5 +73,3 @@ siddur, birkon, poster; `\ahavaformat`). Everything scales from one unit,
   letters at least 4 units across and down, centred on the page (measured
   in Hofesh on the poster, each letter drawn alone: 4.8 units across, 4.1
   down; centred within 0.1 unit).
-- `font-samples.tex`: a temporary comparison sheet of the candidate fonts;
-  to be removed once the fonts are settled.

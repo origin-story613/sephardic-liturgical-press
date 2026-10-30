@@ -28,9 +28,14 @@ book. 6:3 (אני לדודי ודודי לי הרעה בשושנים) is part of
 
 ## Fonts
 
+- **Keter Aram Tsova** (Yoram Gnat, 2012, after the Aleppo Codex; GPL-2
+  with font exception), for the background. Not in TeX Live, so it is in
+  `fonts/` with its licence (`fonts/README.md`, `fonts/GPL-2.txt`), taken
+  unmodified from Culmus Fancy Fonts as packaged in Debian (`culmus-fancy`
+  0.0.20140315-1).
 - **Stam Sefarad CLM** (Culmus, GPL with font exception), as shipped with
-  TeX Live (`StamSefaradCLM.ttf`), for both the background and the large
-  letters. Not copied into the repo.
+  TeX Live (`StamSefaradCLM.ttf`), for the large letters in the draft
+  only (see below). Not copied into the repo.
 
 ## Decisions by Yosef
 
@@ -42,6 +47,12 @@ book. 6:3 (אני לדודי ודודי לי הרעה בשושנים) is part of
   idea of a 2x2 letter grid, not his letterforms or tilted letter.
 - **This replaces the earlier plan** (option a): no separate Ani LeDodi
   verse, no Pirkei Avot line, no dedication line.
+- **Background font: Keter Aram Tsova** (his choice, from the Open Siddur
+  font list).
+- **Large letters: Hofesh**, from hebrewfont.net (his choice). Not yet
+  usable: Hofesh MF is a Masterfont font (Omer Peleg) sold on MyFonts, so
+  its licence must be settled before it can be added. The draft keeps
+  Stam Sefarad CLM until then.
 
 ## Draft (not yet Yosef's design decisions)
 
@@ -51,7 +62,7 @@ siddur, birkon, poster; `\ahavaformat`). Everything scales from one unit,
 
 - Background (`ahava.lua`): black, justified edge to edge inside a margin
   of 5 units; the type size is searched so the book fills the area exactly
-  with a full last line (about 15.6pt on the poster, 3.3pt on an ACEO card).
+  with a full last line (15.3pt on the poster in Keter Aram Tsova).
   Baseline distance 1.25 times the type size.
 - Letters: flat gold (RGB 191,149,63) as a stand-in for gold leaf or foil,
   each with a paper-coloured edge of 0.8 units so the text does not touch

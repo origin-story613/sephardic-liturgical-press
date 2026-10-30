@@ -54,7 +54,9 @@ book. 6:3 (אני לדודי ודודי לי הרעה בשושנים) is part of
   font list).
 - **Large letters: Hofesh**, from hebrewfont.net (his choice). It is
   Meir Sadan's free font (above), not the commercial Hofesh MF sold by
-  Masterfont.
+  Masterfont. **Weight: as it is** (option a), not thickened.
+- **Busta** (Meir Sadan, same licence as Hofesh) added to the sample sheet
+  at his request, to look at.
 
 ## Draft (not yet Yosef's design decisions)
 

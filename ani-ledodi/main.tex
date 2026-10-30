@@ -5,8 +5,8 @@
 
 % Output format: aceo, siddur, birkon or poster.
 \providecommand{\ahavaformat}{poster}
-% Font of the large letters, for comparing: Busta or Hofesh.
-\providecommand{\ahavaletters}{Busta}
+% Font of the large letters, for comparing: LatetBold, Busta or Hofesh.
+\providecommand{\ahavaletters}{LatetBold}
 
 \documentclass{article}
 
@@ -32,7 +32,7 @@
 \newfontfamily\keterfont{KeterAramTsova.ttf}[Path=\ahavafonts, Script=Hebrew, Renderer=HarfBuzz]
 \newcommand{\bgfont}{\keterfont\color{ahavatext}}   % background text
 
-% The large letters: Busta or Hofesh (both Meir Sadan; CC BY-NC-ND 1.0:
+% The large letters: Latet Bold, Busta or Hofesh (all Meir Sadan; CC BY-NC-ND 1.0:
 % personal use, with credit), in ani-ledodi/fonts/. Loaded in luaotfload's
 % node mode, which gives ahava.lua the extents of each glyph's outline
 % (HarfBuzz mode does not). Single letters need no shaping.

@@ -54,3 +54,16 @@ Licence, as embedded in the font: **Creative Commons
 Attribution-NoDerivs-NonCommercial 1.0**, the same terms as Hofesh above:
 personal use with credit to Meir Sadan; not for sale without his permission;
 the font may not be altered.
+
+## LatetBold.ttf
+
+"Latet" Bold by Meir Sadan (Oketz, www.oketz.com), version 2.00, copyright
+1998-2003 Meir Sadan: a hand-drawn version of Frank Ruehl. Downloaded from
+hebrewfont.net (`www.hebrewfont.net/download/Latet Bold.zip`, file
+`Latet Bold.ttf`, saved here without the space). The font itself is
+unmodified.
+
+Licence, as embedded in the font: **Creative Commons
+Attribution-NoDerivs-NonCommercial 1.0**, the same terms as Hofesh above:
+personal use with credit to Meir Sadan; not for sale without his permission;
+the font may not be altered.

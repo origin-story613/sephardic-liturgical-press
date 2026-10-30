@@ -43,15 +43,3 @@ Attribution-NoDerivs-NonCommercial 1.0**
 
 So: fine for this personal poster, with credit to Meir Sadan. **Not** for a
 poster that is sold, unless Meir Sadan gives permission (meir@sadan.com).
-
-## Busta.ttf
-
-"Busta" by Meir Sadan (www.sadan.com), version 2.00, copyright 1998-2003
-Meir Sadan. Downloaded from hebrewfont.net
-(`www.hebrewfont.net/download/Busta.zip`). Unmodified. On the sample sheet
-only, for comparison.
-
-Licence, as embedded in the font: **Creative Commons
-Attribution-NoDerivs-NonCommercial 1.0**, the same terms as Hofesh above:
-personal use with credit to Meir Sadan; not for sale without his permission;
-the font may not be altered.

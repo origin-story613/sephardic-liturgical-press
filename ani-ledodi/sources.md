@@ -60,6 +60,9 @@ book. 6:3 (אני לדודי ודודי לי הרעה בשושנים) is part of
   switch at the top of `main.tex` (`\ahavaletters`: LatetBold, Busta or
   Hofesh) until he chooses; the draft shows Latet Bold. Both are Meir
   Sadan's, with the same licence as Hofesh (`fonts/README.md`).
+- **No white edge around the letters** (option b): the openings in the
+  letters (the streaks in Latet Bold) are transparent, so the text shows
+  through them, and the text runs right up to the letters' outside.
 
 ## Draft (not yet Yosef's design decisions)
 
@@ -71,9 +74,9 @@ siddur, birkon, poster; `\ahavaformat`). Everything scales from one unit,
   of 5 units; the type size is searched so the book fills the area exactly
   with a full last line (15.3pt on the poster in Keter Aram Tsova).
   Baseline distance 1.25 times the type size.
-- Letters: Latet Bold, Busta or Hofesh (`\ahavaletters`), flat gold (RGB 191,149,63) as a stand-in for gold leaf or foil,
-  each with a paper-coloured edge of 0.8 units so the text does not touch
-  it. Placed by their ink: the block is 78 units tall, the ink gap between
+- Letters: Latet Bold, Busta or Hofesh (`\ahavaletters`), flat gold
+  (RGB 191,149,63) as a stand-in for gold leaf or foil, drawn straight over
+  the text. Placed by their ink: the block is 78 units tall, the ink gap between
   letters at least 4 units across and down, centred on the page (measured
   in Hofesh on the poster, each letter drawn alone: 4.8 units across, 4.1
   down; centred within 0.1 unit. In Busta, whose letters differ more in

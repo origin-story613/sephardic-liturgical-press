@@ -22,7 +22,6 @@
 \usepackage{geometry}
 \usepackage{hebrew-layout}
 \usepackage{tikz}
-\usepackage{pdfrender}   % outline (halo) around the large letters
 
 % Background: Keter Aram Tsova (Yoram Gnat, after the Aleppo Codex; GPL
 % with font exception), in ani-ledodi/fonts/ since TeX Live does not have
@@ -50,7 +49,6 @@
 \newcommand{\bgfillmin}{0.95}    % last line at least this full (then justified)
 \newcommand{\blocksize}{78}      % the letter block's ink, width or height, units
 \newcommand{\lettergap}{4}       % between the letters' ink, across and down, units
-\newcommand{\halo}{0.8}          % paper-coloured edge around each letter, units
 
 % Page sizes in inches: the same formats as the shivitis.
 \directlua{
@@ -73,17 +71,11 @@
 \directlua{ahava = dofile("\pressroot ani-ledodi/ahava.lua")}
 
 % One large letter in cell #1 (TR, TL, BR, BL), its origin placed by
-% ahava.lua: first its paper-coloured outline, then the gold letter over it.
+% ahava.lua. The text behind shows through any openings in the letter.
 \newcommand{\bigletter}[2]{%
-  \foreach \look in {halo, gold}{%
-    \node[inner sep=0pt, anchor=base west, text=ahavagold] at
-      ([xshift=\csname ahavaX#1\endcsname, yshift=\csname ahavaY#1\endcsname]current page.center)
-      {\textdir TRT\bigfont\fontsize{\ahavasize}{\ahavasize}\selectfont
-       \ifx\look\halolook
-         \textpdfrender{TextRenderingMode=Stroke, LineWidth=2\dimexpr\halo\unit\relax,
-           LineJoinStyle=1, StrokeColor=white}{#2}%
-       \else #2\fi};}}
-\def\halolook{halo}
+  \node[inner sep=0pt, anchor=base west, text=ahavagold] at
+    ([xshift=\csname ahavaX#1\endcsname, yshift=\csname ahavaY#1\endcsname]current page.center)
+    {\textdir TRT\bigfont\fontsize{\ahavasize}{\ahavasize}\selectfont #2};}
 
 % The letter block, drawn over the finished page. TikZ works left to right
 % here, so positive x is to the right.

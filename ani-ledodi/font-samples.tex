@@ -32,6 +32,7 @@
 \edef\ahavafonts{\directlua{tex.sprint(lfs.currentdir() .. "/")}\pressroot ani-ledodi/fonts/}
 \newfontfamily\fI{Hofesh.ttf}[Path=\ahavafonts, Script=Hebrew, Renderer=HarfBuzz]
 \newfontfamily\fJ{KeterAramTsova.ttf}[Path=\ahavafonts, Script=Hebrew, Renderer=HarfBuzz]
+\newfontfamily\fK{Busta.ttf}[Path=\ahavafonts, Script=Hebrew, Renderer=HarfBuzz]
 
 % The opening of the book, letters only (from text.tex).
 \newcommand{\sample}{שיר השירים אשר לשלמה ישקני מנשיקות פיהו כי טובים
@@ -42,10 +43,10 @@
 % One card: letter and name, the 2x2 block (right to left: א ה / ב ה),
 % and the sample text at a background size.
 \newcommand{\card}[3]{%
-  \begin{minipage}[t][1.95in][t]{0.48\textwidth}\centering
+  \begin{minipage}[t][1.56in][t]{0.48\textwidth}\centering
     {\foreignlanguage{english}{\textbf{#1)} #3}\par}
     \vspace{4pt}
-    {#2\color{ahavagold}\fontsize{34pt}{36pt}\selectfont אה\\בה\par}
+    {#2\color{ahavagold}\fontsize{28pt}{30pt}\selectfont אה\\בה\par}
     \vspace{4pt}
     {#2\fontsize{6pt}{7.5pt}\selectfont\sample\par}
   \end{minipage}}
@@ -65,5 +66,6 @@
          \card{h}{\fH}{Shofar Demi-Bold}\par
 \noindent\card{i}{\fI}{Hofesh (Meir Sadan; your choice)}\hfill
          \card{j}{\fJ}{Keter Aram Tsova (the background)}\par
+\noindent\card{k}{\fK}{Busta (Meir Sadan)}\par
 
 \end{document}

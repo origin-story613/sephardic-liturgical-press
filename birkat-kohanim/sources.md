@@ -20,11 +20,14 @@ permission.
   only ever built from code points, never written out.
 - **Verses (Yosef, 2026-11-10):** the blessing only, Numbers 6:24-26,
   without 6:23 or 6:27.
-- Still to decide (Yosef): pointed or unpointed, and checking against his
-  siddur.
+- **Letters (Yosef, 2026-11-10):** unpointed (no nikud, no te'amim), in
+  Taamey David CLM (`shared/fonts/`, Culmus Project, GPL with font
+  exception: fine for sale). The points, te'amim, paseq and sof pasuq are
+  stripped from the source text by code point.
+- Still to decide (Yosef): checking the text against his siddur.
 
 ## Open questions
 
-Pointing and font; how
+How
 the Name appears; spiral direction and number of turns; the hamsa's style;
 sizes and output.

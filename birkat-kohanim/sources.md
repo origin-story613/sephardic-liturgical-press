@@ -28,6 +28,5 @@ permission.
 
 ## Open questions
 
-How
-the Name appears; spiral direction and number of turns; the hamsa's style;
-sizes and output.
+How the Name appears; spiral direction and number of turns; the hamsa's
+style; sizes and output.

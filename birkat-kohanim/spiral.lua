@@ -1,7 +1,8 @@
 -- spiral.lua (Birkat Kohanim poster)
 -- Numbers 6:24-26, letters only, set letter by letter along a spiral that
--- starts in the bottom right quadrant and runs to the left along the
--- bottom, clockwise and inward (Yosef). So that the Hebrew reads right to
+-- starts just below the centre on the right, with the yod of the first
+-- word, and runs down and to the left along the bottom, clockwise and
+-- inward (Yosef). So that the Hebrew reads right to
 -- left, the letters' tops face the centre. A hamsa in the middle.
 --
 -- The letters shrink a little toward the centre (Yosef): their size falls
@@ -29,8 +30,9 @@ M.p = {
   cy         = 0.5,   -- spiral centre, as a fraction of the box height
   outer      = 0.46,  -- outermost reach of the letters, from the centre
   inner      = 0.17,  -- innermost reach of the letters (clear of the hamsa)
-  start      = -45,   -- where the text begins, degrees counter-clockwise from
-                      -- the right (-45: the middle of the bottom right quadrant)
+  start      = -10,   -- the first letter's centre, in degrees counter-clockwise
+                      -- from the right of the spiral's centre (Yosef: just
+                      -- below the centre on the right)
   lead       = 2.0,   -- distance between turns, in letter bodies
   shrink     = 0.8,   -- innermost letter size over outermost
   verse_gap  = 2,     -- space between verses, in word spaces
@@ -218,7 +220,8 @@ function M.draw()
   local its = items()
   local S = fit_size(its)
   local tab, size, drdt = spiral_for(S)
-  local t0 = math.rad(M.p.start)
+  -- the first letter's centre at start
+  local t0 = math.rad(M.p.start) + at(tab, widths[its[1].ch] / 2)
 
   local out = { '\\begin{otherlanguage}{english}',
     '\\begin{tikzpicture}[remember picture,overlay,shift={(current page.south west)}]',

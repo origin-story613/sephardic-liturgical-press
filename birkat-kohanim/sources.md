@@ -38,23 +38,31 @@ upside down across the top). `start` = -45 degrees: the first word's
 letters are centred from about -48 to -95 degrees, so it begins in the
 bottom right quadrant and ends just past the bottom centre.
 
-## First draft (proposals, not yet Yosef's decisions)
+## Letter size (Yosef, 2026-11-10)
 
-- One logarithmic spiral (direction above). Each
-  letter's size is in proportion to its distance from the centre (about
-  146 pt on the outside down to about 61 pt on the inside, at poster size),
-  so the spiral is the same shape on every turn; about two turns.
+The letters shrink a little as the spiral runs inward. The innermost
+letter is 0.8 of the outermost (`shrink`, a proposal: Yosef may want more
+or less), the size falling in proportion to the radius; at poster size
+107.5 pt outside to 86.3 pt inside. The turns are 2 letter bodies apart at
+the current size (`lead`), so they close up a little as the letters shrink.
+About two and a half turns.
+
+## Draft layout (proposals, not yet Yosef's decisions)
+
 - Letters set one by one on the spiral, each turned to it (Hebrew in TikZ
   per letter: no joining, so nothing is lost).
 - Two word spaces between verses, no other mark.
-- The whole drawing centred on the page by its ink.
+- The whole drawing centred on the page by its ink: `glyph-bounds.lua`
+  holds each letter's outline hull from the font (made by
+  `tools/make_glyph_bounds.py` with fontTools), so turned letters are
+  measured by their ink, not their boxes. Checked from a render: the
+  margins agree to 0.3 mm.
 - The hamsa: a placeholder outline, fingers up, empty inside.
 - Formats aceo, siddur, birkon, poster (12x18 placeholder), set by
   `\birkatformat` at the top of `main.tex`; small grey draft label.
 
 ## Open questions
 
-Spiral style (shrinking or even letters, turns, a drawn spiral line);
-verse separation; the hamsa's style and what (if anything) is inside it;
-anything above or below the spiral (title, frame); checking the text
-against his siddur; sizes and output.
+How much the letters shrink; verse separation; the hamsa's style and what
+(if anything) is inside it; anything above or below the spiral (title,
+frame); checking the text against his siddur; sizes and output.

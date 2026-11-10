@@ -1,0 +1,38 @@
+% birkat-kohanim/main.tex
+% Birkat Kohanim (Numbers 6:24-26) spiralling inward around a hamsa. DRAFT.
+% Compile with LuaLaTeX (twice: the drawing is positioned on the page).
+
+% Output format: aceo, siddur, birkon or poster (sizes in spiral.lua).
+\providecommand{\birkatformat}{poster}
+
+\documentclass{article}
+
+% Locate the repository root so the shared files resolve whether this file
+% is compiled from birkat-kohanim/ (locally) or from the project root
+% (Overleaf).
+\IfFileExists{../shared/macros/hebrew-layout.sty}
+  {\def\pressroot{../}}
+  {\def\pressroot{}}
+\makeatletter
+\def\input@path{{\pressroot shared/macros/}}
+\makeatother
+
+\usepackage{geometry}
+\usepackage{hebrew-layout}   % Hebrew in Taamey David CLM
+\usepackage{tikz}
+
+\directlua{
+  birkat = dofile("\pressroot birkat-kohanim/spiral.lua")
+  birkat.load("\pressroot birkat-kohanim/")
+  birkat.page_format("\birkatformat")
+}
+% Final output: no draft label. Build with
+%   lualatex "\def\birkatformat{poster}\def\birkatfinal{}\input{main}"
+\ifdefined\birkatfinal \directlua{birkat.p.label = false}\fi
+
+\begin{document}
+\pagestyle{empty}
+\setlength{\parskip}{0pt}
+\directlua{birkat.measure()}%
+\noindent\directlua{birkat.draw()}
+\end{document}

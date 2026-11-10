@@ -44,16 +44,14 @@ horizontal through the spiral's centre.
 The letters shrink as the spiral runs inward (Yosef first chose one size
 throughout, then a little shrinking, then a bit more): the innermost
 letter is 0.7 of the outermost (`shrink`), the size falling in proportion
-to the radius; at poster size 113.6 pt outside to 79.9 pt inside. The
+to the radius; at poster size 114.7 pt outside to 80.7 pt inside. The
 turns are 2 letter bodies apart at the current size (`lead`), so they
 close up a little as the letters shrink. About two and a half turns.
 
 ## Between verses (Yosef, 2026-11-10)
 
-A round dot between the verses (two in all), a word space each side,
-centred on the spiral's centre line. Its width is 0.3 of the letters'
-bodies around it (`dot`, a proposal), so it shrinks with them. Yosef tried
-a small flower first and did not like it.
+No mark: a single word space, so the blessing runs as one line. Yosef
+tried a small flower, then a dot, and liked neither.
 
 ## Draft layout (proposals, not yet Yosef's decisions)
 

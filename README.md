@@ -14,6 +14,7 @@ HaShulchan, which are 4.25in x 5.5in.
 | `menorah-shiviti-2/` | Shiviti 2, begun from Shiviti 1; final files for print and laser in `export/` |
 | `modim-derabanan/` | Modim deRabanan poster, in progress |
 | `ani-ledodi/` | Ahava poster for Yosef's wife, in progress. See `ani-ledodi/HANDOFF.md` |
+| `birkat-kohanim/` | Birkat Kohanim spiralling inward around a hamsa, just started |
 | `new-poster/` | Brief for starting another shiviti or poster: `new-poster/HANDOFF.md` |
 
 ## Layout

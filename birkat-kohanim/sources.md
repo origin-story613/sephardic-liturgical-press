@@ -29,14 +29,15 @@ permission.
   stripped from the source text by code point.
 - Still to decide (Yosef): checking the text against his siddur.
 
-## Spiral direction (Yosef, 2026-11-10)
+## Spiral direction and start (Yosef, 2026-11-10)
 
-The spiral starts in the bottom right quadrant with יברכך and runs to the
-left along the bottom, clockwise and inward. So that the Hebrew reads right
-to left, the letters' tops face the centre (upright along the bottom,
-upside down across the top). `start` = -45 degrees: the first word's
-letters are centred from about -48 to -95 degrees, so it begins in the
-bottom right quadrant and ends just past the bottom centre.
+The spiral starts with יברכך and runs clockwise and inward: down and to
+the left along the bottom. So that the Hebrew reads right to left, the
+letters' tops face the centre (upright along the bottom, upside down
+across the top). Yosef first had it start in the bottom right quadrant,
+then moved it: the yod of יברכך sits just below the centre on the right.
+`start` = -10 degrees: the yod's centre is 10 degrees below the
+horizontal through the spiral's centre.
 
 ## Letter size (Yosef, 2026-11-10)
 

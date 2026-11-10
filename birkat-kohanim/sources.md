@@ -53,6 +53,18 @@ close up a little as the letters shrink. About two and a half turns.
 No mark: a single word space, so the blessing runs as one line. Yosef
 tried a small flower, then a dot, and liked neither.
 
+## The hamsa (Yosef, 2026-11-10)
+
+Yosef sent four photos of hamsas he likes (for their style; none is
+copied). What they share, and what the drawing now follows: the
+traditional shape, three rounded fingers side by side with the middle one
+tallest, two thumbs curling outward, a round palm; drawn as one outline
+with a line between each pair of fingers (`hamsa_right()` in
+`spiral.lua`, built from arcs and curves, no clipping). Half its height
+is 0.12 of the width (`hamsa`). Three of the four photos have a Magen
+David in a circle in the palm, some with scrollwork, one with words: what
+goes inside is still to decide (Yosef).
+
 ## Draft layout (proposals, not yet Yosef's decisions)
 
 - Letters set one by one on the spiral, each turned to it (Hebrew in TikZ
@@ -62,12 +74,11 @@ tried a small flower, then a dot, and liked neither.
   `tools/make_glyph_bounds.py` with fontTools), so turned letters are
   measured by their ink, not their boxes. Checked from a render: the
   margins agree to 0.3 mm.
-- The hamsa: a placeholder outline, fingers up, empty inside.
 - Formats aceo, siddur, birkon, poster (12x18 placeholder), set by
   `\birkatformat` at the top of `main.tex`; small grey draft label.
 
 ## Open questions
 
-The hamsa's style and what
-(if anything) is inside it; anything above or below the spiral (title,
+What (if anything) is inside the
+hamsa, and its line weight; anything above or below the spiral (title,
 frame); checking the text against his siddur; sizes and output.

@@ -35,7 +35,7 @@ M.p = {
                       -- below the centre on the right)
   lead       = 2.0,   -- distance between turns, in letter bodies
   shrink     = 0.7,   -- innermost letter size over outermost (Yosef)
-  hamsa      = 0.115, -- half the hamsa's height
+  hamsa      = 0.12,  -- half the hamsa's height
   hamsa_line = 0.004, -- hamsa outline width
   label      = true,  -- small grey draft label (off for final output)
 }
@@ -184,32 +184,81 @@ local function at(tab, u)
   return tab[a].t + f * (tab[b].t - tab[a].t), tab[a].r + f * (tab[b].r - tab[a].r)
 end
 
--- The hamsa: one closed smooth outline, fingers up, centred on (0,0),
--- y from -1 to 1. Right half from the wrist up over the thumb and the
--- fingers; the left half mirrors it.
-local HAMSA_RIGHT = {
-  { 0.30, -0.97 }, { 0.50, -0.86 }, { 0.60, -0.66 },        -- wrist, palm
-  { 0.66, -0.40 }, { 0.76, -0.16 }, { 0.88, 0.06 },          -- thumb, outer
-  { 0.93, 0.26 }, { 0.86, 0.36 }, { 0.75, 0.28 },            -- tip, curling out
-  { 0.64, 0.10 }, { 0.54, 0.02 },                            -- inner, crotch
-  { 0.52, 0.30 }, { 0.53, 0.60 }, { 0.47, 0.78 },            -- side finger
-  { 0.38, 0.80 }, { 0.30, 0.68 }, { 0.255, 0.42 },           -- tip, crotch
-  { 0.22, 0.70 }, { 0.17, 0.92 }, { 0.09, 1.00 },            -- middle finger
-}
+-- The hamsa, fingers up, centred on (0,0), y from -1 to 1, in the
+-- traditional shape (Yosef's examples): three rounded fingers side by side,
+-- the middle one tallest, two thumbs curling outward, a round palm. One
+-- closed outline, with a line between each pair of fingers. The right half
+-- is a list of cubic segments from the top of the middle finger down to
+-- the bottom of the palm; the left half mirrors it.
+
+-- Cubic segments for a circular arc, centre (x, y), radius r, from angle
+-- a0 to a1 (degrees), in pieces of at most 90 degrees.
+local function arc(x, y, r, a0, a1)
+  local segs, n = {}, math.ceil(math.abs(a1 - a0) / 90)
+  local step = (a1 - a0) / n
+  local k = 4 / 3 * math.tan(math.rad(step) / 4) * r
+  for i = 0, n - 1 do
+    local p, q = math.rad(a0 + i * step), math.rad(a0 + (i + 1) * step)
+    segs[#segs + 1] = {
+      x + r * math.cos(p) - k * math.sin(p), y + r * math.sin(p) + k * math.cos(p),
+      x + r * math.cos(q) + k * math.sin(q), y + r * math.sin(q) - k * math.cos(q),
+      x + r * math.cos(q), y + r * math.sin(q) }
+  end
+  return segs
+end
+local function line(x0, y0, x1, y1)  -- a straight segment as a cubic
+  return { { x0 + (x1 - x0) / 3, y0 + (y1 - y0) / 3,
+             x0 + 2 * (x1 - x0) / 3, y0 + 2 * (y1 - y0) / 3, x1, y1 } }
+end
+
+local FW = 0.17          -- half a finger's width
+local MID_TOP = 1.0      -- top of the middle finger
+local SIDE_TOP = 0.86    -- top of the side fingers
+local FINGER_FOOT = 0.16 -- where the fingers meet the thumbs and palm
+local function hamsa_right()
+  local segs = {}
+  local function add(t) for _, sg in ipairs(t) do segs[#segs + 1] = sg end end
+  add(arc(0, MID_TOP - FW, FW, 90, 0))                       -- middle fingertip
+  add(line(FW, MID_TOP - FW, FW, SIDE_TOP - FW))            -- down to the side finger
+  add(arc(2 * FW, SIDE_TOP - FW, FW, 180, 0))               -- side fingertip
+  add(line(3 * FW, SIDE_TOP - FW, 3 * FW, FINGER_FOOT))     -- its outer edge
+  -- the thumb: out and up to a tip curling outward, then down its back
+  add({ { 0.60, 0.17, 0.70, 0.25, 0.77, 0.39 } })
+  add(arc(0.835, 0.36, 0.065, 155, -10))                    -- the tip
+  add({ { 0.91, 0.20, 0.86, -0.05, 0.74, -0.24 } })
+  -- the palm, round, to the bottom centre
+  add({ { 0.70, -0.62, 0.42, -1.0, 0, -1.0 } })
+  return segs
+end
+
 local function hamsa(out, cx, cy, scale)
-  local pts = { { 0, -1.0 } }
-  for _, q in ipairs(HAMSA_RIGHT) do pts[#pts + 1] = q end
-  pts[#pts + 1] = { 0, 1.02 }
-  for i = #HAMSA_RIGHT, 1, -1 do
-    pts[#pts + 1] = { -HAMSA_RIGHT[i][1], HAMSA_RIGHT[i][2] }
+  local function pt(x, y)
+    return string.format('(%.4f,%.4f)', cx + x * scale, cy + y * scale)
   end
-  local c = {}
-  for _, q in ipairs(pts) do
-    c[#c + 1] = string.format('(%.4f,%.4f)', cx + q[1] * scale, cy + q[2] * scale)
+  local right = hamsa_right()
+  local d = { pt(0, MID_TOP) }
+  for _, sg in ipairs(right) do
+    d[#d + 1] = '..controls' .. pt(sg[1], sg[2]) .. 'and' .. pt(sg[3], sg[4]) ..
+                '..' .. pt(sg[5], sg[6])
   end
-  out[#out + 1] = string.format(
-    '\\draw[line width=%.4fcm,line join=round] plot[smooth cycle,tension=0.6] coordinates {%s};',
-    M.p.hamsa_line * W, table.concat(c, ' '))
+  -- the left half: the right half's segments in reverse, mirrored
+  for i = #right, 1, -1 do
+    local sg = right[i]
+    local prev = right[i - 1]
+    local ex, ey = 0, MID_TOP
+    if prev then ex, ey = prev[5], prev[6] end
+    d[#d + 1] = '..controls' .. pt(-sg[3], sg[4]) .. 'and' .. pt(-sg[1], sg[2]) ..
+                '..' .. pt(-ex, ey)
+  end
+  local style = string.format('line width=%.4fcm,line join=round,line cap=round',
+    M.p.hamsa_line * W)
+  out[#out + 1] = '\\draw[' .. style .. '] ' .. table.concat(d, ' ') .. ' -- cycle;'
+  -- the lines between the fingers
+  for _, sx in ipairs({ -1, 1 }) do
+    out[#out + 1] = '\\draw[' .. style .. '] ' .. pt(sx * FW, SIDE_TOP - FW) ..
+      ' -- ' .. pt(sx * FW, FINGER_FOOT)
+    out[#out] = out[#out] .. ';'
+  end
 end
 
 function M.draw()

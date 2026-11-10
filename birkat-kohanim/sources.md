@@ -4,6 +4,12 @@
 
 Birkat Kohanim spiralling inward, with a hamsa in the middle.
 
+## Purpose (Yosef, 2026-11-10)
+
+For sale, as a print or framed poster. So every text and font must allow
+commercial use: no CC-BY-SA text, no Meir Sadan fonts without his
+permission.
+
 ## Text
 
 - Source: Westminster Leningrad Codex, Sefaria "Tanach with Ta'amei
@@ -19,6 +25,6 @@ Birkat Kohanim spiralling inward, with a hamsa in the middle.
 
 ## Open questions
 
-Purpose (sale, gift, book page, engraving); pointing and font; how
+Pointing and font; how
 the Name appears; spiral direction and number of turns; the hamsa's style;
 sizes and output.

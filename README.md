@@ -10,7 +10,11 @@ HaShulchan, which are 4.25in x 5.5in.
 | `birkon/` | Birkat HaMazon, Me'ein Shalosh, Borei Nefashot done |
 | `seder-hashulchan/` | In progress: Friday night, netilat yadayim, Hamotzi, Shabbat day Kiddush, Havdalah drafted; festival and Rosh HaShanah Kiddush to come. See `seder-hashulchan/HANDOFF.md` |
 | `shabbat-siddur/` | In progress: Shabbat Mincha, Motzei Shabbat Arvit, Havdalah drafted from Torat Emet; checking against the siddur next. See `shabbat-siddur/HANDOFF.md` |
-| `menorah-shiviti/` | Planned: Psalm 67 menorah poster (TikZ). See `menorah-shiviti/HANDOFF.md` |
+| `menorah-shiviti/` | Shiviti 1: Psalm 67 menorah poster (TikZ), also carried by the three books. See `menorah-shiviti/HANDOFF.md` |
+| `menorah-shiviti-2/` | Shiviti 2, begun from Shiviti 1; final files for print and laser in `export/` |
+| `modim-derabanan/` | Modim deRabanan poster, in progress |
+| `ani-ledodi/` | Ahava poster for Yosef's wife, in progress. See `ani-ledodi/HANDOFF.md` |
+| `new-poster/` | Brief for starting another shiviti or poster: `new-poster/HANDOFF.md` |
 
 ## Layout
 

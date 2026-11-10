@@ -107,8 +107,9 @@ for working code.
   (it reverses Hebrew). Words on curves: one rotated node per word, centred
   on the path (not standing on it).
 - **Drawn-out letters** (a scribe's way to fill a line): `stretched()` in
-  `menorah-shiviti-2/menorah.lua` cuts a glyph into three slices and widens
-  only a plain horizontal stroke, with measured stretch zones per letter
+  `menorah-shiviti-2/menorah.lua` draws the letter as one filled shape from
+  the font's outline (`glyph-outlines.lua`), widening only a plain
+  horizontal stroke, with measured stretch zones per letter
   (`STRETCHABLE`). Don't use it on pointed text: points under the stroke
   distort.
 - **Justified block with a centred short last line:**

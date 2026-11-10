@@ -29,10 +29,18 @@ permission.
   stripped from the source text by code point.
 - Still to decide (Yosef): checking the text against his siddur.
 
+## Spiral direction (Yosef, 2026-11-10)
+
+The spiral starts in the bottom right quadrant with יברכך and runs to the
+left along the bottom, clockwise and inward. So that the Hebrew reads right
+to left, the letters' tops face the centre (upright along the bottom,
+upside down across the top). `start` = -45 degrees: the first word's
+letters are centred from about -48 to -95 degrees, so it begins in the
+bottom right quadrant and ends just past the bottom centre.
+
 ## First draft (proposals, not yet Yosef's decisions)
 
-- One logarithmic spiral, from the top, counter-clockwise and inward, so
-  the text reads right to left with the letters' tops outward. Each
+- One logarithmic spiral (direction above). Each
   letter's size is in proportion to its distance from the centre (about
   146 pt on the outside down to about 61 pt on the inside, at poster size),
   so the spiral is the same shape on every turn; about two turns.
@@ -46,8 +54,7 @@ permission.
 
 ## Open questions
 
-Spiral style (shrinking or even letters, direction, turns, letters' tops
-outward or inward, a drawn spiral line); verse separation; the hamsa's
-style and what (if anything) is inside it; anything above or below the
-spiral (title, frame); checking the text against his siddur; sizes and
-output.
+Spiral style (shrinking or even letters, turns, a drawn spiral line);
+verse separation; the hamsa's style and what (if anything) is inside it;
+anything above or below the spiral (title, frame); checking the text
+against his siddur; sizes and output.

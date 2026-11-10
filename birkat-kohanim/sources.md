@@ -48,11 +48,17 @@ to the radius; at poster size 113.6 pt outside to 79.9 pt inside. The
 turns are 2 letter bodies apart at the current size (`lead`), so they
 close up a little as the letters shrink. About two and a half turns.
 
+## Between verses (Yosef, 2026-11-10)
+
+A small flower between the verses (two in all), a word space each side:
+six petals around a dot, one petal pointing to the spiral's centre, as
+wide as the letters' bodies around it (`flower`), so it shrinks with them.
+Separate filled shapes, no overlaps or clipping. Its design is a proposal.
+
 ## Draft layout (proposals, not yet Yosef's decisions)
 
 - Letters set one by one on the spiral, each turned to it (Hebrew in TikZ
   per letter: no joining, so nothing is lost).
-- Two word spaces between verses, no other mark.
 - The whole drawing centred on the page by its ink: `glyph-bounds.lua`
   holds each letter's outline hull from the font (made by
   `tools/make_glyph_bounds.py` with fontTools), so turned letters are
@@ -64,6 +70,6 @@ close up a little as the letters shrink. About two and a half turns.
 
 ## Open questions
 
-Verse separation; the hamsa's style and what
+The hamsa's style and what
 (if anything) is inside it; anything above or below the spiral (title,
 frame); checking the text against his siddur; sizes and output.

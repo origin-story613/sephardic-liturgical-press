@@ -41,12 +41,12 @@ horizontal through the spiral's centre.
 
 ## Letter size (Yosef, 2026-11-10)
 
-The letters shrink a little as the spiral runs inward. The innermost
-letter is 0.8 of the outermost (`shrink`, a proposal: Yosef may want more
-or less), the size falling in proportion to the radius; at poster size
-107.5 pt outside to 86.3 pt inside. The turns are 2 letter bodies apart at
-the current size (`lead`), so they close up a little as the letters shrink.
-About two and a half turns.
+The letters shrink as the spiral runs inward (Yosef first chose one size
+throughout, then a little shrinking, then a bit more): the innermost
+letter is 0.7 of the outermost (`shrink`), the size falling in proportion
+to the radius; at poster size 113.6 pt outside to 79.9 pt inside. The
+turns are 2 letter bodies apart at the current size (`lead`), so they
+close up a little as the letters shrink. About two and a half turns.
 
 ## Draft layout (proposals, not yet Yosef's decisions)
 
@@ -64,6 +64,6 @@ About two and a half turns.
 
 ## Open questions
 
-How much the letters shrink; verse separation; the hamsa's style and what
+Verse separation; the hamsa's style and what
 (if anything) is inside it; anything above or below the spiral (title,
 frame); checking the text against his siddur; sizes and output.

@@ -34,7 +34,7 @@ M.p = {
                       -- from the right of the spiral's centre (Yosef: just
                       -- below the centre on the right)
   lead       = 2.0,   -- distance between turns, in letter bodies
-  shrink     = 0.8,   -- innermost letter size over outermost
+  shrink     = 0.7,   -- innermost letter size over outermost (Yosef)
   verse_gap  = 2,     -- space between verses, in word spaces
   hamsa      = 0.115, -- half the hamsa's height
   hamsa_line = 0.004, -- hamsa outline width

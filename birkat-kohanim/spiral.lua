@@ -1,7 +1,8 @@
 -- spiral.lua (Birkat Kohanim poster)
 -- Numbers 6:24-26, letters only, set letter by letter along a spiral that
--- starts at the top and runs inward, counter-clockwise, so the Hebrew reads
--- right to left with the letters' tops outward. A hamsa in the middle.
+-- starts in the bottom right quadrant and runs to the left along the
+-- bottom, clockwise and inward (Yosef). So that the Hebrew reads right to
+-- left, the letters' tops face the centre. A hamsa in the middle.
 --
 -- The spiral is logarithmic: each letter's size is in proportion to its
 -- distance from the centre, so every turn looks the same, smaller inward.
@@ -26,7 +27,8 @@ M.p = {
   cy         = 0.5,   -- spiral centre, as a fraction of the box height
   outer      = 0.46,  -- outermost reach of the letters, from the centre
   inner      = 0.15,  -- innermost reach of the letters (clear of the hamsa)
-  start      = 90,    -- where the text begins, degrees counter-clockwise from the right
+  start      = -45,   -- where the text begins, degrees counter-clockwise from
+                      -- the right (-45: the middle of the bottom right quadrant)
   lead       = 1.5,   -- distance between turns, in letter bodies
   verse_gap  = 2,     -- space between verses, in word spaces
   hamsa      = 0.115, -- half the hamsa's height
@@ -205,18 +207,18 @@ function M.draw()
     local da = (it.n or 1) * widths[it.ch] / BASE * CM_PER_PT * c
     if it.ch ~= ' ' then
       local tm = t + da / 2
-      local r, th = r0 * math.exp(kq * tm), t0 + tm
+      local r, th = r0 * math.exp(kq * tm), t0 - tm  -- clockwise
       local sz = c * r
       local f = sz / BASE * CM_PER_PT              -- cm per BASE pt
       local half = body * f / 2
       local x, y = r * math.cos(th), r * math.sin(th)
-      -- direction of travel (counter-clockwise, inward); the letter's up
-      -- is perpendicular to it, outward
-      local tx = kq * math.cos(th) - math.sin(th)
-      local ty = kq * math.sin(th) + math.cos(th)
+      -- direction of travel (clockwise, inward). The text reads against
+      -- the letters' own x axis, so their up is the travel turned a
+      -- quarter turn clockwise: toward the centre.
+      local tx = kq * math.cos(th) + math.sin(th)
+      local ty = kq * math.sin(th) - math.cos(th)
       local n = math.sqrt(tx * tx + ty * ty)
       local ux, uy = ty / n, -tx / n
-      if ux * math.cos(th) + uy * math.sin(th) < 0 then ux, uy = -ux, -uy end
       local hw = widths[it.ch] * f / 2
       for _, sx in ipairs({ -1, 1 }) do
         for _, sy in ipairs({ -1, 1 }) do

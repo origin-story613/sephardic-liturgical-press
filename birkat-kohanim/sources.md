@@ -50,10 +50,10 @@ close up a little as the letters shrink. About two and a half turns.
 
 ## Between verses (Yosef, 2026-11-10)
 
-A small flower between the verses (two in all), a word space each side:
-six petals around a dot, one petal pointing to the spiral's centre, as
-wide as the letters' bodies around it (`flower`), so it shrinks with them.
-Separate filled shapes, no overlaps or clipping. Its design is a proposal.
+A round dot between the verses (two in all), a word space each side,
+centred on the spiral's centre line. Its width is 0.3 of the letters'
+bodies around it (`dot`, a proposal), so it shrinks with them. Yosef tried
+a small flower first and did not like it.
 
 ## Draft layout (proposals, not yet Yosef's decisions)
 

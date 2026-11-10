@@ -35,7 +35,7 @@ M.p = {
                       -- below the centre on the right)
   lead       = 2.0,   -- distance between turns, in letter bodies
   shrink     = 0.7,   -- innermost letter size over outermost (Yosef)
-  flower     = 1.0,   -- the flower between verses: its width, in letter bodies
+  dot        = 0.3,   -- the dot between verses: its width, in letter bodies
   hamsa      = 0.115, -- half the hamsa's height
   hamsa_line = 0.004, -- hamsa outline width
   label      = true,  -- small grey draft label (off for final output)
@@ -87,7 +87,7 @@ local function fit_page()
 end
 
 -- The text as one run in reading order: { ch = letter }, { ch = ' ' } (a
--- word space) or { ch = 'flower' } (between verses, a word space each side;
+-- word space) or { ch = 'dot' } (between verses, a word space each side;
 -- Yosef).
 local function items()
   local out = {}
@@ -95,7 +95,7 @@ local function items()
     for i, w in ipairs(verse) do
       if #out > 0 then out[#out + 1] = { ch = ' ' } end
       if #out > 0 and i == 1 then
-        out[#out + 1] = { ch = 'flower' }
+        out[#out + 1] = { ch = 'dot' }
         out[#out + 1] = { ch = ' ' }
       end
       for _, c in utf8.codes(w) do out[#out + 1] = { ch = utf8.char(c) } end
@@ -115,7 +115,7 @@ function M.measure()
       string.format('\\directlua{birkat.record(%d)}', utf8.codepoint(ch)))
   end
   for _, it in ipairs(items()) do
-    if it.ch ~= ' ' and it.ch ~= 'flower' then m(it.ch, it.ch) end
+    if it.ch ~= ' ' and it.ch ~= 'dot' then m(it.ch, it.ch) end
   end
   m('ב', 'ב')
   m(' ', 'ב\\ ב')                     -- two bets and a space
@@ -125,7 +125,7 @@ function M.record(cp)
   local b = tex.box[0]
   if cp == 32 then
     widths[' '] = b.width / SP_PER_PT - 2 * widths['ב']
-    widths.flower = M.p.flower * body
+    widths.dot = M.p.dot * body
   else
     local ch = utf8.char(cp)
     widths[ch] = b.width / SP_PER_PT
@@ -219,21 +219,6 @@ local function hamsa(out, cx, cy, scale)
     M.p.hamsa_line * W, table.concat(c, ' '))
 end
 
--- A small flower of radius R centred at (x, y), turned by a degrees with
--- the letters: six petals (ellipses, one pointing to the spiral's centre)
--- around a dot. Separate filled shapes, no overlaps and no clipping.
-local function flower(out, x, y, a, R)
-  for k = 0, 5 do
-    local phi = a + 90 + 60 * k
-    local px = x + 0.6 * R * math.cos(math.rad(phi))
-    local py = y + 0.6 * R * math.sin(math.rad(phi))
-    out[#out + 1] = string.format(
-      '\\fill[rotate around={%.3f:(%.4f,%.4f)}] (%.4f,%.4f) ellipse [x radius=%.4f,y radius=%.4f];',
-      phi, px, py, px, py, 0.4 * R, 0.2 * R)
-  end
-  out[#out + 1] = string.format('\\fill (%.4f,%.4f) circle [radius=%.4f];', x, y, 0.12 * R)
-end
-
 function M.draw()
   fit_page()
   local its = items()
@@ -249,7 +234,7 @@ function M.draw()
   -- the text: each letter a node centred on the spiral, turned to it.
   -- Positions are relative to the spiral's centre; the corners of each
   -- letter's ink give the drawing's extent, so it can be centred.
-  local letters, flowers, x0, x1, y0, y1 = {}, {}, 0, 0, 0, 0
+  local letters, dots, x0, x1, y0, y1 = {}, {}, 0, 0, 0, 0
   local inner_size
   local s = 0                                     -- text taken, BASE widths
   for _, it in ipairs(its) do
@@ -270,12 +255,12 @@ function M.draw()
       local n = math.sqrt(tx * tx + ty * ty)
       local ux, uy = ty / n, -tx / n
       local a = math.deg(math.atan(uy, ux)) - 90
-      if it.ch == 'flower' then
-        -- centred on the spiral, the same height as the letters' bodies
-        local R = M.p.flower * cm_body(sz) / 2
+      if it.ch == 'dot' then
+        -- centred on the spiral, in proportion to the letters around it
+        local R = M.p.dot * cm_body(sz) / 2
         x0, x1 = math.min(x0, x - R), math.max(x1, x + R)
         y0, y1 = math.min(y0, y - R), math.max(y1, y + R)
-        flowers[#flowers + 1] = { x = x, y = y, a = a, R = R }
+        dots[#dots + 1] = { x = x, y = y, R = R }
       else
         -- the letter's ink outline (from the font), about the middle of
         -- its baseline, where the node is anchored; the letter's own x axis
@@ -307,7 +292,10 @@ function M.draw()
       l.a, cx + l.x, cy + l.y, heb(l.sz, l.ch))
   end
 
-  for _, fl in ipairs(flowers) do flower(out, cx + fl.x, cy + fl.y, fl.a, fl.R) end
+  for _, d in ipairs(dots) do
+    out[#out + 1] = string.format('\\fill (%.4f,%.4f) circle [radius=%.4f];',
+      cx + d.x, cy + d.y, d.R)
+  end
   hamsa(out, cx, cy, M.p.hamsa * W)
 
   if M.p.label and fmt then

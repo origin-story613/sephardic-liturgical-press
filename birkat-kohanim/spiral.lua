@@ -38,6 +38,8 @@ M.p = {
   hamsa      = 0.135, -- half the hamsa's height
   hamsa_width = 0.82, -- its drawn width over that of its design (Yosef: taller);
                       -- the circle and star stay round, scaled by this
+  hamsa_foot = -0.08, -- where the fingers meet the palm, drawn (design: 0.12;
+                      -- Yosef: a shorter palm, taller fingers)
   hamsa_line = 0.004, -- hamsa outline width
   hamsa_detail = 0.0028, -- width of the lines inside it
   label      = true,  -- small grey draft label (off for final output)
@@ -266,6 +268,22 @@ local function join(...)
 end
 
 -- The scrolls of the right half, each a list of points.
+-- Yosef: a shorter palm and taller fingers, the height the same. The
+-- design's heights are moved by ymap: the fingertips (above TIPS) stay,
+-- the fingers' straight part stretches down to the drawn foot
+-- (hamsa_foot), and the palm below the design's foot is pressed into what
+-- is left. Curls, the circle and the star keep their shape: only their
+-- positions are moved.
+local TIPS = SIDE_TOP - FW
+local function ymap(y)
+  local foot = M.p.hamsa_foot
+  if y >= TIPS then return y end
+  if y >= FINGER_FOOT then
+    return foot + (y - FINGER_FOOT) * (TIPS - foot) / (TIPS - FINGER_FOOT)
+  end
+  return -1 + (y + 1) * (foot + 1) / (FINGER_FOOT + 1)
+end
+
 local function scrolls_right()
   -- an S-scroll down a finger: a curl at the top whose outer end leaves
   -- on the left going down, into a curl at the bottom entered on the right
@@ -273,21 +291,22 @@ local function scrolls_right()
     return join(curl(fx, top, R1, 0.9, 1, 180),
                 reversed(curl(fx, bottom, R2, 0.9, 1, 0)))
   end
+  local Y = ymap
   return {
     -- the middle finger: half of its curls and the stem between them
-    join(curl(0.06, 0.74, 0.06, 0.9, 1, 180),
-         reversed(curl(0.06, 0.26, 0.06, 0.9, -1, 180))),
-    s_scroll(2 * FW, 0.66, 0.28, 0.09, 0.07),         -- the side finger
-    join(curl(0.62, 0.14, 0.08, 0.9, 1, 270),         -- the thumb, its tail
-         { { 0.55, -0.04 } }),                        -- toward the palm
+    join(curl(0.06, Y(0.74), 0.06, 0.9, 1, 180),
+         reversed(curl(0.06, Y(0.26), 0.06, 0.9, -1, 180))),
+    s_scroll(2 * FW, Y(0.66), Y(0.28), 0.09, 0.07),         -- the side finger
+    join(curl(0.62, Y(0.14), 0.08, 0.9, 1, 270),         -- the thumb, its tail
+         { { 0.55, Y(-0.04) } }),                        -- toward the palm
     -- beside the circle: a curl at the top leaving down on the right, into
     -- a curl at the bottom entered on the left
-    join(curl(0.45, -0.30, 0.065, 0.9, -1, 0),
-         reversed(curl(0.43, -0.64, 0.06, 0.9, -1, 180))),
-    join(curl(0.10, -0.01, 0.045, 0.9, -1, 180),      -- above the circle, half
-         { { 0, 0.02 } }),                            -- of the pair
-    join(curl(0.11, -0.87, 0.05, 0.9, 1, 180),        -- below it, likewise
-         { { 0, -0.84 } }),
+    join(curl(0.45, Y(-0.30), 0.065, 0.9, -1, 0),
+         reversed(curl(0.43, Y(-0.64), 0.06, 0.9, -1, 180))),
+    join(curl(0.10, Y(-0.01), 0.045, 0.9, -1, 180),      -- above the circle, half
+         { { 0, Y(0.02) } }),                            -- of the pair
+    join(curl(0.11, Y(-0.87), 0.05, 0.9, 1, 180),        -- below it, likewise
+         { { 0, Y(-0.84) } }),
   }
 end
 
@@ -324,13 +343,18 @@ end
 local function hamsa(out, cx, cy, scale)
   -- design units to the page: the width narrowed by hamsa_width
   local hw = M.p.hamsa_width
+  -- the outline: heights moved by ymap
   local function pt(x, y)
+    return string.format('(%.4f,%.4f)', cx + x * hw * scale, cy + ymap(y) * scale)
+  end
+  -- the scrolls: already placed (scrolls_right), drawn as they are
+  local function plain(x, y)
     return string.format('(%.4f,%.4f)', cx + x * hw * scale, cy + y * scale)
   end
   -- the circle and star: offsets from the circle's centre, kept round
   local function round(x, y)
     return string.format('(%.4f,%.4f)', cx + x * hw * scale,
-      cy + (STAR_CY + y * hw) * scale)
+      cy + (ymap(STAR_CY) + y * hw) * scale)
   end
   local right = hamsa_right()
   local d = { pt(0, MID_TOP) }
@@ -356,7 +380,7 @@ local function hamsa(out, cx, cy, scale)
       ' -- ' .. pt(sx * FW, FINGER_FOOT)
     out[#out] = out[#out] .. ';'
   end
-  hamsa_inside(out, pt, round)
+  hamsa_inside(out, plain, round)
 end
 
 function M.draw()

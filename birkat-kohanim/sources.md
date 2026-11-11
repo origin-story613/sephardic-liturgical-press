@@ -61,9 +61,13 @@ traditional shape, three rounded fingers side by side with the middle one
 tallest, two thumbs curling outward, a round palm; drawn as one outline
 with a line between each pair of fingers (`hamsa_right()` in
 `spiral.lua`, built from arcs and curves, no clipping). Half its height
-is 0.12 of the width (`hamsa`). Three of the four photos have a Magen
-David in a circle in the palm, some with scrollwork, one with words: what
-goes inside is still to decide (Yosef).
+is 0.12 of the width (`hamsa`). Inside (Yosef): a Magen David in a circle in the
+palm, with scrollwork around it. As drawn (`hamsa_inside()`, a proposal
+in its details): the circle centred low in the palm, the star two
+triangles reaching 0.82 of its radius; in the middle finger a stem rising
+into two curls; an S-scroll down each side finger; a curl in each thumb
+and one each side of the palm. Plain lines, thinner than the outline
+(`hamsa_detail`), the left side mirroring the right.
 
 ## Draft layout (proposals, not yet Yosef's decisions)
 
@@ -79,6 +83,6 @@ goes inside is still to decide (Yosef).
 
 ## Open questions
 
-What (if anything) is inside the
-hamsa, and its line weight; anything above or below the spiral (title,
+The hamsa's details and line
+weights; anything above or below the spiral (title,
 frame); checking the text against his siddur; sizes and output.

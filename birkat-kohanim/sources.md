@@ -60,13 +60,17 @@ copied). What they share, and what the drawing now follows: the
 traditional shape, three rounded fingers side by side with the middle one
 tallest, two thumbs curling outward, a round palm; drawn as one outline
 with a line between each pair of fingers (`hamsa_right()` in
-`spiral.lua`, built from arcs and curves, no clipping). Half its height
-is 0.12 of the width (`hamsa`). Inside (Yosef): a Magen David in a circle in the
-palm, with scrollwork around it. As drawn (`hamsa_inside()`, a proposal
+`spiral.lua`, built from arcs and curves, no clipping). Yosef found the first
+version too squat: it is now taller and slimmer (fingers 0.28 wide, about
+1.4 times as tall as wide), and half its height is 0.135 of the width
+(`hamsa`). Inside (Yosef): a Magen David in a circle in the
+palm, with scrollwork around it. Yosef asked for fuller scrollwork, filling
+the hand as in two of his photos. As drawn (`hamsa_inside()`, a proposal
 in its details): the circle centred low in the palm, the star two
-triangles reaching 0.82 of its radius; in the middle finger a stem rising
-into two curls; an S-scroll down each side finger; a curl in each thumb
-and one each side of the palm. Plain lines, thinner than the outline
+triangles reaching 0.82 of its radius; in the middle finger a stem with
+two curls at each end; an S-scroll down each side finger; a curl in each
+thumb; an S-scroll each side of the circle; a pair of curls above it and
+below it. Plain lines, thinner than the outline
 (`hamsa_detail`), the left side mirroring the right.
 
 ## Draft layout (proposals, not yet Yosef's decisions)

@@ -64,7 +64,11 @@ with a line between each pair of fingers (`hamsa_right()` in
 twice: it is now about 1.65 times as tall as wide (slimmer fingers, and
 the whole drawn at 0.82 of its designed width, `hamsa_width`, with the
 circle and star kept round), and half its height is 0.135 of the width
-(`hamsa`). Inside (Yosef): a Magen David in a circle in the
+(`hamsa`). Yosef then asked for a shorter palm and taller fingers at the
+same height: the fingers now meet the palm at -0.08 of the half-height
+(`hamsa_foot`; designed at 0.12), so the fingers are about 1.33 times as
+long and the palm about 0.82 as tall. The fingertips, curls, circle and
+star keep their shapes; only their positions move (`ymap`). Inside (Yosef): a Magen David in a circle in the
 palm, with scrollwork around it. Yosef asked for fuller scrollwork, filling
 the hand as in two of his photos. As drawn (`hamsa_inside()`, a proposal
 in its details): the circle centred low in the palm, the star two

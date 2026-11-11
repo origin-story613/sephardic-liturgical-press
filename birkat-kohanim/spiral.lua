@@ -37,6 +37,7 @@ M.p = {
   shrink     = 0.7,   -- innermost letter size over outermost (Yosef)
   hamsa      = 0.12,  -- half the hamsa's height
   hamsa_line = 0.004, -- hamsa outline width
+  hamsa_detail = 0.0028, -- width of the lines inside it
   label      = true,  -- small grey draft label (off for final output)
 }
 
@@ -231,6 +232,85 @@ local function hamsa_right()
   return segs
 end
 
+-- Inside the hamsa (Yosef): a Magen David in a circle in the palm, with
+-- scrollwork around it: in the middle finger a stem rising into two curls,
+-- an S-scroll down each side finger, a curl in each thumb and one each side
+-- of the palm. All plain lines, in hamsa units, the left
+-- side mirroring the right.
+local STAR_CY, STAR_R = -0.40, 0.36   -- the circle in the palm
+local STAR_IN = 0.82                  -- the star's points, over the circle's radius
+
+-- Points of a curl: a spiral from its centre (cx, cy) out to radius R,
+-- turning n times, spin +1 counter-clockwise, ending at angle e (degrees).
+local function curl(cx, cy, R, n, spin, e)
+  local pts = {}
+  for i = 0, 40 do
+    local u = 0.25 + 0.75 * i / 40
+    local th = math.rad(e) - spin * 2 * math.pi * n * (1 - u)
+    pts[#pts + 1] = { cx + R * u * math.cos(th), cy + R * u * math.sin(th) }
+  end
+  return pts
+end
+local function reversed(t)
+  local r = {}
+  for i = #t, 1, -1 do r[#r + 1] = t[i] end
+  return r
+end
+local function join(...)
+  local r = {}
+  for _, t in ipairs({ ... }) do for _, q in ipairs(t) do r[#r + 1] = q end end
+  return r
+end
+
+-- The scrolls of the right half, each a list of points.
+local function scrolls_right()
+  -- an S-scroll down a finger: a curl at the top whose outer end leaves
+  -- on the left going down, into a curl at the bottom entered on the right
+  local function s_scroll(fx, top, bottom, R1, R2)
+    return join(curl(fx, top, R1, 0.9, 1, 180),
+                reversed(curl(fx, bottom, R2, 0.9, 1, 0)))
+  end
+  return {
+    join(curl(0.075, 0.72, 0.075, 0.9, 1, 180),       -- the middle finger: half
+         { { 0, 0.30 } }),                            -- of its two curls, the stem
+    s_scroll(2 * FW, 0.63, 0.30, 0.11, 0.085),        -- the side finger
+    join(curl(0.73, 0.15, 0.10, 0.9, 1, 270),         -- the thumb, its tail
+         { { 0.64, -0.06 } }),                        -- toward the palm
+    join(curl(0.53, -0.52, 0.08, 0.9, -1, 90),        -- the palm, beside the
+         { { 0.56, -0.30 } }),                        -- circle
+  }
+end
+
+local function hamsa_inside(out, pt)
+  local style = string.format('line width=%.4fcm,line join=round,line cap=round',
+    M.p.hamsa_detail * W)
+  for _, sx in ipairs({ 1, -1 }) do
+    for _, sc in ipairs(scrolls_right()) do
+      local c = {}
+      for _, q in ipairs(sc) do c[#c + 1] = pt(sx * q[1], q[2]) end
+      out[#out + 1] = '\\draw[' .. style .. '] plot[smooth] coordinates {' ..
+        table.concat(c, ' ') .. '};'
+    end
+  end
+  -- the circle, then the star: two triangles
+  local circ = {}
+  for i = 0, 71 do
+    local a = math.rad(i * 5)
+    circ[#circ + 1] = pt(STAR_R * math.cos(a), STAR_CY + STAR_R * math.sin(a))
+  end
+  out[#out + 1] = '\\draw[' .. style .. '] plot[smooth cycle] coordinates {' ..
+    table.concat(circ, ' ') .. '};'
+  for _, a0 in ipairs({ 90, 270 }) do
+    local tri = {}
+    for k = 0, 2 do
+      local a = math.rad(a0 + 120 * k)
+      tri[#tri + 1] = pt(STAR_IN * STAR_R * math.cos(a),
+                         STAR_CY + STAR_IN * STAR_R * math.sin(a))
+    end
+    out[#out + 1] = '\\draw[' .. style .. '] ' .. table.concat(tri, ' -- ') .. ' -- cycle;'
+  end
+end
+
 local function hamsa(out, cx, cy, scale)
   local function pt(x, y)
     return string.format('(%.4f,%.4f)', cx + x * scale, cy + y * scale)
@@ -259,6 +339,7 @@ local function hamsa(out, cx, cy, scale)
       ' -- ' .. pt(sx * FW, FINGER_FOOT)
     out[#out] = out[#out] .. ';'
   end
+  hamsa_inside(out, pt)
 end
 
 function M.draw()

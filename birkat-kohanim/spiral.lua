@@ -36,6 +36,8 @@ M.p = {
   lead       = 2.0,   -- distance between turns, in letter bodies
   shrink     = 0.7,   -- innermost letter size over outermost (Yosef)
   hamsa      = 0.135, -- half the hamsa's height
+  hamsa_width = 0.82, -- its drawn width over that of its design (Yosef: taller);
+                      -- the circle and star stay round, scaled by this
   hamsa_line = 0.004, -- hamsa outline width
   hamsa_detail = 0.0028, -- width of the lines inside it
   label      = true,  -- small grey draft label (off for final output)
@@ -289,7 +291,7 @@ local function scrolls_right()
   }
 end
 
-local function hamsa_inside(out, pt)
+local function hamsa_inside(out, pt, round)
   local style = string.format('line width=%.4fcm,line join=round,line cap=round',
     M.p.hamsa_detail * W)
   for _, sx in ipairs({ 1, -1 }) do
@@ -304,7 +306,7 @@ local function hamsa_inside(out, pt)
   local circ = {}
   for i = 0, 71 do
     local a = math.rad(i * 5)
-    circ[#circ + 1] = pt(STAR_R * math.cos(a), STAR_CY + STAR_R * math.sin(a))
+    circ[#circ + 1] = round(STAR_R * math.cos(a), STAR_R * math.sin(a))
   end
   out[#out + 1] = '\\draw[' .. style .. '] plot[smooth cycle] coordinates {' ..
     table.concat(circ, ' ') .. '};'
@@ -312,16 +314,23 @@ local function hamsa_inside(out, pt)
     local tri = {}
     for k = 0, 2 do
       local a = math.rad(a0 + 120 * k)
-      tri[#tri + 1] = pt(STAR_IN * STAR_R * math.cos(a),
-                         STAR_CY + STAR_IN * STAR_R * math.sin(a))
+      tri[#tri + 1] = round(STAR_IN * STAR_R * math.cos(a),
+                            STAR_IN * STAR_R * math.sin(a))
     end
     out[#out + 1] = '\\draw[' .. style .. '] ' .. table.concat(tri, ' -- ') .. ' -- cycle;'
   end
 end
 
 local function hamsa(out, cx, cy, scale)
+  -- design units to the page: the width narrowed by hamsa_width
+  local hw = M.p.hamsa_width
   local function pt(x, y)
-    return string.format('(%.4f,%.4f)', cx + x * scale, cy + y * scale)
+    return string.format('(%.4f,%.4f)', cx + x * hw * scale, cy + y * scale)
+  end
+  -- the circle and star: offsets from the circle's centre, kept round
+  local function round(x, y)
+    return string.format('(%.4f,%.4f)', cx + x * hw * scale,
+      cy + (STAR_CY + y * hw) * scale)
   end
   local right = hamsa_right()
   local d = { pt(0, MID_TOP) }
@@ -347,7 +356,7 @@ local function hamsa(out, cx, cy, scale)
       ' -- ' .. pt(sx * FW, FINGER_FOOT)
     out[#out] = out[#out] .. ';'
   end
-  hamsa_inside(out, pt)
+  hamsa_inside(out, pt, round)
 end
 
 function M.draw()

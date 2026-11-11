@@ -35,7 +35,7 @@ M.p = {
                       -- below the centre on the right)
   lead       = 2.0,   -- distance between turns, in letter bodies
   shrink     = 0.7,   -- innermost letter size over outermost (Yosef)
-  hamsa      = 0.12,  -- half the hamsa's height
+  hamsa      = 0.135, -- half the hamsa's height
   hamsa_line = 0.004, -- hamsa outline width
   hamsa_detail = 0.0028, -- width of the lines inside it
   label      = true,  -- small grey draft label (off for final output)
@@ -212,10 +212,10 @@ local function line(x0, y0, x1, y1)  -- a straight segment as a cubic
              x0 + 2 * (x1 - x0) / 3, y0 + 2 * (y1 - y0) / 3, x1, y1 } }
 end
 
-local FW = 0.17          -- half a finger's width
+local FW = 0.14          -- half a finger's width
 local MID_TOP = 1.0      -- top of the middle finger
 local SIDE_TOP = 0.86    -- top of the side fingers
-local FINGER_FOOT = 0.16 -- where the fingers meet the thumbs and palm
+local FINGER_FOOT = 0.12 -- where the fingers meet the thumbs and palm
 local function hamsa_right()
   local segs = {}
   local function add(t) for _, sg in ipairs(t) do segs[#segs + 1] = sg end end
@@ -224,20 +224,21 @@ local function hamsa_right()
   add(arc(2 * FW, SIDE_TOP - FW, FW, 180, 0))               -- side fingertip
   add(line(3 * FW, SIDE_TOP - FW, 3 * FW, FINGER_FOOT))     -- its outer edge
   -- the thumb: out and up to a tip curling outward, then down its back
-  add({ { 0.60, 0.17, 0.70, 0.25, 0.77, 0.39 } })
-  add(arc(0.835, 0.36, 0.065, 155, -10))                    -- the tip
-  add({ { 0.91, 0.20, 0.86, -0.05, 0.74, -0.24 } })
+  add({ { 0.50, 0.13, 0.58, 0.22, 0.635, 0.36 } })
+  add(arc(0.685, 0.335, 0.055, 155, -10))                   -- the tip
+  add({ { 0.75, 0.16, 0.71, -0.06, 0.61, -0.26 } })
   -- the palm, round, to the bottom centre
-  add({ { 0.70, -0.62, 0.42, -1.0, 0, -1.0 } })
+  add({ { 0.59, -0.66, 0.36, -1.0, 0, -1.0 } })
   return segs
 end
 
 -- Inside the hamsa (Yosef): a Magen David in a circle in the palm, with
--- scrollwork around it: in the middle finger a stem rising into two curls,
--- an S-scroll down each side finger, a curl in each thumb and one each side
--- of the palm. All plain lines, in hamsa units, the left
--- side mirroring the right.
-local STAR_CY, STAR_R = -0.40, 0.36   -- the circle in the palm
+-- scrollwork filling the hand around it (Yosef: fuller): in the middle
+-- finger a stem with two curls at each end, an S-scroll down each side
+-- finger, a curl in each thumb, an S-scroll each side of the circle, and a
+-- pair of curls above it and below it. All plain lines, in hamsa units, the
+-- left side mirroring the right.
+local STAR_CY, STAR_R = -0.45, 0.30   -- the circle in the palm
 local STAR_IN = 0.82                  -- the star's points, over the circle's radius
 
 -- Points of a curl: a spiral from its centre (cx, cy) out to radius R,
@@ -271,13 +272,20 @@ local function scrolls_right()
                 reversed(curl(fx, bottom, R2, 0.9, 1, 0)))
   end
   return {
-    join(curl(0.075, 0.72, 0.075, 0.9, 1, 180),       -- the middle finger: half
-         { { 0, 0.30 } }),                            -- of its two curls, the stem
-    s_scroll(2 * FW, 0.63, 0.30, 0.11, 0.085),        -- the side finger
-    join(curl(0.73, 0.15, 0.10, 0.9, 1, 270),         -- the thumb, its tail
-         { { 0.64, -0.06 } }),                        -- toward the palm
-    join(curl(0.53, -0.52, 0.08, 0.9, -1, 90),        -- the palm, beside the
-         { { 0.56, -0.30 } }),                        -- circle
+    -- the middle finger: half of its curls and the stem between them
+    join(curl(0.06, 0.74, 0.06, 0.9, 1, 180),
+         reversed(curl(0.06, 0.26, 0.06, 0.9, -1, 180))),
+    s_scroll(2 * FW, 0.66, 0.28, 0.09, 0.07),         -- the side finger
+    join(curl(0.62, 0.14, 0.08, 0.9, 1, 270),         -- the thumb, its tail
+         { { 0.55, -0.04 } }),                        -- toward the palm
+    -- beside the circle: a curl at the top leaving down on the right, into
+    -- a curl at the bottom entered on the left
+    join(curl(0.45, -0.30, 0.065, 0.9, -1, 0),
+         reversed(curl(0.43, -0.64, 0.06, 0.9, -1, 180))),
+    join(curl(0.10, -0.01, 0.045, 0.9, -1, 180),      -- above the circle, half
+         { { 0, 0.02 } }),                            -- of the pair
+    join(curl(0.11, -0.87, 0.05, 0.9, 1, 180),        -- below it, likewise
+         { { 0, -0.84 } }),
   }
 end
 
